@@ -1,2 +1,2 @@
-#include Player2.h;
-#include DxLib.h;
+#include "Player2.h";
+#include "DxLib.h";
