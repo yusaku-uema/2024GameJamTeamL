@@ -45,7 +45,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		sceneManager->Update() != nullptr
 		)
 	{
-		PAD_INPUT::UpdateKey();
+		PadInput::UpdateKey();
 
 		ClearDrawScreen();		// ‰æ–Ê‚Ì‰Šú‰»
 
