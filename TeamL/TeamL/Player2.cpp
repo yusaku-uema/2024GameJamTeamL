@@ -1,6 +1,7 @@
 #include "Player2.h";
 #include "DxLib.h";
 #include "PadInput.h"
+#include "Bullet.h"
 
 #define PLAYER2_SIZE_X   (30.0f)
 
@@ -8,9 +9,16 @@ Player2::Player2()
 {
 	x = 1200.0f;
 	y = 350.0f;
-	move_y = 1.0f;
+	move_y = 0.0f;
 	radius = 10.0f;
 }
+
+Player2::~Player2()
+{
+	p_bullet;
+}
+
+
 
 Player2::Player2(float mx, float my)
 {
@@ -28,17 +36,45 @@ void Player2::Update()
 	{
 		move_y *= -1.0f;
 	}
+
+	Move();
+
+
+	if (PadInput::OnButton(XINPUT_BUTTON_B)==1)
+	{
+		if (p_bullet == nullptr)
+		{
+			p_bullet=new Bullet(x, y);
+		}
+	}
+	if (p_bullet != nullptr)
+	{
+		p_bullet->Update();
+		if (p_bullet->x <= 0.0f)
+		{
+			delete p_bullet;
+			p_bullet = nullptr;
+		}
+	}
 }
 
 void Player2::Draw()
 {
 	DrawCircleAA(x , y, radius, 100, GetColor(255, 255, 255),TRUE);
+
+	if (p_bullet != nullptr)
+	{
+		p_bullet->Draw();
+	}
 }
 
 void Player2::Move()
 {
+	int stick_y = PadInput::GetLStick().y;
+
+
 	//キーを使って動かす
-	if (CheckHitKey(KEY_INPUT_UP) != FALSE) // 上キーを押すと上に行く
+	if (stick_y > 2000) // 上キーを押すと上に行く
 	{
 		y -= 5.0f;
 	}
@@ -47,7 +83,7 @@ void Player2::Move()
 		y += 0.0f;
 	}
 
-	if (CheckHitKey(KEY_INPUT_DOWN) != FALSE) //下キーを押すと下に行く
+	if (stick_y < -2000) //下キーを押すと下に行く
 	{
 		y += 5.0f;
 	}
@@ -55,7 +91,7 @@ void Player2::Move()
 	{
 		y += 0.0f;
 	}
-
+	
 	//同時に上下ボタン押すと止まる
 	if (CheckHitKey(KEY_INPUT_UP) != FALSE && CheckHitKey(KEY_INPUT_DOWN) != FALSE)
 	{

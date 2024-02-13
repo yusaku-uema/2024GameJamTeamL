@@ -1,6 +1,7 @@
 //š ‹g@Nm‚ª’S“–‚µ‚½‚Æ‚±‚ë
 
 #pragma once
+#include "Bullet.h"
 class Player2
 {
 private:
@@ -10,7 +11,9 @@ private:
 	float radius;
 
 public:
+	Bullet* p_bullet;
 	Player2();
+	~Player2();
 	Player2(float mx, float my);
 
 	void Update();
