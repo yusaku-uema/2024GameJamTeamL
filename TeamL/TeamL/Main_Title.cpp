@@ -19,8 +19,9 @@ Main_Title::Main_Title()
 	stick_y = 0;
 
 	cursor_y = 300;
-	//title_image = LoadGraph("image/title.png");
-	title_image = 0;
+
+	title_image = LoadGraph("../imege/title.png");
+
 }
 
 //-----------------------------------
@@ -141,12 +142,14 @@ void Main_Title::Draw()const
 
 	SetFontSize(40);
 
-	DrawFormatString(550, 300, 0xFFFFFF, "Game Start");
+	DrawGraph(0, 0, title_image, FALSE);
 
-	DrawFormatString(550, 400, 0xFFFFFF, "Help");
+	DrawFormatString(850, 300, 0xFFFFFF, "Game Start");
 
-	DrawFormatString(550, 500, 0xFFFFFF, "End");
+	DrawFormatString(850, 400, 0xFFFFFF, "Help");
+
+	DrawFormatString(850, 500, 0xFFFFFF, "End");
 
 	//ÉJÅ[É\Éã
-	DrawString(500, cursor_y, "Å°", GetColor(255, 255, 255));
+	DrawString(800, cursor_y, "Å°", GetColor(255, 0, 0));
 }
