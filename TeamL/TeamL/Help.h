@@ -1,5 +1,7 @@
 #pragma once
 #include "AbstractScene.h"
+#include"PadInput.h"
+
 class Help :
     public AbstractScene
 {

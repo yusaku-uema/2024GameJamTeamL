@@ -2,6 +2,7 @@
 #include"GameMain.h"
 #include "common.h"
 #include "DxLib.h"
+#include"Help.h"
 #include"PadInput.h"
 
 
@@ -15,7 +16,9 @@ Main_Title::Main_Title()
 
 	select_menu = static_cast<int>(MENU::PLAYER_GAME);
 
-	cursor_y = 0;
+	stick_y = 0;
+
+	cursor_y = 300;
 	//title_image = LoadGraph("image/title.png");
 	title_image = 0;
 }
@@ -58,10 +61,13 @@ AbstractScene* Main_Title::Update()
 				select_menu = (select_menu + 1) % static_cast<int>(MENU::MENU_SIZE);
 			}
 
+			//連続操作を受け付けないように
 			input_margin = 0;
 
 		}
 
+
+		//十字キーで操作
 		if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_UP) || PadInput::OnPressed(XINPUT_BUTTON_DPAD_DOWN))
 		{
 
@@ -76,6 +82,7 @@ AbstractScene* Main_Title::Update()
 				select_menu = (select_menu + 1) % static_cast<int>(MENU::MENU_SIZE);
 			}
 
+			//連続入力しないように
 			input_margin = 0;
 
 		}
@@ -99,21 +106,24 @@ AbstractScene* Main_Title::Update()
 	}
 
 
+	//Aボタンが押されたとき
 	if (PadInput::GetNowKey(XINPUT_BUTTON_A) && (PadInput::OnButton(XINPUT_BUTTON_A) == true))
 	{
 		input_margin = 0;
 		MENU current_selection = static_cast<MENU>(select_menu);
 
+		//選択されていたシーンに遷移する
 		switch (current_selection)
 		{
 		case MENU::PLAYER_GAME:
-			return new GameMain();
+			return new GameMain(); //ゲームメインへ
 			break;
 
 		case MENU::HELP:
-			return this;
+			return new Help(); //ヘルプ画面
 			break;
-		case MENU::END:
+
+		case MENU::END: //ゲーム終了
 			return 0;
 
 		default:
