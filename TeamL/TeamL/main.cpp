@@ -16,6 +16,7 @@
 #include"AbstractScene.h"
 #include"PadInput.h"
 #include"Main_Title.h"
+#include"Player2.h"
 
 /***********************************************
  * ƒvƒƒOƒ‰ƒ€‚ÌŠJŽn
@@ -35,6 +36,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SetDrawScreen(DX_SCREEN_BACK);	// •`‰ææ‰æ–Ê‚ð— ‚É‚·‚é
 
+	Player2* player2 = new Player2();
 
 	AbstractScene* firstScene = new Main_Title();						//FirstScene‚Ìì¬
 
@@ -50,6 +52,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		ClearDrawScreen();		// ‰æ–Ê‚Ì‰Šú‰»
 
 		sceneManager->Draw();
+
+		player2->Draw();//Player2‚Ì•`‰æ
 
 
 		ScreenFlip();			// — ‰æ–Ê‚Ì“à—e‚ð•\‰æ–Ê‚É”½‰f
