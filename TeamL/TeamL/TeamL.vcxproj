@@ -141,7 +141,7 @@
     <ClCompile Include="Main_Title.cpp" />
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="stage.cpp" />
+    <ClCompile Include="GameMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
@@ -149,7 +149,7 @@
     <ClInclude Include="Main_Title.h" />
     <ClInclude Include="PadInput.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="stage.h" />
+    <ClInclude Include="GameMain.h" />
     <ClCompile Include="Player2.cpp" />
   </ItemGroup>
   <ItemGroup>
