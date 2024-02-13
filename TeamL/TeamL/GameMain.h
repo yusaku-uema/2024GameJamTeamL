@@ -4,7 +4,14 @@
 
 class GameMain :
 	public AbstractScene
+
 {
+
+	int tukiimage1;
+	int tukiimage2;
+	int tukiimage3;
+
+
 private:
 
 
