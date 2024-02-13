@@ -140,6 +140,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Main_Title.cpp" />
     <ClCompile Include="PadInput.cpp" />
+    <ClCompile Include="Player1.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="stage.cpp" />
   </ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="Main_Title.h" />
     <ClInclude Include="PadInput.h" />
+    <ClInclude Include="Player1.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="stage.h" />
   </ItemGroup>
