@@ -1,5 +1,5 @@
 /****************************************************************/
-/*	プロジェクト名:		Gamejam 　　チームL*/
+/*	プロジェクト名:		Gamejam 　　チームL						*/
 /*	ファイル名：		ゲームメイン							*/
 /*	内容：				全ての大元の処理						*/
 /*	日付：		２０２４年０２月１２日							*/
@@ -16,7 +16,7 @@
 #include"AbstractScene.h"
 #include"PadInput.h"
 #include"Main_Title.h"
-#include"Player2.h"
+#include"GameMain.h"
 
 /***********************************************
  * プログラムの開始
@@ -36,7 +36,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SetDrawScreen(DX_SCREEN_BACK);	// 描画先画面を裏にする
 
-	Player2* player2 = new Player2();
 
 	AbstractScene* firstScene = new Main_Title();						//FirstSceneの作成
 
@@ -47,13 +46,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		sceneManager->Update() != nullptr
 		)
 	{
-		PAD_INPUT::UpdateKey();
+		PadInput::UpdateKey();
 
 		ClearDrawScreen();		// 画面の初期化
 
 		sceneManager->Draw();
-
-		player2->Draw();//Player2の描画
 
 
 		ScreenFlip();			// 裏画面の内容を表画面に反映
