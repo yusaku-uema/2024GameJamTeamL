@@ -85,10 +85,13 @@ AbstractScene* Main_Title::Update()
 	switch (select_menu)
 	{
 	case 0:
-		cursor_y = 0; //スタートのカーソル位置
+		cursor_y = 300; //スタートのカーソル位置
 		break;
 	case 1:
 		cursor_y = 400; //EXITのカーソル位置
+		break;
+	case 2:
+		cursor_y = 500; //EXITのカーソル位置
 		break;
 	default:
 		break;
@@ -109,6 +112,8 @@ AbstractScene* Main_Title::Update()
 		case MENU::HELP:
 			return this;
 			break;
+		case MENU::END:
+			return 0;
 
 		default:
 			printfDx("未実装な機能です。\n");
@@ -122,5 +127,15 @@ AbstractScene* Main_Title::Update()
 
 void Main_Title::Draw()const
 {
-	DrawFormatString(100, 100, 0xff0000,"テスト", TRUE);
+
+	SetFontSize(40);
+
+	DrawFormatString(550, 300, 0xFFFFFF, "Game Start");
+
+	DrawFormatString(550, 400, 0xFFFFFF, "Help");
+
+	DrawFormatString(550, 500, 0xFFFFFF, "End");
+
+	//カーソル
+	DrawString(500, cursor_y, "■", GetColor(255, 255, 255));
 }
