@@ -13,10 +13,7 @@ Stage::Stage(float locationx, float locationy, int width, int height)
 
 	int a = 0;
 }
-Stage::~Stage()
-{
 
-}
 
 
 void Stage::Update()

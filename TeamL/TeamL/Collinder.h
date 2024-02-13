@@ -1,23 +1,37 @@
 
 #pragma once
-#include "AbstractScene.h"
+
+//サイズ
+struct Area
+{
+	float height;
+	float width;
+
+};
+//中心座標
+struct Location
+{
+	float X;//ちゅうしんｘ
+	float Y;//ちゅうしんｙ
+};
 
 class Collinder
 
 {
+protected:
 
-private:
+	Area area;
+	Location location;
 
 
 public:
 
-	Collinder();
+	bool HitBox(const class Collinder* collider)const;
 
-	~Collinder();
+	//中心座標の取得
+	Location Getlocation()const;
 
-	//描画以外の更新を実行
-	void Update();
+	//画像のはんけいの取得
+	Area GetArea()const;
 
-	//描画に関することを実装
-	void Draw() const;
 };

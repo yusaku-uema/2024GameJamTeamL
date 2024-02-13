@@ -2,20 +2,7 @@
 #include"Collinder.h"
 
 
-Collinder::Collinder()
-{
+//“–‚½‚è”»’è
 
 
 
-}
-
-Collinder::~Collinder()
-{
-
-
-}
-
-Collinder::void Draw()
-{
-
-}

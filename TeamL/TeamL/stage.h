@@ -2,8 +2,7 @@
 #pragma once
 #include "Collinder.h"
 
-class Stage :
-	public Collinder
+class Stage
 
 {
 

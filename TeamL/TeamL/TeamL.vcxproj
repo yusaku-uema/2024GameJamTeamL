@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="camerawork.cpp" />
+    <ClCompile Include="Collinder.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Main_Title.cpp" />
     <ClCompile Include="PadInput.cpp" />
