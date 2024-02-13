@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="camerawork.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Main_Title.cpp" />
@@ -144,10 +145,12 @@
     <ClCompile Include="Player1.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
     <ClInclude Include="camerawark.h" />
+    <ClInclude Include="Collinder.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="Main_Title.h" />
     <ClInclude Include="PadInput.h" />
@@ -155,6 +158,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="GameMain.h" />
     <ClCompile Include="Player2.cpp" />
+    <ClInclude Include="stage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player2 Bullet.h" />

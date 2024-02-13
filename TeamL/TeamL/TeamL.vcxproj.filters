@@ -36,6 +36,12 @@
     <ClCompile Include="camerawork.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="stage.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMain.h">
@@ -62,6 +68,15 @@
     <ClInclude Include="camerawark.h">
       <Filter>ソース ファイル\ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Player1.h">
+      <Filter>ソース ファイル\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="stage.h">
+      <Filter>ソース ファイル\ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Collinder.h">
+      <Filter>ソース ファイル\ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player2.h">
@@ -69,9 +84,6 @@
     </ClInclude>
     <ClInclude Include="Player2 Bullet.h">
       <Filter>ソース ファイル\ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Player1.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
