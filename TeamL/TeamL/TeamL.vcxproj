@@ -137,25 +137,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="camerawork.cpp" />
+    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="Collinder.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Main_Title.cpp" />
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="Player1.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="GameMain.cpp" />
+    <ClCompile Include="stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
     <ClInclude Include="camerawark.h" />
+    <ClInclude Include="Collinder.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="Help.h" />
     <ClInclude Include="Main_Title.h" />
     <ClInclude Include="PadInput.h" />
     <ClInclude Include="Player1.h" />
+    <ClInclude Include="Result.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="GameMain.h" />
     <ClCompile Include="Player2.cpp" />
+    <ClInclude Include="stage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
