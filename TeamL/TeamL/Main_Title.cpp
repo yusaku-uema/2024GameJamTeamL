@@ -22,6 +22,25 @@ Main_Title::Main_Title()
 
 	title_image = LoadGraph("../imege/title.png");
 
+	title_bgm = LoadSoundMem("../BGM/Noesis_2.mp3");
+
+	definite_se = LoadSoundMem("../BGM/決定ボタンを押す1.mp3");
+
+	selection_se = LoadSoundMem("../BGM/カーソル移動1.mp3");
+
+}
+
+//-----------------------------------
+// デストラクタ
+// メモリ解放    
+//-----------------------------------
+Main_Title::~Main_Title()
+{
+	DeleteGraph(title_image);
+	DeleteSoundMem(title_bgm);
+	DeleteSoundMem(definite_se);
+	DeleteSoundMem(selection_se);
+
 }
 
 //-----------------------------------
@@ -29,6 +48,14 @@ Main_Title::Main_Title()
 //-----------------------------------
 AbstractScene* Main_Title::Update()
 {
+	
+	if (CheckSoundMem(title_bgm) != 1)
+	{   //BGMが流れていなかったら再生
+		PlaySoundMem(title_bgm, DX_PLAYTYPE_LOOP, TRUE); //BGM再生
+	}
+
+
+
 	// 操作間隔時間
 	const int max_input_margin = 10;
 
@@ -53,11 +80,17 @@ AbstractScene* Main_Title::Update()
 
 			// スティックが上に移動した場合
 			if (stick_y > 0) {
+
+				PlaySoundMem(selection_se, DX_PLAYTYPE_BACK, TRUE); //SE再生
+
 				// メニュー選択肢を一つ前に移動
 				select_menu = (select_menu - 1 + static_cast<int>(MENU::MENU_SIZE)) % static_cast<int>(MENU::MENU_SIZE);
 			}
 			// スティックが下に移動した場合
 			else if (stick_y < 0) {
+
+				PlaySoundMem(selection_se, DX_PLAYTYPE_BACK, TRUE); //SE再生
+
 				// メニュー選択肢を一つ次に移動
 				select_menu = (select_menu + 1) % static_cast<int>(MENU::MENU_SIZE);
 			}
@@ -74,11 +107,17 @@ AbstractScene* Main_Title::Update()
 
 			if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_UP))
 			{
+
+				PlaySoundMem(selection_se, DX_PLAYTYPE_BACK, TRUE); //SE再生
+
 				// メニュー選択肢を一つ前に移動
 				select_menu = (select_menu - 1 + static_cast<int>(MENU::MENU_SIZE)) % static_cast<int>(MENU::MENU_SIZE);
 			}
 			else if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_DOWN))
 			{
+
+				PlaySoundMem(selection_se, DX_PLAYTYPE_BACK, TRUE); //SE再生
+
 				// メニュー選択肢を一つ次に移動
 				select_menu = (select_menu + 1) % static_cast<int>(MENU::MENU_SIZE);
 			}
@@ -110,6 +149,13 @@ AbstractScene* Main_Title::Update()
 	//Aボタンが押されたとき
 	if (PadInput::GetNowKey(XINPUT_BUTTON_A) && (PadInput::OnButton(XINPUT_BUTTON_A) == true))
 	{
+
+
+		//BGMを止める
+		StopSoundMem(title_bgm);
+
+		PlaySoundMem(definite_se, DX_PLAYTYPE_NORMAL, TRUE); //SE再生
+
 		input_margin = 0;
 		MENU current_selection = static_cast<MENU>(select_menu);
 
