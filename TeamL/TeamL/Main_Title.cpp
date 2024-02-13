@@ -1,4 +1,5 @@
 #include "Main_Title.h"
+#include"GameMain.h"
 #include "common.h"
 #include "DxLib.h"
 #include"PadInput.h"
@@ -106,7 +107,7 @@ AbstractScene* Main_Title::Update()
 		switch (current_selection)
 		{
 		case MENU::PLAYER_GAME:
-			//return new GameMain();
+			return new GameMain();
 			break;
 
 		case MENU::HELP:
