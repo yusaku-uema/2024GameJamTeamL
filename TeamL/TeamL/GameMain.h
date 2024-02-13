@@ -2,7 +2,7 @@
 #pragma once
 #include "AbstractScene.h"
 
-class GameMain :s
+class GameMain :
 	public AbstractScene
 {
 
