@@ -9,6 +9,7 @@
 /****************************************************************/
 #include"DxLib.h"
 #include"GameMain.h"
+#include"PadInput.h"
 #define _CRT_SECURE_MD_WARNING
 #include<stdio.h>
 
@@ -45,7 +46,7 @@ GameMain::GameMain()
 
 			if (block >0)
 			{
-				stage[j][i] = new Stage(i, j, 32, 32 ,block);
+				stage[j][i] = new Stage(i, j, 40, 40 ,block);
 			}
 			else
 			{
@@ -93,6 +94,70 @@ AbstractScene* GameMain::Update()
 
 
 	player1->Update(camerawork->GetViewCharX());
+    player2->Update(camerawork->GetViewCharX());
+
+	//プレイヤー２の弾丸処理
+
+	if (PadInput::OnButton(1, XINPUT_BUTTON_B) == 1)
+	{
+		if (p_bullet == nullptr)
+		{
+			p_bullet = new Bullet(player2->GetLocation().x + camerawork->GetViewCharX(), player2->GetLocation().y);
+		}
+	}
+	if (p_bullet != nullptr)
+	{
+		p_bullet->Update();
+		if (p_bullet->GetLocation().x <= 0.0f)
+		{
+			delete p_bullet;
+			p_bullet = nullptr;
+		}
+	}
+
+	if (PadInput::OnButton(1, XINPUT_BUTTON_A) == 1)
+	{
+		if (p_bom == nullptr)
+		{
+			p_bom = new Bom(player2->GetLocation().x + camerawork->GetViewCharX(), player2->GetLocation().y);
+		}
+	}
+	if (p_bom != nullptr)
+	{
+		p_bom->Update();
+		if (p_bom->GetLocation().x <= 0.0f)
+		{
+			delete p_bom;
+			p_bom = nullptr;
+		}
+	}
+
+	if (PadInput::OnButton(1, XINPUT_BUTTON_Y) == 1|| PadInput::OnButton(1, XINPUT_BUTTON_X) == 1)
+	{
+		if (p_vbullet == nullptr)
+		{
+			if (PadInput::OnButton(1, XINPUT_BUTTON_Y) == 1)
+			{
+				p_vbullet = new VBullet(player2->GetLocation().x + camerawork->GetViewCharX(), player2->GetLocation().y, -20.0f, -20.0f);
+			}
+			else
+			{
+				p_vbullet = new VBullet(player2->GetLocation().x + camerawork->GetViewCharX(), player2->GetLocation().y, -20.0f, 20.0f);
+			}
+		}
+	}
+	if (p_vbullet != nullptr)
+	{
+		p_vbullet->Update();
+		if (p_vbullet->GetLocation().x <= 0.0f)
+		{
+			delete p_vbullet;
+			p_vbullet = nullptr;
+		}
+	}
+
+	
+
 
 
 	if (player1->GetLocation().x > oldlocation.x)
@@ -123,13 +188,12 @@ AbstractScene* GameMain::Update()
 	// 走行距離を加算する(仮のスピード)
 	gMileage -= 5;
 
-	player2->Update();
-
-	return this;
-
 	//BGMを止める
 	StopSoundMem(BGM);
 
+
+
+	return this;
 }
 
 
@@ -168,5 +232,20 @@ void GameMain::Draw()const
 	DrawFormatString(0, 200, GetColor(255, 255, 255), "g：%f", player1->g);
 
 	player2->Draw();
+
+
+	if (p_bullet != nullptr)
+	{
+		p_bullet->Draw();
+	}
+	if (p_vbullet != nullptr)
+	{
+		p_vbullet->Draw();
+	}
+	if (p_bom != nullptr)
+	{
+		p_bom->Draw();
+	}
+
 
 }

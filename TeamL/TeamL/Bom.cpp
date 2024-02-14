@@ -30,6 +30,8 @@ Bom::~Bom()
 void Bom::Update()//XVˆ—
 {
 	location.x += move_x;
+
+	
 }
 
 void Bom::Draw()//•`‰æˆ—

@@ -1,10 +1,9 @@
 //š ‹g@Nm‚ª’S“–‚µ‚½‚Æ‚±‚ë
 
 #pragma once
-#include "Bullet.h"
-#include"VBullet.h"
-#include"Bom.h"
 #include"Collinder.h"
+#include"stage.h"
+
 class Player2 : public Collinder
 {
 private:
@@ -12,15 +11,14 @@ private:
 	float radius;
 	int Player2image;
 
+	int view_charx; //ãŠÔ@ƒXƒNƒ[ƒ‹ˆ—
+
 public:
-	Bullet* p_bullet;
-	VBullet* p_vbullet;
-	Bom* p_bom;
 	Player2();
 	~Player2();
 	Player2(float mx, float my);
 
-	void Update();
+	void Update(int view_charx);
 	void Draw();
 	void Move();
 };

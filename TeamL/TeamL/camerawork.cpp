@@ -34,7 +34,7 @@ void CameraWork::Update(float Player_location)
 	charx++;
 
 	//カメラの位置を計算
-	camerax = charx - 100; //スクロール開始
+	camerax = charx -10; //スクロール開始
 	//左右の補正
 	if (camerax < 0) camerax = 0;
 	//画面の位置を求める

@@ -14,6 +14,10 @@
 #include"stage.h"
 #include"Player1.h"
 
+#include "Bullet.h"
+#include"VBullet.h"
+#include"Bom.h"
+
 
 class GameMain :
 	public AbstractScene
@@ -30,6 +34,12 @@ private:
 	Stage* stage[25][111];//ステージの[縦][横]
 	Player1* player1;
 	Player2* player2;
+
+	//Player2の弾丸計
+	Bullet* p_bullet;
+	VBullet* p_vbullet;
+	Bom* p_bom;
+
 
 public:
 	int gMileage ;//プレイヤーの走行距離

@@ -59,21 +59,25 @@ void Stage::Draw()const
 
 	switch (type)
 	{
-	
 	case 1:
-		DrawGraph(location.x - camerax, location.y, tukiimage1, FALSE);
+		DrawRotaGraph(location.x - camerax, location.y, 1,0,tukiimage1, FALSE);
 		break;
 	case 2:
-		DrawGraph(location.x - camerax, location.y, tukiimage2, FALSE);
+		DrawRotaGraph(location.x - camerax, location.y,1,0, tukiimage2, FALSE);
 		break;
 	case 3:
-		DrawGraph(location.x - camerax, location.y, tukiimage3, FALSE);
+		DrawRotaGraph(location.x - camerax, location.y,1,0, tukiimage3, FALSE);
 		break;
 	case 4:
-		DrawGraph(location.x - camerax, location.y, tukiimage4, FALSE);
+		DrawRotaGraph(location.x - camerax, location.y,1,0, tukiimage4, FALSE);
 		break;
 	}
 	
 	
 
+}
+
+int Stage::BlockType()
+{
+	return type;
 }
