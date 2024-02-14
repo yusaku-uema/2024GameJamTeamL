@@ -9,8 +9,8 @@
 Player2::Player2()
 {
 	
-	location.X = 1200.0f;
-	location.Y = 350.0f;
+	location.x = 1200.0f;
+	location.y = 350.0f;
 	move_y = 0.0f;
 	radius = 10.0f;
 }
@@ -24,17 +24,17 @@ Player2::~Player2()
 
 Player2::Player2(float mx, float my)
 {
-	location.X = mx;
-	location.Y = my;
+	location.x = mx;
+	location.y = my;
 	move_y = 5.0f;
 	radius = 10.0f;
 }
 
 void Player2::Update()
 {
-	location.Y += move_y;
+	location.y += move_y;
 
-	if (location.Y > (480 - radius) || location.Y < (0 + radius))
+	if (location.y > (480 - radius) || location.y < (0 + radius))
 	{
 		move_y *= -1.0f;
 	}
@@ -46,13 +46,13 @@ void Player2::Update()
 	{
 		if (p_bullet == nullptr)
 		{
-			p_bullet=new Bullet(location.X, location.Y);
+			p_bullet=new Bullet(location.x, location.y);
 		}
 	}
 	if (p_bullet != nullptr)
 	{
 		p_bullet->Update();
-		if (p_bullet->GetBulletX() <= 0.0f)
+		if (p_bullet->GetLocation().x <= 0.0f)
 		{
 			delete p_bullet;
 			p_bullet = nullptr;
@@ -63,13 +63,13 @@ void Player2::Update()
 	{
 		if (p_bom == nullptr)
 		{
-			p_bom = new Bom(location.X, location.Y);
+			p_bom = new Bom(location.x, location.y);
 		}
 	}
 	if (p_bom != nullptr)
 	{
 		p_bom->Update();
-		if (p_bom->GetBomX() <= 0.0f)
+		if (p_bom->GetLocation().x <= 0.0f)
 		{
 			delete p_bom;
 			p_bom = nullptr;
@@ -80,13 +80,13 @@ void Player2::Update()
 	{
 		if (p_vbullet == nullptr)
 		{
-			p_vbullet = new VBullet(location.X, location.Y,-20.0f,-20.0f);
+			p_vbullet = new VBullet(location.x, location.y,-20.0f,-20.0f);
 		}
 	}
 	if (p_vbullet != nullptr)
 	{
 		p_vbullet->Update();
-		if (p_vbullet->GetVBulletX() <= 0.0f)
+		if (p_vbullet->GetLocation().x <= 0.0f)
 		{
 			delete p_vbullet;
 			p_vbullet = nullptr;
@@ -97,13 +97,13 @@ void Player2::Update()
 	{
 		if (p_vbullet == nullptr)
 		{
-			p_vbullet = new VBullet(location.X, location.Y, -20.0f, 20.0f);
+			p_vbullet = new VBullet(location.x, location.y, -20.0f, 20.0f);
 		}
 	}
 	if (p_vbullet != nullptr)
 	{
 		p_vbullet->Update();
-		if (p_vbullet->GetVBulletX() <= 0.0f)
+		if (p_vbullet->GetLocation().x <= 0.0f)
 		{
 			delete p_vbullet;
 			p_vbullet = nullptr;
@@ -114,7 +114,7 @@ void Player2::Update()
 void Player2::Draw()
 {
 	Player2image = LoadGraph("../imege/Player2.png");
-	DrawRotaGraph(location.X, location.Y, 0.5 ,0,Player2image,TRUE);
+	DrawRotaGraph(location.x, location.y, 0.5 ,0,Player2image,TRUE);
 
 	if (p_bullet != nullptr)
 	{
@@ -138,26 +138,26 @@ void Player2::Move()
 	//キーを使って動かす
 	if (stick_y > 2000) // 上キーを押すと上に行く
 	{
-		location.Y -= 5.0f;
+		location.y -= 5.0f;
 	}
 	else if (CheckHitKeyAll() == 0)//キーを離すと止まる
 	{
-		location.Y += 0.0f;
+		location.y += 0.0f;
 	}
 
 	if (stick_y < -2000) //下キーを押すと下に行く
 	{
-		location.Y += 5.0f;
+		location.y += 5.0f;
 	}
 	else if (CheckHitKeyAll() == 0)//キーを離すと止まる
 	{
-		location.Y += 0.0f;
+		location.y += 0.0f;
 	}
 	
 	//同時に上下ボタン押すと止まる
 	if (CheckHitKey(KEY_INPUT_UP) != FALSE && CheckHitKey(KEY_INPUT_DOWN) != FALSE)
 	{
-		location.Y += 0.0f;
+		location.y += 0.0f;
 	}
 
 	

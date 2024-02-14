@@ -19,6 +19,4 @@ public: //アクセス指定子
 	void Draw();      //描画する処理
 	void Update();    //更新処理
 	void Move();      //移動処理
-	float GetBomX();
-	float GetBomY();
 };

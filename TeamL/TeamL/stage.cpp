@@ -15,8 +15,8 @@ Stage::Stage(float locationx, float locationy, int width, int height,int type)
 {
 
 	//描画位置
-	location.X = locationx * width;
-	location.Y = locationy * height;
+	location.x = locationx * width;
+	location.y = locationy * height;
 
 	//サイズ
 	area.width = width;
@@ -61,16 +61,16 @@ void Stage::Draw()const
 	{
 	
 	case 1:
-		DrawGraph(location.X - camerax, location.Y, tukiimage1, FALSE);
+		DrawGraph(location.x - camerax, location.y, tukiimage1, FALSE);
 		break;
 	case 2:
-		DrawGraph(location.X - camerax, location.Y, tukiimage2, FALSE);
+		DrawGraph(location.x - camerax, location.y, tukiimage2, FALSE);
 		break;
 	case 3:
-		DrawGraph(location.X - camerax, location.Y, tukiimage3, FALSE);
+		DrawGraph(location.x - camerax, location.y, tukiimage3, FALSE);
 		break;
 	case 4:
-		DrawGraph(location.X - camerax, location.Y, tukiimage4, FALSE);
+		DrawGraph(location.x - camerax, location.y, tukiimage4, FALSE);
 		break;
 	}
 	

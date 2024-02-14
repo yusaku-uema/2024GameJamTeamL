@@ -83,6 +83,26 @@ GameMain::~GameMain()
 
 AbstractScene* GameMain::Update()
 {
+
+
+	//カメラ
+	camerawork->Update(player1->GetLocation().x);
+
+	//前の座標
+	Location oldlocation = player1->GetLocation();
+
+
+	//player1->Update(camerawork->GetViewCharX());
+
+
+	if (player1->GetLocation().x > oldlocation.x)
+	{
+		rendering_coodinates_x++;
+	}
+
+
+
+
 	if (CheckSoundMem(BGM) != 1)
 	{   //BGMが流れていなかったら再生
 		PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE); //BGM再生
@@ -142,8 +162,8 @@ void GameMain::Draw()const
 		}
 	}
 	player1->Draw();
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "X座標：%f", player1->GetPlayer1X());
-	DrawFormatString(0, 40, GetColor(255, 255, 255), "Y座標：%f", player1->GetPlayer1Y());
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "X座標：%f", player1->GetLocation().x);
+	DrawFormatString(0, 40, GetColor(255, 255, 255), "Y座標：%f", player1->GetLocation().y);
 	DrawFormatString(0, 80, GetColor(255, 255, 255), "jump：%d", player1->is_jump);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "fly：%d", player1->is_fly);
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "fuel：%f", player1->fuel);
