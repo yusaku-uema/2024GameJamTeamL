@@ -73,7 +73,7 @@ void Player1::Flg()
 		location.y = ground;
 		g = 0.0f;
 		SetJump(false);
-		SetFly(true);
+		//SetFly(true);
 	}
 	if (location.y <= area.height)
 	{
@@ -163,13 +163,13 @@ void Player1::Fly()
 	}
 }
 
-//ジャンプフラグ設定処理
+//ジャンプフラグ設定処理(ジャンプ中＝true、着地＝false)
 void Player1::SetJump(bool flg)
 {
 	is_jump = flg;
 }
 
-//浮遊フラグ設定処理
+//浮遊フラグ設定処理(浮遊可能＝true、浮遊不可＝false)
 void Player1::SetFly(bool flg)
 {
 	is_fly = flg;
@@ -178,18 +178,16 @@ void Player1::SetFly(bool flg)
 //燃料ゲージ処理
 void Player1::Fuel()
 {
-	if (is_jump == false&&is_jump==true)
+	if (is_jump == false)
 	{
 		if (fuel>0.0f)
 		{
-			fuel--;
+			SetFly(true);
+			fuel-=1.0f;
 		}
 		else
 		{
 			SetFly(false);
-		}
-		if (location.y >= ground && fuel < FUEL)
-		{
 			fuel++;
 		}
 	}
