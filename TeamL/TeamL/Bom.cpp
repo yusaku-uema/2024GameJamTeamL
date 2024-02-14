@@ -24,10 +24,10 @@ Bom::Bom(float mx, float my)
 	move_y = 0.0f;   //‚™²‚ğ“®‚©‚·
 	radius = 30.0f;  //”¼Œa
 	color = GetColor(255, 0, 0); //F
-	area.height = 20; //c•
-	area.width = 20; //‰¡•
+	area.height = 100; //c•
+	area.width = 100; //‰¡•
 	Bomimage = LoadGraph("../imege/bom.png");
-
+	descent = false;
 }
 
 Bom::~Bom()
@@ -36,8 +36,16 @@ Bom::~Bom()
 
 void Bom::Update()//XVˆ—
 {
-	location.x += move_x;
 
+	if (descent == false)
+	{
+		location.y++;
+	}
+	else
+	{
+		location.x += move_x;
+	}
+	
 	
 }
 
@@ -51,4 +59,9 @@ void Bom::Draw()//•`‰æˆ—
 void Bom::Move()//ˆÚ“®ˆ—
 {
 
+}
+
+void Bom::Setdescent()
+{
+	descent = true;
 }

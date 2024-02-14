@@ -151,6 +151,24 @@ AbstractScene* GameMain::Update()
 		{
 			p_bom->Update();
 
+			for (int j = 0; j < 25; j++)
+			{
+
+				for (int i = 0; i < 111; i++)
+				{
+					if (stage[j][i] != nullptr)
+					{
+						if (p_bom->HitBox(stage[j][i]))
+						{
+							if (stage[j][i]->BlockType() == 1)
+							{
+								p_bom->Setdescent();
+							}
+							
+						}
+					}
+				}
+			}
 			//“–‚½‚è”»’è
 			if (player1->HitBox(p_bom))
 			{
