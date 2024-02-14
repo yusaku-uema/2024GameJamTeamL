@@ -5,8 +5,8 @@
 //コンストラクタ
 Player1::Player1()
 {
-	X = 320.0f;
-	Y = 400.0f;
+	X = 0;
+	Y = 0;
 	R = 30;
 	is_jump = 0;
 	is_fly = 1;
@@ -17,7 +17,7 @@ Player1::Player1()
 	abs = 0;
 	fuel = 100.0f;
 	h = 0;
-	i = 0;
+	ground = 400;
 }
 
 //デストラクタ
@@ -29,8 +29,6 @@ Player1::~Player1()
 //更新処理
 void Player1::Update()
 {
-	//h = (400-Y)/10;
-
 	Move();
 	Flg();
 	Fly();
@@ -58,7 +56,7 @@ void Player1::Move()
 	//右移動処理
 	if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_RIGHT) == 1)
 	{
-		if (X < 640 - R)
+		if (X < 1280 - R)
 		{
 			X += 5;
 		}
@@ -69,9 +67,9 @@ void Player1::Move()
 void Player1::Flg()
 {
 	//地面についたらフラグをtrueにする
-	if (Y >= 400)
+	if (Y >= ground)
 	{
-		Y = 400;
+		Y = ground;
 		h = 0;
 		SetJump(false);
 		SetFly(true);
@@ -100,24 +98,30 @@ void Player1::Flg()
 	}
 
 	//Rトリガーを長押しして上昇
-	if (PadInput::GetLTrigger() > 0)
+	if (PadInput::GetRTrigger() > 0)
 	{
 		SetFly(true);
 		if (Y > R)
 		{
 			Y -= PadInput::GetRTrigger() * 5;
 		}
+		//ジャンプ中断
+		if (is_jump == true)
+		{
+			SetJump(false);
+		}
 	}
 
 	//Lトリガーを長押しして下降
 	if (PadInput::GetLTrigger() != 0)
 	{
-		if (Y < 400)
+		if (Y < ground)
 		{
 			Y += PadInput::GetLTrigger() * 5;
 		}
 	}
 
+	//浮遊解除
 	if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_DOWN) == 1)
 	{
 		SetFly(false);
@@ -136,7 +140,7 @@ void Player1::Jump(int jump)
 		}
 		else
 		{
-			if (400 - Y > 0)
+			if (ground - Y > 0)
 			{
 				Y += jump / 2;
 				type++;
@@ -150,7 +154,7 @@ void Player1::Fly()
 {
 	if (is_fly == false)
 	{
-		if (400 - Y > 0)
+		if (ground - Y > 0)
 		{
 			Y += h / 2;
 			h++;

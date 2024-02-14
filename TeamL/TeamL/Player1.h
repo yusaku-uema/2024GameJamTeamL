@@ -14,8 +14,8 @@ public:
 	int type;		//ジャンプのタイプ
 	int abs;		//ジャンプの高さの絶対値
 	float fuel;		//燃料
-	int h;		//高さ
-	int i;
+	int h;			//高さ
+	int ground;		//床の座標
 
 
 public:
