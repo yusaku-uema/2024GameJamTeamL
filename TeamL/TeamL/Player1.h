@@ -10,14 +10,15 @@ public:
 	int X;			//プレイヤーのX座標
 	int Y;			//プレイヤーのY座標
 	int R;			//プレイヤーの半径
+	float speed;	//スピード
 	int low;		//小ジャンプの高さ
 	int high;		//大ジャンプの高さ
 	int count;		//ジャンプの最高点
 	int type;		//ジャンプのタイプ
 	int abs;		//ジャンプの高さの絶対値
 	float fuel;		//燃料
-	int h;			//高さ
-	int ground;		//床の座標
+	float g;			//落下変数
+	float ground;		//床の座標
 
 
 public:
@@ -33,6 +34,8 @@ public:
 	void Fly();					//浮遊処理
 	void SetFly(bool flg);		//浮遊フラグ設定処理
 	void Fuel();				//燃料ゲージ処理
+	float GetPlayer1X();		//プレイヤー１のX座標取得
+	float GetPlayer1Y();		//プレイヤー１のY座標取得
 
 private:
 

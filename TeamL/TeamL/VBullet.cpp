@@ -45,7 +45,9 @@ void VBullet::Update()//XVˆ—
 void VBullet::Draw()//•`‰æˆ—
 {
 
-	DrawCircleAA(location.X, location.Y, radius, 100, color, TRUE);
+	VBulletimage = LoadGraph("../imege/beam.png");
+	DrawRotaGraph(location.X, location.Y, 1.0, 0, VBulletimage, TRUE);
+
 }
 
 

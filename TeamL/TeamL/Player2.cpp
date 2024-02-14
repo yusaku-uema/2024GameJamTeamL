@@ -113,7 +113,8 @@ void Player2::Update()
 
 void Player2::Draw()
 {
-	DrawCircleAA(location.X, location.Y, radius, 100, GetColor(255, 255, 255),TRUE);
+	Player2image = LoadGraph("../imege/Player2.png");
+	DrawRotaGraph(location.X, location.Y, 0.5 ,0,Player2image,TRUE);
 
 	if (p_bullet != nullptr)
 	{
