@@ -18,7 +18,7 @@ class GameMain :
 	public AbstractScene
 
 {
-	
+	int BGM;
 
 
 private:
