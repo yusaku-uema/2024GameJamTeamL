@@ -1,4 +1,12 @@
-
+/****************************************************************/
+/*	プロジェクト名:		Gamejam 　　チームL						*/
+/*	ファイル名：メインヘッダー									*/
+/*	内容：			ゲームのメイン								*/
+/*	日付：					2024/02/14							*/
+/*	コンパイラ:													*/
+/*	note:														*/
+/*	作成者：				名嘉真　愛斗						*/
+/****************************************************************/
 #pragma once
 #include "AbstractScene.h"
 #include"camerawork.h"
@@ -8,17 +16,20 @@ class GameMain :
 	public AbstractScene
 
 {
-
+	
 
 
 private:
-	//びょうがざひょう
+	//描画座標
 	int rendering_coodinates_x;
 
-	CameraWork* camerawork;
-	Stage* stage[25][111];
+	CameraWork* camerawork;//カメラワーク
+	Stage* stage[25][111];//ステージの[縦][横]
 
 public:
+	int gMileage ;//プレイヤーの走行距離
+	int stageimg;
+
 	GameMain();
 	~GameMain();
 
@@ -27,4 +38,5 @@ public:
 
 	//描画に関することを実装
 	void Draw() const override;
+
 };
