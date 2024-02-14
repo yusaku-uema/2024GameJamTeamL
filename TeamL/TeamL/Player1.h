@@ -34,8 +34,6 @@ public:
 	void Fly();					//浮遊処理
 	void SetFly(bool flg);		//浮遊フラグ設定処理
 	void Fuel();				//燃料ゲージ処理
-	float GetPlayer1X();		//プレイヤー１のX座標取得
-	float GetPlayer1Y();		//プレイヤー１のY座標取得
 
 private:
 

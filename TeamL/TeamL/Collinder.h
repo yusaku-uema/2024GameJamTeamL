@@ -19,8 +19,8 @@ struct Area
 //中心座標
 struct Location
 {
-	float X;//ちゅうしんｘ
-	float Y;//ちゅうしんｙ
+	float x;//ちゅうしんｘ
+	float y;//ちゅうしんｙ
 };
 
 class Collinder
@@ -37,7 +37,7 @@ public:
 	bool HitBox(const class Collinder* collider)const;
 
 	//中心座標の取得
-	Location Getlocation()const;
+	Location GetLocation()const;
 
 	//画像のはんけいの取得
 	Area GetArea()const;

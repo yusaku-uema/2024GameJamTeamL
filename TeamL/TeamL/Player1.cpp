@@ -7,8 +7,8 @@
 //コンストラクタ
 Player1::Player1()
 {
-	location.X = 300.0f;
-	location.Y = 300.0f;
+	location.x = 300.0f;
+	location.y = 300.0f;
 	area.height = 30.0f;
 	area.width = 30.0f;
 	R = 30;
@@ -39,7 +39,7 @@ void Player1::Update()
 //描画処理
 void Player1::Draw()
 {
-	DrawCircle(location.X, location.Y, R, 0xffffff, TRUE);
+	DrawCircle(location.x, location.y, R, 0xffffff, TRUE);
 }
 
 //移動処理
@@ -48,18 +48,18 @@ void Player1::Move()
 	//左移動処理
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_LEFT) == 1)
 	{
-		if (location.X > 0.0f + area.width)
+		if (location.x > 0.0f + area.width)
 		{
-			location.X -= speed;
+			location.x -= speed;
 		}
 	}
 
 	//右移動処理
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_RIGHT) == 1)
 	{
-		if (location.X < 1280.0f - area.width)
+		if (location.x < 1280.0f - area.width)
 		{
-			location.X += speed;
+			location.x += speed;
 		}
 	}
 }
@@ -68,16 +68,16 @@ void Player1::Move()
 void Player1::Flg()
 {
 	//地面についたらフラグをtrueにする
-	if (location.Y >= ground)
+	if (location.y >= ground)
 	{
-		location.Y = ground;
+		location.y = ground;
 		g = 0.0f;
 		SetJump(false);
 		SetFly(true);
 	}
-	if (location.Y <= area.height)
+	if (location.y <= area.height)
 	{
-		location.Y = area.height;
+		location.y = area.height;
 	}
 
 	//Aボタンを押したら小ジャンプ
@@ -102,9 +102,9 @@ void Player1::Flg()
 	if (PadInput::GetRTrigger(0) > 0)
 	{
 		SetFly(true);
-		if (location.Y > area.width)
+		if (location.y > area.width)
 		{
-			location.Y -= PadInput::GetRTrigger(0) * 5;
+			location.y -= PadInput::GetRTrigger(0) * 5;
 		}
 		//ジャンプ中断
 		if (is_jump == true)
@@ -116,9 +116,9 @@ void Player1::Flg()
 	//Lトリガーを長押しして下降
 	if (PadInput::GetLTrigger(0) != 0)
 	{
-		if (location.Y < ground)
+		if (location.y < ground)
 		{
-			location.Y += PadInput::GetLTrigger(0) * 5;
+			location.y += PadInput::GetLTrigger(0) * 5;
 		}
 	}
 
@@ -136,14 +136,14 @@ void Player1::Jump(int jump)
 	{
 		if (jump < 0)
 		{
-			location.Y += jump / 2;
+			location.y += jump / 2;
 			type++;
 		}
 		else
 		{
-			if (ground - location.Y > 0)
+			if (ground - location.y > 0)
 			{
-				location.Y += g / 2;
+				location.y += g / 2;
 				g++;
 			}
 		}
@@ -155,9 +155,9 @@ void Player1::Fly()
 {
 	if (is_fly == false)
 	{
-		if (ground - location.Y > 0)
+		if (ground - location.y > 0)
 		{
-			location.Y += g / 2;
+			location.y += g / 2;
 			g++;
 		}
 	}
@@ -188,19 +188,10 @@ void Player1::Fuel()
 		{
 			SetFly(false);
 		}
-		if (location.Y >= ground && fuel < FUEL)
+		if (location.y >= ground && fuel < FUEL)
 		{
 			fuel++;
 		}
 	}
 }
 
-float Player1::GetPlayer1X()
-{
-	return location.X;
-}
-
-float Player1::GetPlayer1Y()
-{
-	return location.Y;
-}

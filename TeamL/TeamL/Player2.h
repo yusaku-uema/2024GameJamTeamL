@@ -8,8 +8,6 @@
 class Player2 : public Collinder
 {
 private:
-	float x;
-	float y;
 	float move_y;
 	float radius;
 	int Player2image;
