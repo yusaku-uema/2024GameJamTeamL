@@ -7,10 +7,13 @@ Bom::Bom()   //‰Šú‰»
 {
 	location.x = 320.0f;   //x‚Ì‰ŠúÀ•W
 	location.y = 240.0f;   //x‚Ì‰ŠúÀ•W
+	area.height = 200; //c•
+	area.width = 200; //‰¡•
 	move_x = 1.0f;   //‚˜²‚ğ“®‚©‚·
 	move_y = 0.0f;   //‚™²‚ğ“®‚©‚·
 	radius = 30.0f;  //”¼Œa
 	color = GetColor(255, 0, 0); //F
+	Bomimage = LoadGraph("../imege/bom.png");
 }
 
 Bom::Bom(float mx, float my)
@@ -21,6 +24,10 @@ Bom::Bom(float mx, float my)
 	move_y = 0.0f;   //‚™²‚ğ“®‚©‚·
 	radius = 30.0f;  //”¼Œa
 	color = GetColor(255, 0, 0); //F
+	area.height = 200; //c•
+	area.width = 200; //‰¡•
+	Bomimage = LoadGraph("../imege/bom.png");
+
 }
 
 Bom::~Bom()
@@ -36,8 +43,6 @@ void Bom::Update()//XVˆ—
 
 void Bom::Draw()//•`‰æˆ—
 {
-
-	Bomimage = LoadGraph("../imege/bom.png");
 	DrawRotaGraph(location.x, location.y, 1.0, 0, Bomimage, TRUE);
 
 }

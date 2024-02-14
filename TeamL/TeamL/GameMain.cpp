@@ -108,7 +108,15 @@ AbstractScene* GameMain::Update()
 	if (p_bullet != nullptr)
 	{
 		p_bullet->Update();
-		if (p_bullet->GetLocation().x <= 0.0f)
+
+		//当たり判定
+
+		if (player1->HitBox(p_bullet))
+		{
+			player1->Damage();
+		}
+
+		if (p_bullet->GetLocation().x <= -100.0f)
 		{
 			delete p_bullet;
 			p_bullet = nullptr;
@@ -125,7 +133,14 @@ AbstractScene* GameMain::Update()
 	if (p_bom != nullptr)
 	{
 		p_bom->Update();
-		if (p_bom->GetLocation().x <= 0.0f)
+
+		//当たり判定
+		if (player1->HitBox(p_bom))
+		{
+			player1->Damage();
+		}
+
+		if (p_bom->GetLocation().x <= -100.0f)
 		{
 			delete p_bom;
 			p_bom = nullptr;
@@ -149,7 +164,14 @@ AbstractScene* GameMain::Update()
 	if (p_vbullet != nullptr)
 	{
 		p_vbullet->Update();
-		if (p_vbullet->GetLocation().x <= 0.0f)
+
+		//当たり判定
+		if (player1->HitBox(p_vbullet))
+		{
+			player1->Damage();
+		}
+		
+		if (p_vbullet->GetLocation().x <= -100.0f)
 		{
 			delete p_vbullet;
 			p_vbullet = nullptr;
@@ -230,6 +252,7 @@ void GameMain::Draw()const
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "fly：%d", player1->is_fly);
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "fuel：%f", player1->fuel);
 	DrawFormatString(0, 200, GetColor(255, 255, 255), "g：%f", player1->g);
+	DrawFormatString(0, 240, GetColor(255, 255, 255), "HP：%d", player1->hp);
 
 	player2->Draw();
 

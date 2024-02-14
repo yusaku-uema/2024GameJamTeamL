@@ -7,6 +7,8 @@ VBullet::VBullet()   //‰Šú‰»
 {
 	location.x = 320.0f;   //x‚Ì‰ŠúÀ•W
 	location.y = 240.0f;   //x‚Ì‰ŠúÀ•W
+	area.height = 60; //c•
+	area.width = 200; //‰¡•
 	move_x = 1.0f;   //‚˜²‚ğ“®‚©‚·
 	move_y = 0.0f;   //‚™²‚ğ“®‚©‚·
 	radius = 10.0f;  //”¼Œa
@@ -21,6 +23,10 @@ VBullet::VBullet(float mx, float my,float vx, float vy)
 	move_y = vy;   //‚™²‚ğ“®‚©‚·
 	radius = 10.0f;  //”¼Œa
 	color = GetColor(255, 0, 0); //F
+
+	VBulletimage = LoadGraph("../imege/beam.png");
+	area.height = 60; //c•
+	area.width = 200; //‰¡•
 }
 
 VBullet::~VBullet()
@@ -44,8 +50,6 @@ void VBullet::Update()//XVˆ—
 
 void VBullet::Draw()//•`‰æˆ—
 {
-
-	VBulletimage = LoadGraph("../imege/beam.png");
 	DrawRotaGraph(location.x, location.y, 1.0, 0, VBulletimage, TRUE);
 
 }

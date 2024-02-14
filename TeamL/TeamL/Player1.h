@@ -21,6 +21,8 @@ public:
 	float ground;		//床の座標
 
 	int view_charx; //上間　スクロール処理
+	int hp; //上間　HP管理
+	int imgae; //上間　画像
 
 public:
 	Player1();		//コンストラクタ
@@ -35,6 +37,7 @@ public:
 	void Fly();					//浮遊処理
 	void SetFly(bool flg);		//浮遊フラグ設定処理
 	void Fuel();				//燃料ゲージ処理
+	void Damage(); //上間　この関数呼ばれるとHPを減らす
 
 private:
 

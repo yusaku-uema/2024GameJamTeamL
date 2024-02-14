@@ -10,13 +10,17 @@ Player1::Player1()
 	view_charx = 0;
 	location.x = 20.0f;
 	location.y = 300.0f;
-	area.height = 30.0f;
-	area.width = 30.0f;
+	area.height = 400.0f;
+	area.width = 400.0f;
 	R = 30;
 	speed = 5.0f;
 	count = 0;
 	g = 0.0f;
 	ground = 690.0f;
+
+	hp = 3;
+	imgae= LoadGraph("../imege/Player1.png");
+
 	fuel = FUEL;
 	is_jump = false;
 	is_fly = false;
@@ -41,7 +45,7 @@ void Player1::Update(int view_charx)
 //•`‰æˆ—
 void Player1::Draw()
 {
-	DrawCircle(location.x+view_charx, location.y, R, 0xffffff, TRUE);
+	DrawRotaGraph(location.x + view_charx, location.y, 1.0, 0, imgae, TRUE);
 }
 
 //ˆÚ“®ˆ—
@@ -193,5 +197,13 @@ void Player1::Fuel()
 			fuel++;
 		}
 	}
+}
+
+//-----------------------------------
+// ‚±‚ÌŠÖ”ŒÄ‚Ô‚ÆHP‚ªŒ¸‚é
+//-----------------------------------
+void Player1::Damage()
+{
+	hp--;
 }
 
