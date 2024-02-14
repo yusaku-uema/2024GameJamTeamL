@@ -9,11 +9,15 @@
 
 #include "PadInput.h"
 
+#define TRIGGER_MAX (255.0f)
+
 char PadInput::now_key[BUTTONS];
 char PadInput::old_key[BUTTONS];
 XINPUT_STATE PadInput::input;
 Stick PadInput::r_stick;
 Stick PadInput::l_stick;
+float PadInput::L_trigger;
+float PadInput::R_trigger;
 
 
 //-----------------------------------
@@ -37,6 +41,11 @@ void PadInput::UpdateKey()
 	//左スティック
 	l_stick.x = input.ThumbLX;
 	l_stick.y = input.ThumbLY;
+
+	//トリガーの入力情報
+	L_trigger = (float)input.LeftTrigger / TRIGGER_MAX;
+	R_trigger = (float)input.RightTrigger / TRIGGER_MAX;
+
 }
 
 bool PadInput::OnButton(int button)
@@ -68,6 +77,17 @@ Stick PadInput::GetLStick()
 {
 	return l_stick;
 }
+
+float PadInput::GetLTrigger()
+{
+	return  L_trigger;
+}
+
+float PadInput::GetRTrigger()
+{
+	return  R_trigger;
+}
+
 
 char PadInput::GetOldKey(const int i)
 {
