@@ -10,6 +10,12 @@ public: //アクセス指定子
 	float move_y;		// 進行方向ベクトル情報Y
 	int VBulletimage;
 
+
+	int angle; 
+	int image[15];
+	long long int animation_time; //アニメーション時間
+	int animation; //画像切り替え
+
 	VBullet();
 	VBullet(float mx, float my,float vx, float vy);   //初期化
 	~VBullet();
