@@ -215,6 +215,9 @@ void Main_Title::Draw()const
 
 	DrawFormatString(850, 450, 0xFFFFFF, "EXPLANATION");
 
+
+	DrawFormatString(300, 350, 0xFFFFFF, "ì¶Ç∞êÿÇÍ");
+
 	//ÉJÅ[É\Éã
 	DrawString(800, cursor_y, "Å°", GetColor(255, 0, 0));
 }

@@ -90,6 +90,11 @@ GameMain::~GameMain()
 	delete camerawork;
 	delete explosion;
 
+
+
+	DeleteGraph(stageimg);
+	DeleteSoundMem(BGM);
+
 }
 
 
