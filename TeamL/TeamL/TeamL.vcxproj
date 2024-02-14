@@ -152,6 +152,7 @@
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="setumei.cpp" />
     <ClCompile Include="stage.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="VBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +171,7 @@
     <ClCompile Include="Player2.cpp" />
     <ClInclude Include="setumei.h" />
     <ClInclude Include="stage.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="VBullet.h" />
   </ItemGroup>
   <ItemGroup>

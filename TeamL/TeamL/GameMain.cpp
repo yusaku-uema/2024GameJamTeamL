@@ -35,6 +35,8 @@ GameMain::GameMain()
 
 	player2 = new Player2();
 
+	ui = new UI();
+
 	//読込ファイルを開く
 	fopen_s(&fp, "stage.txt", "r");
 
@@ -95,6 +97,7 @@ AbstractScene* GameMain::Update()
 
 	player1->Update(camerawork->GetViewCharX());
     player2->Update(camerawork->GetViewCharX());
+	ui->Update(player1->GetHP());
 
 	//プレイヤー２の弾丸処理
 
@@ -111,15 +114,21 @@ AbstractScene* GameMain::Update()
 
 		//当たり判定
 
-		if (player1->HitBox(p_bullet))
-		{
-			player1->Damage();
-		}
+		
 
 		if (p_bullet->GetLocation().x <= -100.0f)
 		{
 			delete p_bullet;
 			p_bullet = nullptr;
+		}
+		else
+		{
+			if (player1->HitBox(p_bullet))
+			{
+				player1->Damage();
+				delete p_bullet;
+				p_bullet = nullptr;
+			}
 		}
 	}
 
@@ -132,19 +141,26 @@ AbstractScene* GameMain::Update()
 	}
 	if (p_bom != nullptr)
 	{
-		p_bom->Update();
-
-		//当たり判定
-		if (player1->HitBox(p_bom))
-		{
-			player1->Damage();
-		}
 
 		if (p_bom->GetLocation().x <= -100.0f)
 		{
 			delete p_bom;
 			p_bom = nullptr;
 		}
+		else
+		{
+			p_bom->Update();
+
+			//当たり判定
+			if (player1->HitBox(p_bom))
+			{
+
+				player1->Damage();
+				delete p_bom;
+				p_bom = nullptr;
+			}
+		}
+
 	}
 
 	if (PadInput::OnButton(1, XINPUT_BUTTON_Y) == 1|| PadInput::OnButton(1, XINPUT_BUTTON_X) == 1)
@@ -165,16 +181,20 @@ AbstractScene* GameMain::Update()
 	{
 		p_vbullet->Update();
 
-		//当たり判定
-		if (player1->HitBox(p_vbullet))
-		{
-			player1->Damage();
-		}
-		
 		if (p_vbullet->GetLocation().x <= -100.0f)
 		{
 			delete p_vbullet;
 			p_vbullet = nullptr;
+		}
+		else
+		{
+			//当たり判定
+			if (player1->HitBox(p_vbullet))
+			{
+				delete p_vbullet;
+				p_vbullet = nullptr;
+				player1->Damage();
+			}
 		}
 	}
 
@@ -270,5 +290,6 @@ void GameMain::Draw()const
 		p_bom->Draw();
 	}
 
+	ui->Draw();
 
 }

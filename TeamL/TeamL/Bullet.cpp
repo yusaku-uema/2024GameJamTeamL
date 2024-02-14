@@ -7,8 +7,8 @@ Bullet::Bullet()   //‰Šú‰»
 {
 	location.x = 320.0f;   //x‚Ì‰ŠúÀ•W
 	location.y = 240.0f;   //x‚Ì‰ŠúÀ•W
-	area.height = 60; //c•
-	area.width = 200; //‰¡•
+	area.height = 20; //c•
+	area.width = 20; //‰¡•
 	move_x = 1.0f;   //‚˜²‚ğ“®‚©‚·
 	move_y = 0.0f;   //‚™²‚ğ“®‚©‚·
 	radius = 10.0f;  //”¼Œa
@@ -24,8 +24,8 @@ Bullet::Bullet(float mx, float my)
 	move_y = 0.0f;   //‚™²‚ğ“®‚©‚·
 	radius = 10.0f;  //”¼Œa
 	color = GetColor(255, 0, 0); //F
-	area.height = 60; //c•
-	area.width = 200; //‰¡•
+	area.height = 20; //c•
+	area.width = 20; //‰¡•
 	Bulletimage = LoadGraph("../imege/beam.png");
 }
 

@@ -168,7 +168,7 @@ AbstractScene* Main_Title::Update()
 		//BGM‚ğ~‚ß‚é
 		StopSoundMem(title_bgm);
 
-		PlaySoundMem(definite_se, DX_PLAYTYPE_NORMAL, TRUE); //SEÄ¶
+		PlaySoundMem(definite_se, DX_PLAYTYPE_BACK, TRUE); //SEÄ¶
 
 		input_margin = 0;
 		MENU current_selection = static_cast<MENU>(select_menu);

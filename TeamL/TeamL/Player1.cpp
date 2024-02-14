@@ -8,10 +8,10 @@
 Player1::Player1()
 {
 	view_charx = 0;
-	location.x = 20.0f;
+	location.x = 80.0f;
 	location.y = 300.0f;
-	area.height = 400.0f;
-	area.width = 400.0f;
+	area.height = 200.0f;
+	area.width = 200.0f;
 	R = 30;
 	speed = 5.0f;
 	count = 0;
@@ -205,5 +205,13 @@ void Player1::Fuel()
 void Player1::Damage()
 {
 	hp--;
+}
+
+//-----------------------------------
+// HPŽæ“¾
+//-----------------------------------
+int  Player1::GetHP()
+{
+	return hp;
 }
 

@@ -7,8 +7,8 @@ VBullet::VBullet()   //‰Šú‰»
 {
 	location.x = 320.0f;   //x‚Ì‰ŠúÀ•W
 	location.y = 240.0f;   //x‚Ì‰ŠúÀ•W
-	area.height = 60; //c•
-	area.width = 200; //‰¡•
+	area.height = 20; //c•
+	area.width = 20; //‰¡•
 	move_x = 1.0f;   //‚˜²‚ğ“®‚©‚·
 	move_y = 0.0f;   //‚™²‚ğ“®‚©‚·
 	radius = 10.0f;  //”¼Œa
@@ -25,8 +25,8 @@ VBullet::VBullet(float mx, float my,float vx, float vy)
 	color = GetColor(255, 0, 0); //F
 
 	VBulletimage = LoadGraph("../imege/beam.png");
-	area.height = 60; //c•
-	area.width = 200; //‰¡•
+	area.height = 20; //c•
+	area.width = 20; //‰¡•
 }
 
 VBullet::~VBullet()

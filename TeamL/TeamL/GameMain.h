@@ -13,6 +13,7 @@
 #include"Player2.h"
 #include"stage.h"
 #include"Player1.h"
+#include"UI.h"
 
 #include "Bullet.h"
 #include"VBullet.h"
@@ -34,6 +35,7 @@ private:
 	Stage* stage[25][111];//ステージの[縦][横]
 	Player1* player1;
 	Player2* player2;
+	UI* ui; 
 
 	//Player2の弾丸計
 	Bullet* p_bullet;
