@@ -7,21 +7,18 @@
 //コンストラクタ
 Player1::Player1()
 {
-	location.X = 320;
-	location.Y = 300;
-	area.height = 30;
-	area.width = 30;
+	location.X = 300.0f;
+	location.Y = 300.0f;
+	area.height = 30.0f;
+	area.width = 30.0f;
 	R = 30;
-	is_jump = 0;
-	is_fly = 1;
+	speed = 5.0f;
 	count = 0;
-	low = 0;
-	high = 0;
-	type = 0;
-	abs = 0;
+	g = 0.0f;
+	ground = 690.0f;
 	fuel = FUEL;
-	h = 0;
-	ground = 400;
+	is_jump = false;
+	is_fly = false;
 }
 
 //デストラクタ
@@ -35,8 +32,8 @@ void Player1::Update()
 {
 	Move();
 	Flg();
-	Fly();
 	Jump(type);
+	Fly();
 }
 
 //描画処理
@@ -51,18 +48,18 @@ void Player1::Move()
 	//左移動処理
 	if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_LEFT) == 1)
 	{
-		if (location.X > 0 + area.width)
+		if (location.X > 0.0f + area.width)
 		{
-			X -= 5;
+			location.X -= speed;
 		}
 	}
 
 	//右移動処理
 	if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_RIGHT) == 1)
 	{
-		if (location.X < 1280 - area.width)
+		if (location.X < 1280.0f - area.width)
 		{
-			location.X += 5;
+			location.X += speed;
 		}
 	}
 }
@@ -74,13 +71,13 @@ void Player1::Flg()
 	if (location.Y >= ground)
 	{
 		location.Y = ground;
-		h = 0;
+		g = 0.0f;
 		SetJump(false);
 		SetFly(true);
 	}
-	if (location.Y <= area.width)
+	if (location.Y <= area.height)
 	{
-		location.Y = area.width;
+		location.Y = area.height;
 	}
 
 	//Aボタンを押したら小ジャンプ
@@ -146,8 +143,8 @@ void Player1::Jump(int jump)
 		{
 			if (ground - location.Y > 0)
 			{
-				location.Y += jump / 2;
-				type++;
+				location.Y += g / 2;
+				g++;
 			}
 		}
 	}
@@ -160,8 +157,8 @@ void Player1::Fly()
 	{
 		if (ground - location.Y > 0)
 		{
-			location.Y += h / 2;
-			h++;
+			location.Y += g / 2;
+			g++;
 		}
 	}
 }
@@ -181,9 +178,9 @@ void Player1::SetFly(bool flg)
 //燃料ゲージ処理
 void Player1::Fuel()
 {
-	if (is_jump != true)
+	if (is_jump == false&&is_jump==true)
 	{
-		if (location.Y < ground && fuel>0.0f)
+		if (fuel>0.0f)
 		{
 			fuel--;
 		}
@@ -191,10 +188,19 @@ void Player1::Fuel()
 		{
 			SetFly(false);
 		}
-		if (location.Y >= ground && fuel < 100.0f)
+		if (location.Y >= ground && fuel < FUEL)
 		{
 			fuel++;
 		}
 	}
+}
 
+float Player1::GetPlayer1X()
+{
+	return location.X;
+}
+
+float Player1::GetPlayer1Y()
+{
+	return location.Y;
 }
