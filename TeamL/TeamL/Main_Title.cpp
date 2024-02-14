@@ -13,7 +13,7 @@
 #include "DxLib.h"
 #include"Help.h"
 #include"PadInput.h"
-
+#include"setumei.h"
 
 //-----------------------------------
 // コンストラクタ
@@ -145,14 +145,16 @@ AbstractScene* Main_Title::Update()
 	switch (select_menu)
 	{
 	case 0:
-		cursor_y = 300; //スタートのカーソル位置
+		cursor_y = 150; //スタートのカーソル位置
 		break;
 	case 1:
-		cursor_y = 400; //EXITのカーソル位置
+		cursor_y = 250; //EXITのカーソル位置
 		break;
 	case 2:
-		cursor_y = 500; //EXITのカーソル位置
+		cursor_y = 350; //EXITのカーソル位置
 		break;
+	case 3:
+		cursor_y = 450;//SETUMEIのカーソル位置
 	default:
 		break;
 	}
@@ -184,6 +186,9 @@ AbstractScene* Main_Title::Update()
 
 		case MENU::END: //ゲーム終了
 			return 0;
+		case MENU::SETUMEI:
+			return new Setumei;
+			break;
 
 		default:
 			printfDx("未実装な機能です。\n");
@@ -202,11 +207,13 @@ void Main_Title::Draw()const
 
 	DrawGraph(0, 0, title_image, FALSE);
 
-	DrawFormatString(850, 300, 0xFFFFFF, "Game Start");
+	DrawFormatString(850, 150, 0xFFFFFF, "Game Start");
 
-	DrawFormatString(850, 400, 0xFFFFFF, "Help");
+	DrawFormatString(850, 250, 0xFFFFFF, "Help");
 
-	DrawFormatString(850, 500, 0xFFFFFF, "End");
+	DrawFormatString(850, 350, 0xFFFFFF, "End");
+
+	DrawFormatString(850, 450, 0xFFFFFF, "EXPLANATION");
 
 	//カーソル
 	DrawString(800, cursor_y, "■", GetColor(255, 0, 0));

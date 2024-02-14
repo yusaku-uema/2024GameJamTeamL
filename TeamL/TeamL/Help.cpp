@@ -17,7 +17,7 @@
 Help::Help()
 {
     //画像
-    help_image = 0;
+    help_image = LoadGraph("../imege/help.png");
 }
 
 //-----------------------------------
@@ -43,5 +43,6 @@ void Help::Draw() const
     SetFontSize(40);
 
     
-    DrawFormatString(550, 300, 0xFFFFFF, "Aボタンでタイトルへ戻る");
+    DrawGraph(0, 0, help_image, FALSE);
+
 }
