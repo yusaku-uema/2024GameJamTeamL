@@ -16,7 +16,7 @@ Player1::Player1()
 	count = 0;
 	g = 0.0f;
 	ground = 690.0f;
-	fuel = FUEL;
+	fuel = 100.0f;
 	is_jump = false;
 	is_fly = false;
 }
@@ -111,6 +111,7 @@ void Player1::Flg()
 		{
 			SetJump(false);
 		}
+		Fuel();
 	}
 
 	//LƒgƒŠƒK[‚ğ’·‰Ÿ‚µ‚µ‚Ä‰º~
