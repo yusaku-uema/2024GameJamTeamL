@@ -2,7 +2,9 @@
 #include"PadInput.h"
 #include"DxLib.h"
 
-#define FUEL (100.0f)
+#define FUEL (1000.0f)
+#define LOW (-22)
+#define HIGH (-35)
 
 //コンストラクタ
 Player1::Player1()
@@ -16,9 +18,9 @@ Player1::Player1()
 	count = 0;
 	g = 0.0f;
 	ground = 690.0f;
-	fuel = 100.0f;
+	fuel = FUEL;
 	is_jump = false;
-	is_fly = false;
+	is_fly = true;
 }
 
 //デストラクタ
@@ -34,6 +36,7 @@ void Player1::Update()
 	Flg();
 	Jump(type);
 	Fly();
+	Fuel();
 }
 
 //描画処理
@@ -72,8 +75,9 @@ void Player1::Flg()
 	{
 		location.y = ground;
 		g = 0.0f;
+		count = 0;
 		SetJump(false);
-		//SetFly(true);
+		SetFly(true);
 	}
 	if (location.y <= area.height)
 	{
@@ -82,27 +86,35 @@ void Player1::Flg()
 
 	//Aボタンを押したら小ジャンプ
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_A) == 1 && is_jump == false)
-	{
+	{		
+		//空中でジャンプすると燃料を消費する
+		if (is_fly == true&&location.y>=ground)
+		{
+			fuel += LOW;
+		}
 		SetJump(true);
-		low = -20;
+		low = LOW;
 		type = low;
 		abs = -type;
+		
 	}
 
 	//Bボタンを押して大ジャンプ
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_B) == 1 && is_jump == false)
 	{
 		SetJump(true);
-		high = -30;
+		high = HIGH;
 		type = high;
 		abs = -type;
+		//燃料を消費する
+		fuel += HIGH;
 	}
 
 	//Rトリガーを長押しして上昇
-	if (PadInput::GetRTrigger(0) > 0)
+	if (PadInput::GetRTrigger(0) > 0 && is_fly == true)
 	{
 		SetFly(true);
-		if (location.y > area.width)
+		if (location.y > area.height)
 		{
 			location.y -= PadInput::GetRTrigger(0) * 5;
 		}
@@ -111,7 +123,7 @@ void Player1::Flg()
 		{
 			SetJump(false);
 		}
-		Fuel();
+		count = 1;
 	}
 
 	//Lトリガーを長押しして下降
@@ -144,8 +156,8 @@ void Player1::Jump(int jump)
 		{
 			if (ground - location.y > 0)
 			{
-				location.y += g / 2;
-				g++;
+				location.y += jump / 2;
+				type++;
 			}
 		}
 	}
@@ -170,7 +182,7 @@ void Player1::SetJump(bool flg)
 	is_jump = flg;
 }
 
-//浮遊フラグ設定処理(浮遊可能＝true、浮遊不可＝false)
+//浮遊フラグ設定処理()
 void Player1::SetFly(bool flg)
 {
 	is_fly = flg;
@@ -181,16 +193,22 @@ void Player1::Fuel()
 {
 	if (is_jump == false)
 	{
-		if (fuel>0.0f)
+		if (location.y<ground&&fuel>0.0f)
 		{
-			SetFly(true);
-			fuel-=1.0f;
+			fuel--;
 		}
 		else
 		{
 			SetFly(false);
+		}
+		if (location.y>=ground&&fuel<FUEL)
+		{
 			fuel++;
 		}
+	}
+	else if (fuel < FUEL && is_fly == true)
+	{
+		fuel++;
 	}
 }
 
