@@ -35,8 +35,8 @@ void Bullet::Update()//XVˆ—
 
 void Bullet::Draw()//•`‰æˆ—
 {
-
-	DrawCircleAA(location.X, location.Y, radius, 100, color, TRUE);
+	Bulletimage = LoadGraph("../imege/beam.png");
+	DrawRotaGraph(location.X, location.Y, 1.0, 0, Bulletimage, TRUE);
 }
 
 

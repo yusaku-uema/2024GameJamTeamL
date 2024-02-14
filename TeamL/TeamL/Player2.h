@@ -12,6 +12,7 @@ private:
 	float y;
 	float move_y;
 	float radius;
+	int Player2image;
 
 public:
 	Bullet* p_bullet;

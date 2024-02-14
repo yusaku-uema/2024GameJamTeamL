@@ -10,6 +10,7 @@ public: //アクセス指定子
 	float color;        //色情報
 	float move_x;		// 進行方向ベクトル情報X
 	float move_y;		// 進行方向ベクトル情報Y
+	int Bomimage;
 
 	Bom();
 	Bom(float mx, float my);   //初期化
