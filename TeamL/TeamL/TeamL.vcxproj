@@ -151,6 +151,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="setumei.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="stage.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="VBullet.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="GameMain.h" />
     <ClCompile Include="Player2.cpp" />
     <ClInclude Include="setumei.h" />
+    <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="stage.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="VBullet.h" />
