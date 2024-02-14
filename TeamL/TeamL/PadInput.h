@@ -1,3 +1,12 @@
+/****************************************************************/
+/*	プロジェクト名:												*/
+/*	ファイル名：												*/
+/*	内容：														*/
+/*	日付：														*/
+/*	コンパイラ:													*/
+/*	note:														*/
+/*	作成者：													*/
+/****************************************************************/
 #pragma once
 #include"DxLib.h"
 
@@ -19,6 +28,8 @@ private:
 	static XINPUT_STATE input; //パッド
 	static Stick r_stick; //右スティック
 	static Stick l_stick; //左スティック
+	static float L_trigger; //左トリガー
+	static float R_trigger; //右トリガー
 
 private:
 
@@ -43,6 +54,12 @@ public:
 
 	//左スティックの取得
 	static Stick GetLStick();
+
+	//左トリガーの取得
+	static float GetLTrigger();
+	
+	//右トリガーの取得
+	static float GetRTrigger();
 
 	static char GetOldKey(const int i);
 

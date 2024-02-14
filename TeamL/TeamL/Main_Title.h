@@ -41,11 +41,23 @@ private:
 
     //タイトル画像
     int title_image;
+
+    //決定SE
+    int definite_se;
+
+    //選択SE
+    int selection_se;
+
+    //タイトルBGM
+    int title_bgm;
 	
 
 public:
     //コンストラクタ 
 	Main_Title();
+
+    //デストラクタ
+    ~Main_Title();
 
 	//描画以外の更新を実行
 	AbstractScene* Update()override;
