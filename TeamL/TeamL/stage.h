@@ -24,10 +24,11 @@ class Stage:
 
 private:
 
+	int type;
 
 public:
 
-	Stage(float locationx,float locationy,int width,int height);
+	Stage(float locationx,float locationy,int width,int height,int type);
 
 	~Stage();
 
