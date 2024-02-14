@@ -26,6 +26,8 @@ GameMain::GameMain()
 
 	camerawork = new CameraWork();
 
+	player2 = new Player2();
+
 	//読込ファイルを開く
 	fopen_s(&fp, "stage.txt", "r");
 
@@ -64,6 +66,9 @@ GameMain::~GameMain()
 			}
 		}
 	}
+
+	delete player2;
+
 }
 
 
@@ -84,7 +89,7 @@ AbstractScene* GameMain::Update()
 	// 走行距離を加算する(仮のスピード)
 	gMileage += 5;
 
-
+	player2->Update();
 
 	return this;
 
@@ -119,5 +124,7 @@ void GameMain::Draw()const
 			}
 		}
 	}
+
+	player2->Draw();
 
 }
