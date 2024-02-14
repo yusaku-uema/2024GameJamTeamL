@@ -4,7 +4,8 @@
 #include "Bullet.h"
 #include"VBullet.h"
 #include"Bom.h"
-class Player2
+#include"Collinder.h"
+class Player2 : public Collinder
 {
 private:
 	float x;
