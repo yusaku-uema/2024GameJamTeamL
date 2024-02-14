@@ -1,6 +1,8 @@
 #pragma once
 
-class Player1
+#include"Collinder.h"
+
+class Player1:public Collinder
 {
 public:
 	bool is_jump;	//ジャンプ可能か？
@@ -30,7 +32,7 @@ public:
 	void SetJump(bool flg);		//ジャンプフラグ設定処理
 	void Fly();					//浮遊処理
 	void SetFly(bool flg);		//浮遊フラグ設定処理
-
+	void Fuel();				//燃料ゲージ処理
 
 private:
 
