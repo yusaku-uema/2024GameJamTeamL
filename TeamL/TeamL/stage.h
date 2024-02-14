@@ -20,6 +20,7 @@ class Stage:
 	int tukiimage1;
 	int tukiimage2;
 	int tukiimage3;
+	int tukiimage4;
 
 
 private:
