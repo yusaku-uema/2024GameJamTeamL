@@ -10,8 +10,10 @@
 #pragma once
 #include "AbstractScene.h"
 #include"camerawork.h"
+#include"Player2.h"
 #include"stage.h"
 #include"Player1.h"
+
 
 class GameMain :
 	public AbstractScene
@@ -27,6 +29,7 @@ private:
 	CameraWork* camerawork;//カメラワーク
 	Stage* stage[25][111];//ステージの[縦][横]
 	Player1* player1;
+	Player2* player2;
 
 public:
 	int gMileage ;//プレイヤーの走行距離
