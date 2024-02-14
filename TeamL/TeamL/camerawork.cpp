@@ -28,10 +28,13 @@ CameraWork::~CameraWork()
 
 void CameraWork::Update(float Player_location)
 {
-	//自キャラの座標の代入
-	charx = Player_location;
+
+
+	//プレイヤー自動スクロール(テスト段階)
+	charx++;
+
 	//カメラの位置を計算
-	camerax = camerax - D_SCREEN_WIDTH / 2;
+	camerax = charx - 100; //スクロール開始
 	//左右の補正
 	if (camerax < 0) camerax = 0;
 	//画面の位置を求める

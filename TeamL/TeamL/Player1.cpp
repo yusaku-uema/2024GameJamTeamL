@@ -7,6 +7,7 @@
 //コンストラクタ
 Player1::Player1()
 {
+	view_charx = 0;
 	location.x = 300.0f;
 	location.y = 300.0f;
 	area.height = 30.0f;
@@ -28,8 +29,9 @@ Player1::~Player1()
 }
 
 //更新処理
-void Player1::Update()
+void Player1::Update(int view_charx)
 {
+	this->view_charx = view_charx;
 	Move();
 	Flg();
 	Jump(type);
@@ -39,7 +41,7 @@ void Player1::Update()
 //描画処理
 void Player1::Draw()
 {
-	DrawCircle(location.x, location.y, R, 0xffffff, TRUE);
+	DrawCircle(view_charx, location.y, R, 0xffffff, TRUE);
 }
 
 //移動処理

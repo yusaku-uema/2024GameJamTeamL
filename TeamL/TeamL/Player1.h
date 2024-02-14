@@ -20,12 +20,13 @@ public:
 	float g;			//落下変数
 	float ground;		//床の座標
 
+	int view_charx; //上間　スクロール処理
 
 public:
 	Player1();		//コンストラクタ
 	~Player1();		//デストラクタ
 
-	void Update();				//更新処理
+	void Update(int view_charx);				//更新処理
 	void Draw();				//描画処理
 	void Move();				//移動処理
 	void Flg();					//ジャンプ判定処理

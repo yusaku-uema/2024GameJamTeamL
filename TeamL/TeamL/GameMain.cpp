@@ -92,7 +92,7 @@ AbstractScene* GameMain::Update()
 	Location oldlocation = player1->GetLocation();
 
 
-	//player1->Update(camerawork->GetViewCharX());
+	player1->Update(camerawork->GetViewCharX());
 
 
 	if (player1->GetLocation().x > oldlocation.x)
@@ -107,8 +107,6 @@ AbstractScene* GameMain::Update()
 	{   //BGM‚ª—¬‚ê‚Ä‚¢‚È‚©‚Á‚½‚çÄ¶
 		PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE); //BGMÄ¶
 	}
-	
-	player1->Update();
 
 	for (int j = 0; j < 25; j++)
 	{
