@@ -46,7 +46,7 @@ void Player1::Draw()
 void Player1::Move()
 {
 	//左移動処理
-	if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_LEFT) == 1)
+	if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_LEFT) == 1)
 	{
 		if (location.X > 0.0f + area.width)
 		{
@@ -55,7 +55,7 @@ void Player1::Move()
 	}
 
 	//右移動処理
-	if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_RIGHT) == 1)
+	if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_RIGHT) == 1)
 	{
 		if (location.X < 1280.0f - area.width)
 		{
@@ -81,7 +81,7 @@ void Player1::Flg()
 	}
 
 	//Aボタンを押したら小ジャンプ
-	if (PadInput::OnPressed(XINPUT_BUTTON_A) == 1 && is_jump == false)
+	if (PadInput::OnPressed(0,XINPUT_BUTTON_A) == 1 && is_jump == false)
 	{
 		SetJump(true);
 		low = -20;
@@ -90,7 +90,7 @@ void Player1::Flg()
 	}
 
 	//Bボタンを押して大ジャンプ
-	if (PadInput::OnPressed(XINPUT_BUTTON_B) == 1 && is_jump == false)
+	if (PadInput::OnPressed(0,XINPUT_BUTTON_B) == 1 && is_jump == false)
 	{
 		SetJump(true);
 		high = -30;
@@ -99,12 +99,12 @@ void Player1::Flg()
 	}
 
 	//Rトリガーを長押しして上昇
-	if (PadInput::GetRTrigger() > 0)
+	if (PadInput::GetRTrigger(0) > 0)
 	{
 		SetFly(true);
 		if (location.Y > area.width)
 		{
-			location.Y -= PadInput::GetRTrigger() * 5;
+			location.Y -= PadInput::GetRTrigger(0) * 5;
 		}
 		//ジャンプ中断
 		if (is_jump == true)
@@ -114,16 +114,16 @@ void Player1::Flg()
 	}
 
 	//Lトリガーを長押しして下降
-	if (PadInput::GetLTrigger() != 0)
+	if (PadInput::GetLTrigger(0) != 0)
 	{
 		if (location.Y < ground)
 		{
-			location.Y += PadInput::GetLTrigger() * 5;
+			location.Y += PadInput::GetLTrigger(0) * 5;
 		}
 	}
 
 	//浮遊解除
-	if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_DOWN) == 1)
+	if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_DOWN) == 1)
 	{
 		SetFly(false);
 	}

@@ -42,7 +42,7 @@ void Player2::Update()
 	Move();
 
 
-	if (PadInput::OnButton(XINPUT_BUTTON_B)==1)
+	if (PadInput::OnButton(1,XINPUT_BUTTON_B)==1)
 	{
 		if (p_bullet == nullptr)
 		{
@@ -59,7 +59,7 @@ void Player2::Update()
 		}
 	}
 
-	if (PadInput::OnButton(XINPUT_BUTTON_A) == 1)
+	if (PadInput::OnButton(1,XINPUT_BUTTON_A) == 1)
 	{
 		if (p_bom == nullptr)
 		{
@@ -76,7 +76,7 @@ void Player2::Update()
 		}
 	}
 
-	if (PadInput::OnButton(XINPUT_BUTTON_Y) == 1)
+	if (PadInput::OnButton(1,XINPUT_BUTTON_Y) == 1)
 	{
 		if (p_vbullet == nullptr)
 		{
@@ -93,7 +93,7 @@ void Player2::Update()
 		}
 	}
 
-	if (PadInput::OnButton(XINPUT_BUTTON_X) == 1)
+	if (PadInput::OnButton(1,XINPUT_BUTTON_X) == 1)
 	{
 		if (p_vbullet == nullptr)
 		{
@@ -132,7 +132,7 @@ void Player2::Draw()
 
 void Player2::Move()
 {
-	int stick_y = PadInput::GetLStick().y;
+	int stick_y = PadInput::GetLStick(1).y;
 
 
 	//ÉLÅ[ÇégÇ¡ÇƒìÆÇ©Ç∑

@@ -84,7 +84,7 @@ AbstractScene* Main_Title::Update()
 
 		// スティックのY座標を取得
 		//int stick_y = PadInput::GetLStick().y;
-		stick_y = PadInput::GetLStick().y;
+		stick_y = PadInput::GetLStick(0).y;
 
 		//スティックの受付
 		if (stick_y > stick_sensitivity || stick_y < stick_sensitivity * -1)
@@ -114,10 +114,10 @@ AbstractScene* Main_Title::Update()
 
 
 		//十字キーで操作
-		if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_UP) || PadInput::OnPressed(XINPUT_BUTTON_DPAD_DOWN))
+		if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_UP) || PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_DOWN))
 		{
 
-			if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_UP))
+			if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_UP))
 			{
 
 				PlaySoundMem(selection_se, DX_PLAYTYPE_BACK, TRUE); //SE再生
@@ -125,7 +125,7 @@ AbstractScene* Main_Title::Update()
 				// メニュー選択肢を一つ前に移動
 				select_menu = (select_menu - 1 + static_cast<int>(MENU::MENU_SIZE)) % static_cast<int>(MENU::MENU_SIZE);
 			}
-			else if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_DOWN))
+			else if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_DOWN))
 			{
 
 				PlaySoundMem(selection_se, DX_PLAYTYPE_BACK, TRUE); //SE再生
@@ -161,7 +161,7 @@ AbstractScene* Main_Title::Update()
 
 
 	//Aボタンが押されたとき
-	if (PadInput::GetNowKey(XINPUT_BUTTON_A) && (PadInput::OnButton(XINPUT_BUTTON_A) == true))
+	if (PadInput::GetNowKey(0,XINPUT_BUTTON_A) && (PadInput::OnButton(0,XINPUT_BUTTON_A) == true))
 	{
 
 
