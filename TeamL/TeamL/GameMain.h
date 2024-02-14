@@ -14,6 +14,7 @@
 #include"stage.h"
 #include"Player1.h"
 #include"UI.h"
+#include"explosion.h"
 
 #include "Bullet.h"
 #include"VBullet.h"
@@ -36,6 +37,8 @@ private:
 	Player1* player1;
 	Player2* player2;
 	UI* ui; 
+	Explosion* explosion;
+
 
 	//Player2‚Ì’eŠÛŒv
 	Bullet* p_bullet;

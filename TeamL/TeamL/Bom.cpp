@@ -52,7 +52,7 @@ void Bom::Update()//XVˆ—
 void Bom::Draw()//•`‰æˆ—
 {
 	DrawRotaGraph(location.x, location.y, 1.0, 0, Bomimage, TRUE);
-
+	
 }
 
 

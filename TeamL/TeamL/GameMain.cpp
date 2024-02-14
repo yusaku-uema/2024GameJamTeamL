@@ -81,6 +81,15 @@ GameMain::~GameMain()
 
 	delete player2;
 
+	delete ui;
+
+	//Player2‚Ì’eŠÛŒv
+	delete p_bullet;
+	delete p_vbullet;
+	delete p_bom;
+	delete camerawork;
+	delete explosion;
+
 }
 
 
@@ -144,6 +153,7 @@ AbstractScene* GameMain::Update()
 
 		if (p_bom->GetLocation().x <= -100.0f)
 		{
+			explosion = new Explosion(p_bom->GetLocation().x, p_bom->GetLocation().y);
 			delete p_bom;
 			p_bom = nullptr;
 		}
@@ -173,7 +183,7 @@ AbstractScene* GameMain::Update()
 			if (player1->HitBox(p_bom))
 			{
 
-				player1->Damage();
+				explosion = new Explosion(p_bom->GetLocation().x, p_bom->GetLocation().y);
 				delete p_bom;
 				p_bom = nullptr;
 			}
@@ -217,7 +227,24 @@ AbstractScene* GameMain::Update()
 	}
 
 	
-
+	//”š”­
+	if (explosion != nullptr)
+	{
+		explosion->Update();
+		if (explosion->HitBox(player1)&&explosion->GetDamage()==true)
+		{
+			player1->Damage();
+			explosion->SetDamage();
+		}
+		else
+		{
+			if (explosion->GetEnd() == true)
+			{
+				delete explosion;
+				explosion = nullptr;
+			}
+		}
+	}
 
 
 	if (player1->GetLocation().x > oldlocation.x)
@@ -310,4 +337,9 @@ void GameMain::Draw()const
 
 	ui->Draw();
 
+	if (explosion != nullptr)
+	{
+		explosion->Draw();
+
+	}
 }
