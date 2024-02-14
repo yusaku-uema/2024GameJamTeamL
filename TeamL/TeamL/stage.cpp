@@ -26,6 +26,8 @@ Stage::Stage(float locationx, float locationy, int width, int height,int type)
 
 	tukiimage1 = LoadGraph("../imege/tuki.png");
 	tukiimage2 = LoadGraph("../imege/tuki2.png");
+	tukiimage3 = LoadGraph("../imege/tuki3.png");
+	tukiimage4 = LoadGraph("../imege/tuki4.png");
 	
 	
 
@@ -63,6 +65,12 @@ void Stage::Draw()const
 		break;
 	case 2:
 		DrawGraph(location.X - camerax, location.Y, tukiimage2, FALSE);
+		break;
+	case 3:
+		DrawGraph(location.X - camerax, location.Y, tukiimage3, FALSE);
+		break;
+	case 4:
+		DrawGraph(location.X - camerax, location.Y, tukiimage4, FALSE);
 		break;
 	}
 	
