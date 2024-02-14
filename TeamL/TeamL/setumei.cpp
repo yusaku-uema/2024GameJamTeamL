@@ -18,7 +18,7 @@ Setumei::Setumei()
 AbstractScene* Setumei::Update()
 {
     //Aボタンが押されたらタイトル移動
-    if (PadInput::OnButton(XINPUT_BUTTON_A))
+    if (PadInput::OnButton(0,XINPUT_BUTTON_A))
     {
         return new Main_Title();
     }

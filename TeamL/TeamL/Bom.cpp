@@ -35,7 +35,9 @@ void Bom::Update()//XVˆ—
 void Bom::Draw()//•`‰æˆ—
 {
 
-	DrawCircleAA(location.X, location.Y, radius, 100, color, TRUE);
+	Bomimage = LoadGraph("../imege/bom.png");
+	DrawRotaGraph(location.X, location.Y, 1.0, 0, Bomimage, TRUE);
+
 }
 
 

@@ -51,7 +51,7 @@ private:
 
     //タイトルBGM
     int title_bgm;
-	
+
 
 public:
     //コンストラクタ 
