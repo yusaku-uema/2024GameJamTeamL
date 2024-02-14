@@ -16,6 +16,7 @@ Player2::Player2()
 Player2::~Player2()
 {
 	p_bullet;
+	p_bom;
 }
 
 
@@ -56,6 +57,57 @@ void Player2::Update()
 			p_bullet = nullptr;
 		}
 	}
+
+	if (PadInput::OnButton(XINPUT_BUTTON_A) == 1)
+	{
+		if (p_bom == nullptr)
+		{
+			p_bom = new Bom(x,y);
+		}
+	}
+	if (p_bom != nullptr)
+	{
+		p_bom->Update();
+		if (p_bom->x <= 0.0f)
+		{
+			delete p_bom;
+			p_bom = nullptr;
+		}
+	}
+
+	if (PadInput::OnButton(XINPUT_BUTTON_Y) == 1)
+	{
+		if (p_vbullet == nullptr)
+		{
+			p_vbullet = new VBullet(x, y,-20.0f,-20.0f);
+		}
+	}
+	if (p_vbullet != nullptr)
+	{
+		p_vbullet->Update();
+		if (p_vbullet->x <= 0.0f)
+		{
+			delete p_vbullet;
+			p_vbullet = nullptr;
+		}
+	}
+
+	if (PadInput::OnButton(XINPUT_BUTTON_X) == 1)
+	{
+		if (p_vbullet == nullptr)
+		{
+			p_vbullet = new VBullet(x, y, -20.0f, 20.0f);
+		}
+	}
+	if (p_vbullet != nullptr)
+	{
+		p_vbullet->Update();
+		if (p_vbullet->x <= 0.0f)
+		{
+			delete p_vbullet;
+			p_vbullet = nullptr;
+		}
+	}
 }
 
 void Player2::Draw()
@@ -65,6 +117,14 @@ void Player2::Draw()
 	if (p_bullet != nullptr)
 	{
 		p_bullet->Draw();
+	}
+	if (p_vbullet != nullptr)
+	{
+		p_vbullet->Draw();
+	}
+	if (p_bom != nullptr)
+	{
+		p_bom->Draw();
 	}
 }
 
