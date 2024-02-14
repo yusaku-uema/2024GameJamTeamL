@@ -24,6 +24,7 @@ private:
         PLAYER_GAME,
         HELP,
         END,
+        SETUMEI,
         MENU_SIZE
     };
 

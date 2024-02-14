@@ -1,6 +1,8 @@
 #pragma once
 
-class Player1
+#include"Collinder.h"
+
+class Player1:public Collinder
 {
 public:
 	bool is_jump;	//ジャンプ可能か？
@@ -14,8 +16,8 @@ public:
 	int type;		//ジャンプのタイプ
 	int abs;		//ジャンプの高さの絶対値
 	float fuel;		//燃料
-	int h;		//高さ
-	int i;
+	int h;			//高さ
+	int ground;		//床の座標
 
 
 public:
@@ -30,7 +32,7 @@ public:
 	void SetJump(bool flg);		//ジャンプフラグ設定処理
 	void Fly();					//浮遊処理
 	void SetFly(bool flg);		//浮遊フラグ設定処理
-
+	void Fuel();				//燃料ゲージ処理
 
 private:
 

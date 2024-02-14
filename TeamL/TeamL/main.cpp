@@ -36,7 +36,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SetDrawScreen(DX_SCREEN_BACK);	// 描画先画面を裏にする
 
-
 	AbstractScene* firstScene = new Main_Title();						//FirstSceneの作成
 
 	SceneManager* sceneManager = SceneManager::Create(firstScene);	//シーンマネージャーの起動

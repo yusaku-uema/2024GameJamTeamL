@@ -1,15 +1,27 @@
+//š ‹g@Nm‚ª’S“–‚µ‚½‚Æ‚±‚ë
+
 #pragma once
-class Player2
+#include "Bullet.h"
+#include"VBullet.h"
+#include"Bom.h"
+#include"Collinder.h"
+class Player2 : public Collinder
 {
 private:
 	float x;
 	float y;
+	float move_y;
+	float radius;
 
 public:
+	Bullet* p_bullet;
+	VBullet* p_vbullet;
+	Bom* p_bom;
 	Player2();
+	~Player2();
+	Player2(float mx, float my);
 
 	void Update();
 	void Draw();
-
-	void SetLocation(float mx, float my);
+	void Move();
 };

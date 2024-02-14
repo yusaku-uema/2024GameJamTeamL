@@ -8,33 +8,24 @@
 /*	作成者：													*/
 /****************************************************************/
 #pragma once
-#include "Collinder.h"
+#include "AbstractScene.h"
+#include"PadInput.h"
 
-class Stage:
-	public Collinder
-
+class Setumei :
+	public AbstractScene
 {
+	//ヘルプの背景画像
+	int Setumei_image;
 
-	int camerax;
-
-	int tukiimage1;
-	int tukiimage2;
-	int tukiimage3;
-
-
-private:
-
-	int type;
 
 public:
-
-	Stage(float locationx,float locationy,int width,int height,int type);
-
-	~Stage();
+	//コンストラクタ 
+	Setumei();
 
 	//描画以外の更新を実行
-	void Update(int camerax);
+	AbstractScene* Update()override;
 
 	//描画に関することを実装
-	void Draw() const ;
+	void Draw() const override;
 };
+

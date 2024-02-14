@@ -14,6 +14,10 @@
 
 GameMain::GameMain()
 {
+	
+	
+
+	BGM = LoadSoundMem("../BGM/Stage.mp3");
 
 	//ゲーム画面背景読込
 
@@ -22,9 +26,13 @@ GameMain::GameMain()
 	FILE* fp;
 
 	int block = 0;
+
 	rendering_coodinates_x = 0;
 
 	camerawork = new CameraWork();
+	player1 = new Player1();
+
+	player2 = new Player2();
 
 	//読込ファイルを開く
 	fopen_s(&fp, "stage.txt", "r");
@@ -35,9 +43,9 @@ GameMain::GameMain()
 		{
 			fscanf_s(fp, "%d", &block);
 
-			if (block > 0)
+			if (block >0)
 			{
-				stage[j][i] = new Stage(i, j, 32, 32 );
+				stage[j][i] = new Stage(i, j, 32, 32 ,block);
 			}
 			else
 			{
@@ -48,8 +56,10 @@ GameMain::GameMain()
 	fclose(fp);
 
 
+	gMileage = 0;
 
 
+	
 }
 GameMain::~GameMain()
 {
@@ -64,11 +74,22 @@ GameMain::~GameMain()
 			}
 		}
 	}
+	delete player1;
+
+	delete player2;
+
 }
 
 
 AbstractScene* GameMain::Update()
 {
+	if (CheckSoundMem(BGM) != 1)
+	{   //BGMが流れていなかったら再生
+		PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE); //BGM再生
+	}
+	
+	player1->Update();
+
 	for (int j = 0; j < 25; j++)
 	{
 
@@ -82,12 +103,14 @@ AbstractScene* GameMain::Update()
 	}
 
 	// 走行距離を加算する(仮のスピード)
-	gMileage += 5;
+	gMileage -= 5;
 
-
+	player2->Update();
 
 	return this;
 
+	//BGMを止める
+	StopSoundMem(BGM);
 
 }
 
@@ -97,15 +120,14 @@ void GameMain::Draw()const
 {
 	void BackScrool();
 
-
-
+		
 	// ステージ画像表示
 // 描画可能エリアを設定
 	
-	// 上部の道路標示
-	DrawGraph( gMileage % 480 - 480,0, stageimg, FALSE);
-	// 下部の道路標示
-	DrawGraph, (gMileage % 480,0, stageimg, FALSE);
+	// 一枚目の道路標示
+	DrawGraph( gMileage % 1200 ,0, stageimg, FALSE);
+	// 二枚目の道路標示
+	DrawGraph, (gMileage%1200+1200,0, stageimg, FALSE);
 	//エリアを戻す
 
 
@@ -119,5 +141,8 @@ void GameMain::Draw()const
 			}
 		}
 	}
+	player1->Draw();
+
+	player2->Draw();
 
 }
