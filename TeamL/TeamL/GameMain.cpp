@@ -30,6 +30,7 @@ GameMain::GameMain()
 	rendering_coodinates_x = 0;
 
 	camerawork = new CameraWork();
+	player1 = new Player1();
 
 	//読込ファイルを開く
 	fopen_s(&fp, "stage.txt", "r");
@@ -71,6 +72,7 @@ GameMain::~GameMain()
 			}
 		}
 	}
+	delete player1;
 }
 
 
@@ -81,6 +83,7 @@ AbstractScene* GameMain::Update()
 		PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE); //BGM再生
 	}
 	
+	player1->Update();
 
 	for (int j = 0; j < 25; j++)
 	{
@@ -112,8 +115,7 @@ void GameMain::Draw()const
 {
 	void BackScrool();
 
-
-
+		
 	// ステージ画像表示
 // 描画可能エリアを設定
 	
@@ -134,5 +136,6 @@ void GameMain::Draw()const
 			}
 		}
 	}
+	player1->Draw();
 
 }

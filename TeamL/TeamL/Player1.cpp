@@ -2,11 +2,15 @@
 #include"PadInput.h"
 #include"DxLib.h"
 
+#define FUEL (100.0f)
+
 //コンストラクタ
 Player1::Player1()
 {
-	X = 0;
-	Y = 0;
+	location.X = 320;
+	location.Y = 300;
+	area.height = 30;
+	area.width = 30;
 	R = 30;
 	is_jump = 0;
 	is_fly = 1;
@@ -15,7 +19,7 @@ Player1::Player1()
 	high = 0;
 	type = 0;
 	abs = 0;
-	fuel = 100.0f;
+	fuel = FUEL;
 	h = 0;
 	ground = 400;
 }
@@ -38,7 +42,7 @@ void Player1::Update()
 //描画処理
 void Player1::Draw()
 {
-	DrawCircle(X, Y, R, 0xffffff, TRUE);
+	DrawCircle(location.X, location.Y, R, 0xffffff, TRUE);
 }
 
 //移動処理
@@ -47,7 +51,7 @@ void Player1::Move()
 	//左移動処理
 	if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_LEFT) == 1)
 	{
-		if (X > 0 + R)
+		if (location.X > 0 + area.width)
 		{
 			X -= 5;
 		}
@@ -56,9 +60,9 @@ void Player1::Move()
 	//右移動処理
 	if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_RIGHT) == 1)
 	{
-		if (X < 1280 - R)
+		if (location.X < 1280 - area.width)
 		{
-			X += 5;
+			location.X += 5;
 		}
 	}
 }
@@ -67,16 +71,16 @@ void Player1::Move()
 void Player1::Flg()
 {
 	//地面についたらフラグをtrueにする
-	if (Y >= ground)
+	if (location.Y >= ground)
 	{
-		Y = ground;
+		location.Y = ground;
 		h = 0;
 		SetJump(false);
 		SetFly(true);
 	}
-	if (Y <= R)
+	if (location.Y <= area.width)
 	{
-		Y = R;
+		location.Y = area.width;
 	}
 
 	//Aボタンを押したら小ジャンプ
@@ -101,9 +105,9 @@ void Player1::Flg()
 	if (PadInput::GetRTrigger() > 0)
 	{
 		SetFly(true);
-		if (Y > R)
+		if (location.Y > area.width)
 		{
-			Y -= PadInput::GetRTrigger() * 5;
+			location.Y -= PadInput::GetRTrigger() * 5;
 		}
 		//ジャンプ中断
 		if (is_jump == true)
@@ -115,9 +119,9 @@ void Player1::Flg()
 	//Lトリガーを長押しして下降
 	if (PadInput::GetLTrigger() != 0)
 	{
-		if (Y < ground)
+		if (location.Y < ground)
 		{
-			Y += PadInput::GetLTrigger() * 5;
+			location.Y += PadInput::GetLTrigger() * 5;
 		}
 	}
 
@@ -135,14 +139,14 @@ void Player1::Jump(int jump)
 	{
 		if (jump < 0)
 		{
-			Y += jump / 2;
+			location.Y += jump / 2;
 			type++;
 		}
 		else
 		{
-			if (ground - Y > 0)
+			if (ground - location.Y > 0)
 			{
-				Y += jump / 2;
+				location.Y += jump / 2;
 				type++;
 			}
 		}
@@ -154,9 +158,9 @@ void Player1::Fly()
 {
 	if (is_fly == false)
 	{
-		if (ground - Y > 0)
+		if (ground - location.Y > 0)
 		{
-			Y += h / 2;
+			location.Y += h / 2;
 			h++;
 		}
 	}
@@ -172,4 +176,25 @@ void Player1::SetJump(bool flg)
 void Player1::SetFly(bool flg)
 {
 	is_fly = flg;
+}
+
+//燃料ゲージ処理
+void Player1::Fuel()
+{
+	if (is_jump != true)
+	{
+		if (location.Y < ground && fuel>0.0f)
+		{
+			fuel--;
+		}
+		else
+		{
+			SetFly(false);
+		}
+		if (location.Y >= ground && fuel < 100.0f)
+		{
+			fuel++;
+		}
+	}
+
 }
