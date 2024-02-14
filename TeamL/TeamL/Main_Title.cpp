@@ -1,6 +1,8 @@
 #include "Main_Title.h"
+#include"GameMain.h"
 #include "common.h"
 #include "DxLib.h"
+#include"Help.h"
 #include"PadInput.h"
 
 
@@ -14,9 +16,31 @@ Main_Title::Main_Title()
 
 	select_menu = static_cast<int>(MENU::PLAYER_GAME);
 
-	cursor_y = 0;
-	//title_image = LoadGraph("image/title.png");
-	title_image = 0;
+	stick_y = 0;
+
+	cursor_y = 300;
+
+	title_image = LoadGraph("../imege/title.png");
+
+	title_bgm = LoadSoundMem("../BGM/Noesis_2.mp3");
+
+	definite_se = LoadSoundMem("../BGM/決定ボタンを押す1.mp3");
+
+	selection_se = LoadSoundMem("../BGM/カーソル移動1.mp3");
+
+}
+
+//-----------------------------------
+// デストラクタ
+// メモリ解放    
+//-----------------------------------
+Main_Title::~Main_Title()
+{
+	DeleteGraph(title_image);
+	DeleteSoundMem(title_bgm);
+	DeleteSoundMem(definite_se);
+	DeleteSoundMem(selection_se);
+
 }
 
 //-----------------------------------
@@ -24,6 +48,14 @@ Main_Title::Main_Title()
 //-----------------------------------
 AbstractScene* Main_Title::Update()
 {
+	
+	if (CheckSoundMem(title_bgm) != 1)
+	{   //BGMが流れていなかったら再生
+		PlaySoundMem(title_bgm, DX_PLAYTYPE_LOOP, TRUE); //BGM再生
+	}
+
+
+
 	// 操作間隔時間
 	const int max_input_margin = 10;
 
@@ -48,33 +80,49 @@ AbstractScene* Main_Title::Update()
 
 			// スティックが上に移動した場合
 			if (stick_y > 0) {
+
+				PlaySoundMem(selection_se, DX_PLAYTYPE_BACK, TRUE); //SE再生
+
 				// メニュー選択肢を一つ前に移動
 				select_menu = (select_menu - 1 + static_cast<int>(MENU::MENU_SIZE)) % static_cast<int>(MENU::MENU_SIZE);
 			}
 			// スティックが下に移動した場合
 			else if (stick_y < 0) {
+
+				PlaySoundMem(selection_se, DX_PLAYTYPE_BACK, TRUE); //SE再生
+
 				// メニュー選択肢を一つ次に移動
 				select_menu = (select_menu + 1) % static_cast<int>(MENU::MENU_SIZE);
 			}
 
+			//連続操作を受け付けないように
 			input_margin = 0;
 
 		}
 
+
+		//十字キーで操作
 		if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_UP) || PadInput::OnPressed(XINPUT_BUTTON_DPAD_DOWN))
 		{
 
 			if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_UP))
 			{
+
+				PlaySoundMem(selection_se, DX_PLAYTYPE_BACK, TRUE); //SE再生
+
 				// メニュー選択肢を一つ前に移動
 				select_menu = (select_menu - 1 + static_cast<int>(MENU::MENU_SIZE)) % static_cast<int>(MENU::MENU_SIZE);
 			}
 			else if (PadInput::OnPressed(XINPUT_BUTTON_DPAD_DOWN))
 			{
+
+				PlaySoundMem(selection_se, DX_PLAYTYPE_BACK, TRUE); //SE再生
+
 				// メニュー選択肢を一つ次に移動
 				select_menu = (select_menu + 1) % static_cast<int>(MENU::MENU_SIZE);
 			}
 
+			//連続入力しないように
 			input_margin = 0;
 
 		}
@@ -85,30 +133,45 @@ AbstractScene* Main_Title::Update()
 	switch (select_menu)
 	{
 	case 0:
-		cursor_y = 0; //スタートのカーソル位置
+		cursor_y = 300; //スタートのカーソル位置
 		break;
 	case 1:
 		cursor_y = 400; //EXITのカーソル位置
+		break;
+	case 2:
+		cursor_y = 500; //EXITのカーソル位置
 		break;
 	default:
 		break;
 	}
 
 
+	//Aボタンが押されたとき
 	if (PadInput::GetNowKey(XINPUT_BUTTON_A) && (PadInput::OnButton(XINPUT_BUTTON_A) == true))
 	{
+
+
+		//BGMを止める
+		StopSoundMem(title_bgm);
+
+		PlaySoundMem(definite_se, DX_PLAYTYPE_NORMAL, TRUE); //SE再生
+
 		input_margin = 0;
 		MENU current_selection = static_cast<MENU>(select_menu);
 
+		//選択されていたシーンに遷移する
 		switch (current_selection)
 		{
 		case MENU::PLAYER_GAME:
-			//return new GameMain();
+			return new GameMain(); //ゲームメインへ
 			break;
 
 		case MENU::HELP:
-			return this;
+			return new Help(); //ヘルプ画面
 			break;
+
+		case MENU::END: //ゲーム終了
+			return 0;
 
 		default:
 			printfDx("未実装な機能です。\n");
@@ -122,5 +185,17 @@ AbstractScene* Main_Title::Update()
 
 void Main_Title::Draw()const
 {
-	DrawFormatString(100, 100, 0xff0000,"テスト", TRUE);
+
+	SetFontSize(40);
+
+	DrawGraph(0, 0, title_image, FALSE);
+
+	DrawFormatString(850, 300, 0xFFFFFF, "Game Start");
+
+	DrawFormatString(850, 400, 0xFFFFFF, "Help");
+
+	DrawFormatString(850, 500, 0xFFFFFF, "End");
+
+	//カーソル
+	DrawString(800, cursor_y, "■", GetColor(255, 0, 0));
 }

@@ -1,12 +1,22 @@
 
 #pragma once
 #include "AbstractScene.h"
+#include"camerawork.h"
+#include"stage.h"
 
 class GameMain :
 	public AbstractScene
-{
-private:
 
+{
+
+
+
+private:
+	//‚Ñ‚å‚¤‚ª‚´‚Ð‚å‚¤
+	int rendering_coodinates_x;
+
+	CameraWork* camerawork;
+	Stage* stage[25][111];
 
 public:
 	GameMain();
