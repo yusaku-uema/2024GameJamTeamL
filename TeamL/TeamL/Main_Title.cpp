@@ -29,6 +29,9 @@ Main_Title::Main_Title()
 
 	cursor_y = 300;
 
+	
+		
+
 	title_image = LoadGraph("../imege/title.png");
 
 	title_bgm = LoadSoundMem("../BGM/Noesis_2.mp3");
