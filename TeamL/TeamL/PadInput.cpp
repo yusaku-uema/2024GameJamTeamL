@@ -4,20 +4,20 @@
 /*	日付：		２０２４年０２月１２日							*/
 /*	コンパイラ:													*/
 /*	note:														*/
-/*	作成者：	名嘉真　愛斗									*/
+/*	作成者：	上間							*/
 /****************************************************************/
 
 #include "PadInput.h"
 
 #define TRIGGER_MAX (255.0f)
 
-char PadInput::now_key[BUTTONS];
-char PadInput::old_key[BUTTONS];
-XINPUT_STATE PadInput::input;
-Stick PadInput::r_stick;
-Stick PadInput::l_stick;
-float PadInput::L_trigger;
-float PadInput::R_trigger;
+char PadInput::now_key[2][BUTTONS];
+char PadInput::old_key[2][BUTTONS];
+XINPUT_STATE PadInput::input[2];
+Stick PadInput::r_stick[2];
+Stick PadInput::l_stick[2];
+float PadInput::L_trigger[2];
+float PadInput::R_trigger[2];
 
 
 //-----------------------------------
@@ -26,75 +26,80 @@ float PadInput::R_trigger;
 void PadInput::UpdateKey()
 {
 	// 入力キー取得
-	GetJoypadXInputState(DX_INPUT_KEY_PAD1, &input);
-
-	for (int i = 0; i < BUTTONS; i++)
+	GetJoypadXInputState(DX_INPUT_PAD1, &input[0]);
+	GetJoypadXInputState(DX_INPUT_PAD2, &input[1]);
+	for (int j = 0; j < 2; j++)
 	{
-		old_key[i] = now_key[i];
-		now_key[i] = input.Buttons[i];
+
+
+		for (int i = 0; i < BUTTONS; i++)
+		{
+			old_key[j][i] = now_key[j][i];
+			now_key[j][i] = input[j].Buttons[i];
+		}
+
+		//右スティック
+		r_stick[j].x = input[j].ThumbRX;
+		r_stick[j].y = input[j].ThumbRY;
+
+		//左スティック
+		l_stick[j].x = input[j].ThumbLX;
+		l_stick[j].y = input[j].ThumbLY;
+
+		//トリガーの入力情報
+		L_trigger[j] = (float)input[j].LeftTrigger / TRIGGER_MAX;
+		R_trigger[j] = (float)input[j].RightTrigger / TRIGGER_MAX;
 	}
 
-	//右スティック
-	r_stick.x = input.ThumbRX;
-	r_stick.y = input.ThumbRY;
-
-	//左スティック
-	l_stick.x = input.ThumbLX;
-	l_stick.y = input.ThumbLY;
-
-	//トリガーの入力情報
-	L_trigger = (float)input.LeftTrigger / TRIGGER_MAX;
-	R_trigger = (float)input.RightTrigger / TRIGGER_MAX;
-
 }
 
-bool PadInput::OnButton(int button)
+bool PadInput::OnButton(int i ,int button)
 {
-	bool ret = (now_key[button] == 1 && old_key[button] == 0);
+	bool ret = (now_key[i][button] == 1 && old_key[i][button] == 0);
 	return ret;
 }
 
-bool PadInput::OnPressed(int button)
+bool PadInput::OnPressed(int i, int button)
 {
-	bool ret = (now_key[button] == 1);
+	bool ret = (now_key[i][button] == 1);
 	return ret;
 }
 
-bool PadInput::OnRelease(int button)
+bool PadInput::OnRelease(int i, int button)
 {
-	bool ret = (now_key[button] == 0 && old_key[button] == 1);
+	bool ret = (now_key[button] == 0 && old_key[i][button] == 1);
 	return ret;
 }
 
-Stick PadInput::GetRStick()
+Stick PadInput::GetRStick(int i)
 {
 
-	return r_stick;
+	return r_stick[i];
 
 }
 
-Stick PadInput::GetLStick()
+Stick PadInput::GetLStick(int i)
 {
-	return l_stick;
+	return l_stick[i];
 }
 
-float PadInput::GetLTrigger()
+float PadInput::GetLTrigger(int i)
 {
-	return  L_trigger;
+	return  L_trigger[i];
 }
 
-float PadInput::GetRTrigger()
+float PadInput::GetRTrigger(int i)
 {
-	return  R_trigger;
+	return  R_trigger[i];
 }
 
 
-char PadInput::GetOldKey(const int i)
+char PadInput::GetOldKey(const int i, const int j)
 {
-	return old_key[i];
+	return old_key[i][j];
 }
 
-char PadInput::GetNowKey(const int i)
+char PadInput::GetNowKey(const int i, const int j)
 {
-	return now_key[i];
+	return now_key[i][j];
 }

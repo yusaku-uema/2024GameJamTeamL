@@ -42,9 +42,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SceneManager* sceneManager = SceneManager::Create(firstScene);	//シーンマネージャーの起動
 
 	// ゲームループ
-	while ((ProcessMessage() == 0) &&
-		sceneManager->Update() != nullptr
-		)
+	while ((ProcessMessage() == 0) &&sceneManager->Update() != nullptr)
 	{
 		PadInput::UpdateKey();
 

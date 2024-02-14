@@ -50,7 +50,8 @@ private:
 
     //タイトルBGM
     int title_bgm;
-	
+
+    int y;
 
 public:
     //コンストラクタ 
