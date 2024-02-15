@@ -50,6 +50,8 @@ public:
 	int gMileage ;//プレイヤーの走行距離
 	int stageimg;
 	int MainSE;
+	int FallingSE;
+	int ExplosionSE;
 
 	GameMain();
 	~GameMain();

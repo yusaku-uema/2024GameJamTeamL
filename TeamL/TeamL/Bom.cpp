@@ -28,6 +28,8 @@ Bom::Bom(float mx, float my)
 	area.width = 100; //â°ïù
 	Bomimage = LoadGraph("../imege/bom.png");
 	descent = false;
+	FallingSE = LoadSoundMem("../BGM/FallingSE.mp3");
+	ExplosionSE = LoadSoundMem("../BGM/Explosion.mp3");
 }
 
 Bom::~Bom()

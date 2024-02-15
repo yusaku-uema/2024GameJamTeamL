@@ -13,6 +13,8 @@ public: //アクセス指定子
 	float move_x;		// 進行方向ベクトル情報X
 	float move_y;		// 進行方向ベクトル情報Y
 	int Bomimage;
+	int FallingSE;
+	int ExplosionSE;
 
 	//上間処理
 	bool descent; //降下フラグ
