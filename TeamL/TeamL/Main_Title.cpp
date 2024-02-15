@@ -27,18 +27,22 @@ Main_Title::Main_Title()
 
 	stick_y = 0;
 
-	cursor_y = 300;
+	cursor_y = 500;
 
 	
 		
 
-	title_image = LoadGraph("../imege/title.png");
+	title_image = LoadGraph("../imege/titleimages.png");
 
 	title_bgm = LoadSoundMem("../BGM/Noesis_2.mp3");
 
 	definite_se = LoadSoundMem("../BGM/決定ボタンを押す1.mp3");
 
 	selection_se = LoadSoundMem("../BGM/カーソル移動1.mp3");
+	
+	cursolimg = LoadGraph("../imege/fire.png");
+
+
 
 }
 
@@ -145,16 +149,16 @@ AbstractScene* Main_Title::Update()
 	switch (select_menu)
 	{
 	case 0:
-		cursor_y = 150; //スタートのカーソル位置
+		cursor_y = 20; //スタートのカーソル位置
 		break;
 	case 1:
-		cursor_y = 250; //EXITのカーソル位置
+		cursor_y = 100; //EXITのカーソル位置
 		break;
 	case 2:
-		cursor_y = 350; //EXITのカーソル位置
+		cursor_y = 180; //EXITのカーソル位置
 		break;
 	case 3:
-		cursor_y = 450;//SETUMEIのカーソル位置
+		cursor_y = 280;//SETUMEIのカーソル位置
 	default:
 		break;
 	}
@@ -207,17 +211,8 @@ void Main_Title::Draw()const
 
 	DrawGraph(0, 0, title_image, FALSE);
 
-	DrawFormatString(850, 150, 0xFFFFFF, "エイリアンエスケープ");
 
-	DrawFormatString(850, 250, 0xFFFFFF, "Help");
-
-	DrawFormatString(850, 350, 0xFFFFFF, "End");
-
-	DrawFormatString(850, 450, 0xFFFFFF, "EXPLANATION");
-
-
-	DrawFormatString(300, 350, 0xFFFFFF, "逃げ切れ");
-
+	
 	//カーソル
-	DrawString(800, cursor_y, "■", GetColor(255, 0, 0));
+	DrawRotaGraph(950, cursor_y, 0.1, 0, cursolimg, TRUE);
 }
