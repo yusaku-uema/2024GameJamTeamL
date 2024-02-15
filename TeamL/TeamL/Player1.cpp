@@ -2,7 +2,9 @@
 #include"PadInput.h"
 #include"DxLib.h"
 
-#define FUEL (100.0f)
+#define FUEL (1000.0f)
+#define LOW (-23)
+#define HIGH (-35)
 
 //コンストラクタ
 Player1::Player1()
@@ -22,8 +24,13 @@ Player1::Player1()
 	imgae= LoadGraph("../imege/Player1.png");
 
 	fuel = FUEL;
+	low = LOW;
+	high = HIGH;
+	type = 0;
+	abs = 0;
 	is_jump = false;
 	is_fly = false;
+	is_fuel = false;
 }
 
 //デストラクタ
@@ -40,6 +47,7 @@ void Player1::Update(int view_charx)
 	Flg();
 	Jump(type);
 	Fly();
+	Fuel();
 }
 
 //描画処理
@@ -73,55 +81,74 @@ void Player1::Move()
 //判定処理
 void Player1::Flg()
 {
-	//地面についたらフラグをtrueにする
+	//着地した時の処理と画面外に行かないようにする処理
 	if (location.y >= ground)
 	{
 		location.y = ground;
 		g = 0.0f;
+		count = 0;
 		SetJump(false);
-		//SetFly(true);
+		SetFly(false);
+		SetFuel(true);
 	}
 	if (location.y <= area.height)
 	{
 		location.y = area.height;
 	}
 
-	//Aボタンを押したら小ジャンプ
+	//Aボタンを押したら＆ジャンプ中でないなら、小ジャンプをする
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_A) == 1 && is_jump == false)
-	{
+	{		
+		//空中でジャンプすると燃料を消費する
+		if (is_fly == true)
+		{
+			fuel += LOW;
+		}
+
+		//ジャンプ中にする
 		SetJump(true);
-		low = -20;
+		low = LOW;
 		type = low;
 		abs = -type;
 	}
 
-	//Bボタンを押して大ジャンプ
+	//Bボタンを押しら＆ジャンプ中でないなら、大ジャンプ
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_B) == 1 && is_jump == false)
 	{
+		//燃料を消費する
+		fuel += HIGH;
+
+		//ジャンプ中にする
 		SetJump(true);
-		high = -30;
+		high = HIGH;
 		type = high;
 		abs = -type;
 	}
 
-	//Rトリガーを長押しして上昇
-	if (PadInput::GetRTrigger(0) > 0)
+	//Rトリガーを押した値によって上昇
+	if (PadInput::GetRTrigger(0) != 0 )
 	{
+		//浮遊中にする
 		SetFly(true);
-		if (location.y > area.width)
+
+		//燃料があったら上昇する
+		if (location.y > area.height&&is_fuel==true)
 		{
 			location.y -= PadInput::GetRTrigger(0) * 5;
 		}
-		//ジャンプ中断
+
+		//ジャンプ中だったらジャンプ中断
 		if (is_jump == true)
 		{
 			SetJump(false);
 		}
+		count = 1;
 	}
 
-	//Lトリガーを長押しして下降
+	//Lトリガーを押した値によって下降
 	if (PadInput::GetLTrigger(0) != 0)
 	{
+		//下降処理
 		if (location.y < ground)
 		{
 			location.y += PadInput::GetLTrigger(0) * 5;
@@ -131,26 +158,28 @@ void Player1::Flg()
 	//浮遊解除
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_DOWN) == 1)
 	{
-		SetFly(false);
+		SetFuel(false);
 	}
 }
 
 //ジャンプ処理
 void Player1::Jump(int jump)
 {
-	if (is_jump == true)
+	if (is_jump==true)
 	{
+		//上昇する
 		if (jump < 0)
 		{
 			location.y += jump / 2;
 			type++;
 		}
+		//下降する
 		else
 		{
 			if (ground - location.y > 0)
 			{
-				location.y += g / 2;
-				g++;
+				location.y += jump / 2;
+				type++;
 			}
 		}
 	}
@@ -159,13 +188,41 @@ void Player1::Jump(int jump)
 //落下処理
 void Player1::Fly()
 {
-	if (is_fly == false)
+	//燃料がなかったら落下する
+	if (is_fly == false&& ground - location.y > 0)
 	{
-		if (ground - location.y > 0)
-		{
 			location.y += g / 2;
 			g++;
+	}
+}
+
+//燃料ゲージ処理
+void Player1::Fuel()
+{
+	if (is_jump == false)
+	{
+		//ジャンプ中でなく空中にいれば燃料を消費する
+		if (location.y < ground && fuel>0.0f)
+		{
+			fuel--;
 		}
+
+		//燃料が無くなったフラグを立てる
+		if (fuel<=0.0f)
+		{
+			SetFuel(false);
+		}
+
+		//着地していると燃料を回復する
+		if (location.y >= ground && fuel < FUEL)
+		{
+			fuel++;
+		}
+	}
+	//ジャンプ中なら燃料を回復する
+	else if (fuel < FUEL)
+	{
+		fuel++;
 	}
 }
 
@@ -175,28 +232,16 @@ void Player1::SetJump(bool flg)
 	is_jump = flg;
 }
 
-//浮遊フラグ設定処理(浮遊可能＝true、浮遊不可＝false)
+//浮遊フラグ設定処理(浮遊中＝true、着地＝false)
 void Player1::SetFly(bool flg)
 {
 	is_fly = flg;
 }
 
-//燃料ゲージ処理
-void Player1::Fuel()
+//燃料フラグ設定処理(ある＝true、ない＝false)
+void Player1::SetFuel(bool flg)
 {
-	if (is_jump == false)
-	{
-		if (fuel>0.0f)
-		{
-			SetFly(true);
-			fuel-=1.0f;
-		}
-		else
-		{
-			SetFly(false);
-			fuel++;
-		}
-	}
+	is_fuel = flg;
 }
 
 //-----------------------------------

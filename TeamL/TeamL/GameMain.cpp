@@ -12,6 +12,7 @@
 #include"PadInput.h"
 #define _CRT_SECURE_MD_WARNING
 #include<stdio.h>
+#include"PadInput.h"
 
 GameMain::GameMain()
 {
