@@ -23,7 +23,8 @@ public:
 
 	int view_charx; //上間　スクロール処理
 	int hp; //上間　HP管理
-	int imgae; //上間　画像
+	int imgae1; //上間　画像
+	int imgae2; //画像
 
 public:
 	Player1();		//コンストラクタ

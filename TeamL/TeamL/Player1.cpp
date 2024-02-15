@@ -21,7 +21,9 @@ Player1::Player1()
 	ground = 690.0f;
 
 	hp = 3;
-	imgae= LoadGraph("../imege/Player1.png");
+	imgae1= LoadGraph("../imege/Player1.1.png");
+	imgae2= LoadGraph("../imege/fire.png");
+	
 
 	fuel = FUEL;
 	low = LOW;
@@ -53,7 +55,11 @@ void Player1::Update(int view_charx)
 //•`‰æˆ—
 void Player1::Draw()
 {
-	DrawRotaGraph(location.x + view_charx, location.y, 1.0, 0, imgae, TRUE);
+	if (is_fly==true&&is_fuel==true)
+	{
+		DrawRotaGraph(location.x - 60 + view_charx, location.y + 83, 0.1, -1.5708, imgae2, TRUE);
+	}
+	DrawRotaGraph(location.x + view_charx, location.y, 1.0, 0, imgae1, TRUE);
 }
 
 //ˆÚ“®ˆ—
@@ -133,6 +139,7 @@ void Player1::Flg()
 			//”R—¿‚ª‚ ‚Á‚½‚ç”R—¿‚ðÁ”ï‚µ‚ÄƒWƒƒƒ“ƒv
 			fuel += HIGH;
 			high = HIGH;
+			SetFuel(true);
 		}
 		
 
@@ -148,6 +155,8 @@ void Player1::Flg()
 		
 		//•‚—V’†‚É‚·‚é
 		SetFly(true);
+		SetFuel(true);
+
 
 		//”R—¿‚ª‚ ‚Á‚½‚çã¸‚·‚é
 		if (location.y > area.height&&fuel>0)
@@ -197,6 +206,7 @@ void Player1::Jump(int jump)
 		//‰º~‚·‚é
 		else
 		{
+			SetFuel(false);
 			if (ground - location.y > 0)
 			{
 				location.y += jump / 2;
