@@ -41,7 +41,7 @@ void Bom::Update()//XVˆ—
 
 	if (descent == false)
 	{
-		location.y++;
+		location.y+=10;
 	}
 	else
 	{

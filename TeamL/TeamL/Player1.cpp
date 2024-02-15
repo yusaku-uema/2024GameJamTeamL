@@ -13,10 +13,10 @@ Player1::Player1()
 	view_charx = 0;
 	location.x = 80.0f;
 	location.y = 300.0f;
-	area.height = 200.0f;
-	area.width = 200.0f;
+	area.height = 150.0f;
+	area.width = 150.0f;
 	R = 30;
-	speed = 5.0f;
+	speed = 10.0f;
 	count = 0;
 	g = 0.0f;
 	ground = 530.0f;
@@ -71,6 +71,10 @@ void Player1::Draw()
 		DrawRotaGraph(location.x - 60 + view_charx, location.y + 83, 0.1, -1.5708, imgae2, TRUE);
 	}
 	DrawRotaGraph(location.x + view_charx, location.y, 1.0, 0, imgae1, TRUE,true);
+	DrawFormatString(10, 80, 0xFFFFFF, "Fuel");
+	DrawBox(100, 80, FUEL/2+100,120, 0x0,TRUE);
+	DrawBox(100, 80, fuel/2+100,120, GetColor(0,255,0), TRUE);
+	DrawBox(100, 80, FUEL/2+100,120, 0x0,FALSE);
 }
 
 //ˆÚ“®ˆ—
@@ -131,7 +135,7 @@ void Player1::Flg()
 			//‹ó’†‚ÅƒWƒƒƒ“ƒv‚·‚é‚Æ”R—¿‚ğÁ”ï‚·‚é
 			if (is_fly == true)
 			{
-				fuel += LOW;
+				fuel += LOW*2;
 			}
 			low = LOW;
 		}
@@ -157,7 +161,7 @@ void Player1::Flg()
 		else
 		{
 			//”R—¿‚ª‚ ‚Á‚½‚ç”R—¿‚ğÁ”ï‚µ‚ÄƒWƒƒƒ“ƒv
-			fuel += HIGH;
+			fuel += HIGH*2;
 			high = HIGH;
 			SetFuel(true);
 		}
@@ -186,7 +190,7 @@ void Player1::Flg()
 		if (location.y > area.height/2&&fuel>0)
 		{
 
-			location.y -= PadInput::GetRTrigger(0) * 5;
+			location.y -= PadInput::GetRTrigger(0) * 10;
 
 			//—‰º•Ï”‚ğ‰Šú‰»
 			g = 0.0f;
@@ -205,7 +209,7 @@ void Player1::Flg()
 		//‰º~ˆ—
 		if (location.y < ground)
 		{
-			location.y += PadInput::GetLTrigger(0) * 5;
+			location.y += PadInput::GetLTrigger(0) * 10;
 		}
 	}
 
