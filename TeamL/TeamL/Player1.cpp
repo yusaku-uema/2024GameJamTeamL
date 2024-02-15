@@ -22,7 +22,7 @@ Player1::Player1()
 	ground = 530.0f;
 
 	hp = 3;
-	imgae1= LoadGraph("../imege/Player1.1.png");
+	imgae1= LoadGraph("../imege/Player1.png");
 	imgae2= LoadGraph("../imege/fire.png");
 	
 
@@ -33,7 +33,7 @@ Player1::Player1()
 	abs = 0;
 	is_jump = false;
 	is_fly = false;
-	is_fuel = false;
+	is_fuel = true;
 }
 
 //デストラクタ
@@ -56,11 +56,11 @@ void Player1::Update(int view_charx)
 //描画処理
 void Player1::Draw()
 {
-	if (is_fly==true&&is_fuel==true)
+	if (is_fuel==true)
 	{
 		DrawRotaGraph(location.x - 60 + view_charx, location.y + 83, 0.1, -1.5708, imgae2, TRUE);
 	}
-	DrawRotaGraph(location.x + view_charx, location.y, 1.0, 0, imgae1, TRUE);
+	DrawRotaGraph(location.x + view_charx, location.y, 1.0, 0, imgae1, TRUE,true);
 }
 
 //移動処理
@@ -96,7 +96,7 @@ void Player1::Flg()
 		count = 0;
 		SetJump(false);
 		SetFly(false);
-		SetFuel(true);
+		SetFuel(false);
 	}
 	if (location.y <= area.height)
 	{
@@ -173,7 +173,6 @@ void Player1::Flg()
 		{
 			SetJump(false);
 		}
-		count = 1;
 	}
 
 	//Lトリガーを押した値によって下降
@@ -190,6 +189,7 @@ void Player1::Flg()
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_DOWN) == 1)
 	{
 		SetFuel(false);
+		count = 1;
 	}
 }
 
@@ -207,6 +207,7 @@ void Player1::Jump(int jump)
 		//下降する
 		else
 		{
+			//count == 1;
 			SetFuel(false);
 			if (ground - location.y > 0)
 			{
@@ -221,7 +222,7 @@ void Player1::Jump(int jump)
 void Player1::Fall()
 {
 	//落下する
-	if (ground - location.y > 0&&is_fuel==false)
+	if (ground - location.y > 0&&count==1)
 	{
 		location.y += g / 2;
 		g++;

@@ -359,6 +359,7 @@ void GameMain::Draw()const
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "fuel：%f", player1->fuel);
 	DrawFormatString(0, 200, GetColor(255, 255, 255), "g：%f", player1->g);
 	DrawFormatString(0, 240, GetColor(255, 255, 255), "HP：%d", player1->hp);
+	DrawFormatString(0, 280, GetColor(255, 255, 255), "フラグ：%d", player1->count);
 
 	player2->Draw();
 
