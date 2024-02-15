@@ -10,6 +10,7 @@ private:
 	float move_y;
 	float radius;
 	int Player2image;
+	int UFOimage;
 
 	int view_charx; //上間　スクロール処理
 

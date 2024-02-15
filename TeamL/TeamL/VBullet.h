@@ -17,7 +17,7 @@ public: //アクセス指定子
 	int animation; //画像切り替え
 
 	VBullet();
-	VBullet(float mx, float my,float vx, float vy);   //初期化
+	VBullet(float mx, float my,float vx, float vy,int a);   //初期化
 	~VBullet();
 
 	void Draw();      //描画する処理
