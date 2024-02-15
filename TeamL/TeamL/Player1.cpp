@@ -155,7 +155,7 @@ void Player1::Flg()
 		}
 	}
 
-	//•‚—V‰ðœ
+	//‰ºƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä•‚—V‰ðœ
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_DOWN) == 1)
 	{
 		SetFuel(false);
@@ -189,10 +189,10 @@ void Player1::Jump(int jump)
 void Player1::Fly()
 {
 	//”R—¿‚ª‚È‚©‚Á‚½‚ç—Ž‰º‚·‚é
-	if (is_fly == false&& ground - location.y > 0)
+	if (is_fuel == false && ground - location.y > 0)
 	{
-			location.y += g / 2;
-			g++;
+		location.y += g / 2;
+		g++;
 	}
 }
 

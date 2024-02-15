@@ -15,7 +15,7 @@ VBullet::VBullet()   //‰Šú‰»
 	color = GetColor(255, 0, 0); //F
 }
 
-VBullet::VBullet(float mx, float my,float vx, float vy)
+VBullet::VBullet(float mx, float my,float vx, float vy,int a)
 {
 	location.x = mx;  //ó‚¯æ‚Á‚½À•W‚ğ”½‰f‚³‚¹‚é
 	location.y = my;  //ó‚¯æ‚Á‚½À•W‚ğ”½‰f‚³‚¹‚é
@@ -31,7 +31,7 @@ VBullet::VBullet(float mx, float my,float vx, float vy)
 	LoadDivGraph("../imege/tktk_Laser_1.png", 15, 5, 3, 192, 192, image);
 	animation_time = 0;
 	animation = 0;
-	angle = 0;
+	angle = a;
 }
 
 VBullet::~VBullet()
