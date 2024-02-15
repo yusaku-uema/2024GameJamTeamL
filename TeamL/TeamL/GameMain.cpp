@@ -135,7 +135,7 @@ AbstractScene* GameMain::Update()
 						player1->SetGround(stage[j][i]->GetLocation().y- 110);
 					}
 
-					if (stage[j][i]->BlockType() == 3)
+					if (camerawork->GetCameraX()>4000)
 					{
 						return new PlayerWin();
 					}
@@ -350,14 +350,6 @@ void GameMain::Draw()const
 			{
 				stage[j][i]->Draw();
 
-				if (player1->HitBox(stage[j][i]))
-				{
-
-					DrawFormatString(0, 400, GetColor(255, 255, 255), "値：%d", stage[j][i]->BlockType());
-					
-
-				}
-
 			}
 		}
 	}
@@ -369,7 +361,7 @@ void GameMain::Draw()const
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "fuel：%f", player1->fuel);
 	DrawFormatString(0, 200, GetColor(255, 255, 255), "g：%f", player1->g);
 	DrawFormatString(0, 240, GetColor(255, 255, 255), "HP：%d", player1->hp);
-
+	DrawFormatString(0, 440, GetColor(255, 255, 255), "いいいいい：%d", camerawork->GetCameraX());
 
 
 	player2->Draw();
