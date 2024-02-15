@@ -9,6 +9,9 @@ public: //アクセス指定子
 	float move_x;		// 進行方向ベクトル情報X
 	float move_y;		// 進行方向ベクトル情報Y
 	int Bulletimage;
+	int image[40]; //レーザーエフェクト
+	long long int animation_time; //アニメーション時間
+	int animation; //画像切り替え
 
 	Bullet();
 	Bullet(float mx, float my);   //初期化

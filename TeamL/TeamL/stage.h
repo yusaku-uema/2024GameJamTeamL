@@ -38,4 +38,7 @@ public:
 
 	//•`‰æ‚ÉŠÖ‚·‚é‚±‚Æ‚ğÀ‘•
 	void Draw() const ;
+
+	//ƒuƒƒbƒN‚Ìí—Ş
+	int BlockType();
 };

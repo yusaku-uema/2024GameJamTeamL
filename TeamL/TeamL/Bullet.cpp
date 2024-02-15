@@ -7,20 +7,30 @@ Bullet::Bullet()   //èâä˙âª
 {
 	location.x = 320.0f;   //xÇÃèâä˙ç¿ïW
 	location.y = 240.0f;   //xÇÃèâä˙ç¿ïW
+	area.height = 20; //ècïù
+	area.width = 20; //â°ïù
 	move_x = 1.0f;   //Çòé≤ÇìÆÇ©Ç∑
 	move_y = 0.0f;   //Çôé≤ÇìÆÇ©Ç∑
 	radius = 10.0f;  //îºåa
 	color = GetColor(255, 0, 0); //êF
+	Bulletimage = LoadGraph("../imege/beam.png");
 }
 
 Bullet::Bullet(float mx, float my)
 {
-	location.x = mx;  //éÛÇØéÊÇ¡ÇΩç¿ïWÇîΩâfÇ≥ÇπÇÈ
+	location.x = mx-200;  //éÛÇØéÊÇ¡ÇΩç¿ïWÇîΩâfÇ≥ÇπÇÈ
 	location.y = my;  //éÛÇØéÊÇ¡ÇΩç¿ïWÇîΩâfÇ≥ÇπÇÈ
 	move_x = -20.0f;   //Çòé≤ÇìÆÇ©Ç∑
 	move_y = 0.0f;   //Çôé≤ÇìÆÇ©Ç∑
 	radius = 10.0f;  //îºåa
 	color = GetColor(255, 0, 0); //êF
+	area.height = 20; //ècïù
+	area.width = 20; //â°ïù
+	Bulletimage = LoadGraph("../imege/beam.png");
+
+	LoadDivGraph("../imege/tktk_Laser_3.png", 40, 5, 8, 192, 192, image);
+	animation_time = 0;
+	animation = 0;
 }
 
 Bullet::~Bullet()
@@ -29,14 +39,27 @@ Bullet::~Bullet()
 
 void Bullet::Update()//çXêVèàóù
 {
-	location.x += move_x;
 	
+	if (++animation_time % 3 == 0)
+	{
+		animation++;
+		if (animation > 28)
+		{
+			animation=20;
+		}
+
+	}
+
+	if (animation >= 13)
+	{
+		location.x += move_x;
+	}
 }
 
 void Bullet::Draw()//ï`âÊèàóù
 {
-	Bulletimage = LoadGraph("../imege/beam.png");
-	DrawRotaGraph(location.x, location.y, 1.0, 0, Bulletimage, TRUE);
+	//DrawRotaGraph(location.x, location.y, 1.0, 0, Bulletimage, TRUE);
+	DrawRotaGraph(location.x, location.y, 2.0f, 0, image[animation], TRUE,TRUE);
 }
 
 

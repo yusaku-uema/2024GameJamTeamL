@@ -22,6 +22,8 @@ public:
 	float ground;	//床の座標
 
 	int view_charx; //上間　スクロール処理
+	int hp; //上間　HP管理
+	int imgae; //上間　画像
 
 public:
 	Player1();		//コンストラクタ
@@ -36,8 +38,43 @@ public:
 	void Fuel();				//燃料ゲージ処理
 	void SetJump(bool flg);		//ジャンプフラグ設定処理
 	void SetFly(bool flg);		//浮遊フラグ設定処理
+	void Fuel();				//燃料ゲージ処理
+	void Damage(); //上間　この関数呼ばれるとHPを減らす
+	int GetHP(); //HPの値を参照出来るように
 	void SetFuel(bool flg);		//燃料フラグ設定処理
 
 private:
 
 };
+
+///****************************************************************/
+///*	プロジェクト名:		テスト					*/
+///*	内容：		playerクラスの作成									*/
+///*	日付：		２０２４年０２月１4日							*/
+///*	コンパイラ:													*/
+///*	note:														*/
+///*	作成者：	上間							*/
+///****************************************************************/
+//
+//class Player1 :public Collinder
+//{
+//private: //メンバ変数はprivateで宣言
+//	int view_charx; //上間　スクロール処理
+//	int hp; //上間　HP管理
+//	int imgae; //上間　画像
+//	int speed; //移動スピード
+//
+//	float jumping_power; //ジャンプ(上に向かう力)
+//	float descent_speed; //降下スピード
+//public:
+//	Player1();		//コンストラクタ
+//	~Player1();		//デストラクタ
+//
+//	void Update(int view_charx);				//更新処理
+//	void Draw();				//描画処理
+//	void Move();				//移動処理
+//	void Flg();					//ジャンプ判定処理
+//	void Descent();             //落下
+//	void Damage(); //上間　この関数呼ばれるとHPを減らす
+//	int GetHP(); //HPの値を参照出来るように
+//}

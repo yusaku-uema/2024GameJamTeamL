@@ -7,6 +7,8 @@ VBullet::VBullet()   //èâä˙âª
 {
 	location.x = 320.0f;   //xÇÃèâä˙ç¿ïW
 	location.y = 240.0f;   //xÇÃèâä˙ç¿ïW
+	area.height = 20; //ècïù
+	area.width = 20; //â°ïù
 	move_x = 1.0f;   //Çòé≤ÇìÆÇ©Ç∑
 	move_y = 0.0f;   //Çôé≤ÇìÆÇ©Ç∑
 	radius = 10.0f;  //îºåa
@@ -21,6 +23,15 @@ VBullet::VBullet(float mx, float my,float vx, float vy)
 	move_y = vy;   //Çôé≤ÇìÆÇ©Ç∑
 	radius = 10.0f;  //îºåa
 	color = GetColor(255, 0, 0); //êF
+
+	VBulletimage = LoadGraph("../imege/beam.png");
+	area.height = 20; //ècïù
+	area.width = 20; //â°ïù
+
+	LoadDivGraph("../imege/tktk_Laser_1.png", 15, 5, 3, 192, 192, image);
+	animation_time = 0;
+	animation = 0;
+	angle = 0;
 }
 
 VBullet::~VBullet()
@@ -29,24 +40,40 @@ VBullet::~VBullet()
 
 void VBullet::Update()//çXêVèàóù
 {
-	location.x += move_x;
-	location.y += move_y;
+	
+	if (++animation_time % 1 == 0)
+	{
+		animation++;
+		if (animation > 8)
+		{
+			animation = 4;
+		}
 
-	if (location.y <= 0)
-	{
-		move_y *= -1;
 	}
-	if (location.y >= 720)
+
+	if (animation >= 3)
 	{
-		move_y *= -1;
+		location.x += move_x;
+		location.y += move_y;
+
+		if (location.y <= 0)
+		{
+			move_y *= -1;
+			angle = -45;
+		}
+		if (location.y >= 720)
+		{
+			move_y *= -1;
+			angle = 45;
+		}
 	}
+
 }
 
 void VBullet::Draw()//ï`âÊèàóù
 {
-
-	VBulletimage = LoadGraph("../imege/beam.png");
-	DrawRotaGraph(location.x, location.y, 1.0, 0, VBulletimage, TRUE);
+	//DrawRotaGraph(location.x, location.y, 1.0, 0, VBulletimage, TRUE);
+	DrawRotaGraph(location.x, location.y, 2.0f, angle, image[animation], TRUE);
 
 }
 

@@ -10,15 +10,19 @@
 Player1::Player1()
 {
 	view_charx = 0;
-	location.x = 300.0f;
+	location.x = 80.0f;
 	location.y = 300.0f;
-	area.height = 30.0f;
-	area.width = 30.0f;
+	area.height = 200.0f;
+	area.width = 200.0f;
 	R = 30;
 	speed = 5.0f;
 	count = 0;
 	g = 0.0f;
 	ground = 690.0f;
+
+	hp = 3;
+	imgae= LoadGraph("../imege/Player1.png");
+
 	fuel = FUEL;
 	low = LOW;
 	high = HIGH;
@@ -49,7 +53,7 @@ void Player1::Update(int view_charx)
 //描画処理
 void Player1::Draw()
 {
-	DrawCircle(view_charx, location.y, R, 0xffffff, TRUE);
+	DrawRotaGraph(location.x + view_charx, location.y, 1.0, 0, imgae, TRUE);
 }
 
 //移動処理
@@ -240,4 +244,93 @@ void Player1::SetFuel(bool flg)
 	is_fuel = flg;
 }
 
+//-----------------------------------
+// この関数呼ぶとHPが減る
+//-----------------------------------
+void Player1::Damage()
+{
+	hp--;
+}
 
+//-----------------------------------
+// HP取得
+//-----------------------------------
+int  Player1::GetHP()
+{
+	return hp;
+}
+
+
+
+
+///****************************************************************/
+///*	プロジェクト名:		テスト					*/
+///*	内容：		playerクラスの作成									*/
+///*	日付：		２０２４年０２月１4日							*/
+///*	コンパイラ:													*/
+///*	note:														*/
+///*	作成者：	上間							*/
+///****************************************************************/
+//
+//Player1::Player1()
+//{
+//	view_charx = 0;
+//	location.x = 80.0f;
+//	location.y = 300.0f;
+//	area.height = 200.0f;
+//	area.width = 200.0f;
+//	speed = 5.0f;
+//	hp = 3;
+//	imgae= LoadGraph("../imege/Player1.png");
+//
+//}
+//
+//Player1::~Player1()
+//{
+//}
+//
+//void Player1::Update(int view_charx)
+//{
+//}
+//
+//void Player1::Draw()
+//{
+//
+//}
+//
+//void Player1::Move()
+//{
+//	// スティックの感度
+//	const int stick_sensitivity = 200;
+//
+//	stick_x = PadInput::GetLStick(0).x;
+//
+//	//スティックの受付
+//	if (stick_x > stick_sensitivity || stick_x < stick_sensitivity * -1)
+//	{
+//		if (stick_x > 0)
+//		{
+//			location.x
+//		}
+//	}
+//}
+//
+//void Player1::Flg()
+//{
+//
+//}
+//
+//void Player1::Descent()
+//{
+//
+//}
+//
+//void Player1::Damage()
+//{
+//
+//}
+//
+//int Player1::GetHP()
+//{
+//	return 0;
+//}

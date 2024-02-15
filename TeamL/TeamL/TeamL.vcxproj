@@ -140,6 +140,7 @@
     <ClCompile Include="Bom.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="camerawork.cpp" />
+    <ClCompile Include="explosion.cpp" />
     <ClCompile Include="Help.cpp" />
     <ClCompile Include="Collinder.cpp" />
     <ClCompile Include="main.cpp" />
@@ -151,7 +152,9 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="GameMain.cpp" />
     <ClCompile Include="setumei.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="stage.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="VBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +163,7 @@
     <ClInclude Include="Bom.h" />
     <ClInclude Include="Collinder.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="explosion.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="Main_Title.h" />
     <ClInclude Include="PadInput.h" />
@@ -169,7 +173,9 @@
     <ClInclude Include="GameMain.h" />
     <ClCompile Include="Player2.cpp" />
     <ClInclude Include="setumei.h" />
+    <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="stage.h" />
+    <ClInclude Include="UI.h" />
     <ClInclude Include="VBullet.h" />
   </ItemGroup>
   <ItemGroup>

@@ -168,7 +168,7 @@ AbstractScene* Main_Title::Update()
 		//BGMÇé~ÇﬂÇÈ
 		StopSoundMem(title_bgm);
 
-		PlaySoundMem(definite_se, DX_PLAYTYPE_NORMAL, TRUE); //SEçƒê∂
+		PlaySoundMem(definite_se, DX_PLAYTYPE_BACK, TRUE); //SEçƒê∂
 
 		input_margin = 0;
 		MENU current_selection = static_cast<MENU>(select_menu);
@@ -214,6 +214,9 @@ void Main_Title::Draw()const
 	DrawFormatString(850, 350, 0xFFFFFF, "End");
 
 	DrawFormatString(850, 450, 0xFFFFFF, "EXPLANATION");
+
+
+	DrawFormatString(300, 350, 0xFFFFFF, "ì¶Ç∞êÿÇÍ");
 
 	//ÉJÅ[É\Éã
 	DrawString(800, cursor_y, "Å°", GetColor(255, 0, 0));

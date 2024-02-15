@@ -13,12 +13,14 @@ Player2::Player2()
 	location.y = 350.0f;
 	move_y = 0.0f;
 	radius = 10.0f;
+	view_charx = 0;
+
+	Player2image = LoadGraph("../imege/Player2.png");
+
 }
 
 Player2::~Player2()
 {
-	p_bullet;
-	p_bom;
 }
 
 
@@ -30,8 +32,10 @@ Player2::Player2(float mx, float my)
 	radius = 10.0f;
 }
 
-void Player2::Update()
+void Player2::Update(int view_charx)
 {
+	this->view_charx = view_charx;
+
 	location.y += move_y;
 
 	if (location.y > (480 - radius) || location.y < (0 + radius))
@@ -40,94 +44,12 @@ void Player2::Update()
 	}
 
 	Move();
-
-
-	if (PadInput::OnButton(1,XINPUT_BUTTON_B)==1)
-	{
-		if (p_bullet == nullptr)
-		{
-			p_bullet=new Bullet(location.x, location.y);
-		}
-	}
-	if (p_bullet != nullptr)
-	{
-		p_bullet->Update();
-		if (p_bullet->GetLocation().x <= 0.0f)
-		{
-			delete p_bullet;
-			p_bullet = nullptr;
-		}
-	}
-
-	if (PadInput::OnButton(1,XINPUT_BUTTON_A) == 1)
-	{
-		if (p_bom == nullptr)
-		{
-			p_bom = new Bom(location.x, location.y);
-		}
-	}
-	if (p_bom != nullptr)
-	{
-		p_bom->Update();
-		if (p_bom->GetLocation().x <= 0.0f)
-		{
-			delete p_bom;
-			p_bom = nullptr;
-		}
-	}
-
-	if (PadInput::OnButton(1,XINPUT_BUTTON_Y) == 1)
-	{
-		if (p_vbullet == nullptr)
-		{
-			p_vbullet = new VBullet(location.x, location.y,-20.0f,-20.0f);
-		}
-	}
-	if (p_vbullet != nullptr)
-	{
-		p_vbullet->Update();
-		if (p_vbullet->GetLocation().x <= 0.0f)
-		{
-			delete p_vbullet;
-			p_vbullet = nullptr;
-		}
-	}
-
-	if (PadInput::OnButton(1,XINPUT_BUTTON_X) == 1)
-	{
-		if (p_vbullet == nullptr)
-		{
-			p_vbullet = new VBullet(location.x, location.y, -20.0f, 20.0f);
-		}
-	}
-	if (p_vbullet != nullptr)
-	{
-		p_vbullet->Update();
-		if (p_vbullet->GetLocation().x <= 0.0f)
-		{
-			delete p_vbullet;
-			p_vbullet = nullptr;
-		}
-	}
 }
 
 void Player2::Draw()
 {
-	Player2image = LoadGraph("../imege/Player2.png");
-	DrawRotaGraph(location.x, location.y, 0.5 ,0,Player2image,TRUE);
+	DrawRotaGraph(location.x + view_charx, location.y, 0.5 ,0,Player2image,TRUE);
 
-	if (p_bullet != nullptr)
-	{
-		p_bullet->Draw();
-	}
-	if (p_vbullet != nullptr)
-	{
-		p_vbullet->Draw();
-	}
-	if (p_bom != nullptr)
-	{
-		p_bom->Draw();
-	}
 }
 
 void Player2::Move()
@@ -140,25 +62,25 @@ void Player2::Move()
 	{
 		location.y -= 5.0f;
 	}
-	else if (CheckHitKeyAll() == 0)//キーを離すと止まる
-	{
-		location.y += 0.0f;
-	}
+	//else if (CheckHitKeyAll() == 0)//キーを離すと止まる
+	//{
+	//	location.y += 0.0f;
+	//}
 
 	if (stick_y < -2000) //下キーを押すと下に行く
 	{
 		location.y += 5.0f;
 	}
-	else if (CheckHitKeyAll() == 0)//キーを離すと止まる
-	{
-		location.y += 0.0f;
-	}
-	
-	//同時に上下ボタン押すと止まる
-	if (CheckHitKey(KEY_INPUT_UP) != FALSE && CheckHitKey(KEY_INPUT_DOWN) != FALSE)
-	{
-		location.y += 0.0f;
-	}
+	//else if (CheckHitKeyAll() == 0)//キーを離すと止まる
+	//{
+	//	location.y += 0.0f;
+	//}
+	//
+	////同時に上下ボタン押すと止まる
+	//if (CheckHitKey(KEY_INPUT_UP) != FALSE && CheckHitKey(KEY_INPUT_DOWN) != FALSE)
+	//{
+	//	location.y += 0.0f;
+	//}
 
 	
 }
