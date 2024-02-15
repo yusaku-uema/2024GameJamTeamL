@@ -24,8 +24,12 @@ Player1::Player1()
 	hp = 3;
 	imgae1= LoadGraph("../imege/Player1.png");
 	imgae2= LoadGraph("../imege/fire.png");
-	
 
+	se1= LoadSoundMem("../BGM/fire.mp3");
+	se2= LoadSoundMem("../BGM/JumpSE.mp3");
+	se3= LoadSoundMem("../BGM/landing.mp3");
+	se4= LoadSoundMem("../BGM/damage.mp3");
+	
 	fuel = FUEL;
 	low = LOW;
 	high = HIGH;
@@ -45,6 +49,11 @@ Player1::~Player1()
 //更新処理
 void Player1::Update(int view_charx)
 {
+	if (is_jump==true&&ground-location.y<=0)
+	{
+		PlaySoundMem(se3, DX_PLAYTYPE_BACK, TRUE);
+
+	}
 	this->view_charx = view_charx;
 	Move();
 	Flg();
@@ -91,6 +100,11 @@ void Player1::Flg()
 	//着地した時の処理と画面外に行かないようにする処理
 	if (location.y >= ground)
 	{
+		/*if (is_jump==true&&ground-location.y<0)
+		{
+			PlaySoundMem(se3, DX_PLAYTYPE_LOOP, TRUE);
+
+		}*/
 		location.y = ground;
 		g = 0.0f;
 		count = 0;
@@ -162,6 +176,8 @@ void Player1::Flg()
 		//燃料があったら上昇する
 		if (location.y > area.height/2&&fuel>0)
 		{
+			PlaySoundMem(se1, DX_PLAYTYPE_LOOP, TRUE);
+
 			location.y -= PadInput::GetRTrigger(0) * 5;
 
 			//落下変数を初期化
@@ -198,6 +214,8 @@ void Player1::Jump(int jump)
 {
 	if (is_jump==true)
 	{
+		//PlaySoundMem(se2, DX_PLAYTYPE_LOOP, TRUE);
+
 		//上昇する
 		if (jump < 0)
 		{
@@ -286,6 +304,7 @@ void Player1::SetGround(float y)
 //-----------------------------------
 void Player1::Damage()
 {
+	PlaySoundMem(se4, DX_PLAYTYPE_LOOP, TRUE);
 	hp--;
 }
 
