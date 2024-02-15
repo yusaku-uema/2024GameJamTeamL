@@ -34,7 +34,7 @@ public:
 	void Move();				//移動処理
 	void Flg();					//判定処理
 	void Jump(int jump);		//ジャンプ処理
-	void Fly();					//落下処理
+	void Fall();				//落下処理
 	void Fuel();				//燃料ゲージ処理
 	void SetJump(bool flg);		//ジャンプフラグ設定処理
 	void SetFly(bool flg);		//浮遊フラグ設定処理
