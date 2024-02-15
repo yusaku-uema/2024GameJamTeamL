@@ -63,8 +63,8 @@ GameMain::GameMain()
 
 	gMileage = 0;
 
-
 	
+
 }
 GameMain::~GameMain()
 {
@@ -135,7 +135,7 @@ AbstractScene* GameMain::Update()
 						player1->SetGround(stage[j][i]->GetLocation().y- 110);
 					}
 
-					if (stage[j][i]->BlockType() == 3)
+					if (camerawork->GetCameraX()>4000)
 					{
 						return new PlayerWin();
 					}
@@ -349,14 +349,6 @@ void GameMain::Draw()const
 			if (stage[j][i] != nullptr)
 			{
 				stage[j][i]->Draw();
-
-				if (player1->HitBox(stage[j][i]))
-				{
-
-					DrawFormatString(0, 400, GetColor(255, 255, 255), "’lF%d", stage[j][i]->BlockType());
-					
-
-				}
 
 			}
 		}

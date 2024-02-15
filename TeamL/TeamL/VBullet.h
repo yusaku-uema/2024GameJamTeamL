@@ -10,6 +10,7 @@ public: //アクセス指定子
 	float move_y;		// 進行方向ベクトル情報Y
 	int VBulletimage;
 	bool StageHit;
+	int ReflectionSE;
 
 	int angle; 
 	int image[15];

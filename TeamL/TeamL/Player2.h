@@ -11,6 +11,7 @@ private:
 	float radius;
 	int Player2image;
 	int UFOimage;
+	int MoveSE;
 
 	int view_charx; //上間　スクロール処理
 

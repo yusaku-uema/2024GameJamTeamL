@@ -12,6 +12,8 @@ public: //アクセス指定子
 	int image[40]; //レーザーエフェクト
 	long long int animation_time; //アニメーション時間
 	int animation; //画像切り替え
+	int ChargeSE;
+	int FiringSE;
 
 	Bullet();
 	Bullet(float mx, float my);   //初期化
