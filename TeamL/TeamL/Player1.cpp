@@ -69,7 +69,7 @@ void Player1::Move()
 	//左移動処理
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_LEFT) == 1)
 	{
-		if (location.x > 0.0f + area.width)
+		if (location.x > 0.0f + area.width/2)
 		{
 			location.x -= speed;
 		}
@@ -98,9 +98,9 @@ void Player1::Flg()
 		SetFly(false);
 		SetFuel(false);
 	}
-	if (location.y <= area.height)
+	if (location.y <= area.height/2)
 	{
-		location.y = area.height;
+		location.y = area.height/2;
 	}
 
 	//Aボタンを押したら＆ジャンプ中でないなら、小ジャンプをする
@@ -160,7 +160,7 @@ void Player1::Flg()
 
 
 		//燃料があったら上昇する
-		if (location.y > area.height&&fuel>0)
+		if (location.y > area.height/2&&fuel>0)
 		{
 			location.y -= PadInput::GetRTrigger(0) * 5;
 
@@ -246,9 +246,9 @@ void Player1::Fuel()
 		}
 
 		//着地していると燃料を回復する
-		if (location.y == ground && fuel < FUEL)
+		if (is_fuel==false && fuel < FUEL)
 		{
-			fuel++;
+			fuel+=2;
 		}
 	}
 	//ジャンプ中なら燃料を回復する
