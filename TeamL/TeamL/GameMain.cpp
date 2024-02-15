@@ -102,6 +102,10 @@ GameMain::~GameMain()
 
 AbstractScene* GameMain::Update()
 {
+	if (CheckSoundMem(BGM) != 1)
+	{   //BGM‚ª—¬‚ê‚Ä‚¢‚È‚©‚Á‚½‚çÄ¶
+		PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE); //BGMÄ¶
+	}
 
 
 	//ƒJƒƒ‰
@@ -262,10 +266,7 @@ AbstractScene* GameMain::Update()
 
 
 
-	if (CheckSoundMem(BGM) != 1)
-	{   //BGM‚ª—¬‚ê‚Ä‚¢‚È‚©‚Á‚½‚çÄ¶
-		PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE); //BGMÄ¶
-	}
+	
 
 	for (int j = 0; j < 25; j++)
 	{

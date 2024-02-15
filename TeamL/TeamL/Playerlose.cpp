@@ -17,7 +17,15 @@
 PlayerLose::PlayerLose()
 {
     //画像
-    PlayerLose_image = LoadGraph("../imege/help.png");
+    PlayerLose_image = LoadGraph("../imege/2win.png");
+    PlayerLose_BGM = LoadGraph("../BGM/lose.mp3");
+}
+
+PlayerLose::~PlayerLose()
+{
+
+    DeleteSoundMem(PlayerLose_BGM);
+
 }
 
 //-----------------------------------
@@ -28,6 +36,9 @@ AbstractScene* PlayerLose::Update()
     //Aボタンが押されたらタイトル移動
     if (PadInput::OnButton(0, XINPUT_BUTTON_A))
     {
+        //BGMを止める
+        StopSoundMem(PlayerLose_BGM);
+
         return new Main_Title();
     }
 
@@ -43,7 +54,6 @@ void PlayerLose::Draw() const
     SetFontSize(40);
 
 
-    //DrawGraph(0, 0, PlayerLose_image, FALSE);
-    DrawFormatString(300, 300, 0xff0000,"LOSE", TRUE);
+    DrawGraph(0, 0, PlayerLose_image, FALSE);
 
 }

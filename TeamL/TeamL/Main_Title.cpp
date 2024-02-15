@@ -207,7 +207,7 @@ void Main_Title::Draw()const
 
 	DrawGraph(0, 0, title_image, FALSE);
 
-	DrawFormatString(850, 150, 0xFFFFFF, "Game Start");
+	DrawFormatString(850, 150, 0xFFFFFF, "エイリアンエスケープ");
 
 	DrawFormatString(850, 250, 0xFFFFFF, "Help");
 

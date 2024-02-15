@@ -15,12 +15,12 @@ class PlayerLose :public AbstractScene
 {
 	//ヘルプの背景画像
 	int PlayerLose_image;
-
+	int PlayerLose_BGM;
 
 public:
 	//コンストラクタ 
 	PlayerLose();
-
+	~PlayerLose();
 	//描画以外の更新を実行
 	AbstractScene* Update()override;
 

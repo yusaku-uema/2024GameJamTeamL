@@ -15,11 +15,12 @@ class PlayerWin :public AbstractScene
 {
 	//ヘルプの背景画像
 	int PlayerWin_image;
-
+	int PlayerWIN_BGM;
 
 public:
 	//コンストラクタ 
 	PlayerWin();
+	~PlayerWin();
 
 	//描画以外の更新を実行
 	AbstractScene* Update()override;

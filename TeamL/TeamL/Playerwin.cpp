@@ -17,7 +17,14 @@
 PlayerWin::PlayerWin()
 {
     //画像
-    PlayerWin_image = LoadGraph("../imege/help.png");
+    PlayerWin_image = LoadGraph("../imege/win.mp3");
+    PlayerWIN_BGM = LoadGraph("../BGM/lose.mp3");
+}
+
+PlayerWin::~PlayerWin()
+{
+    DeleteSoundMem(PlayerWIN_BGM);
+
 }
 
 //-----------------------------------
@@ -25,9 +32,18 @@ PlayerWin::PlayerWin()
 //-----------------------------------
 AbstractScene* PlayerWin::Update()
 {
+    if (CheckSoundMem(PlayerWIN_BGM) != 1)
+    {   //BGMが流れていなかったら再生
+        PlaySoundMem(PlayerWIN_BGM, DX_PLAYTYPE_LOOP, TRUE); //BGM再生
+    }
+
     //Aボタンが押されたらタイトル移動
     if (PadInput::OnButton(0, XINPUT_BUTTON_A))
     {
+
+        //BGMを止める
+        StopSoundMem(PlayerWIN_BGM);
+
         return new Main_Title();
     }
 
@@ -43,7 +59,6 @@ void PlayerWin::Draw() const
     SetFontSize(40);
 
 
-    //DrawGraph(0, 0, PlayerLose_image, FALSE);
-    DrawFormatString(300, 300, 0xff0000, "WIN", TRUE);
+    DrawGraph(0, 0, PlayerWin_image, FALSE);
 
 }
