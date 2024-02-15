@@ -26,10 +26,11 @@ public:
 	int imgae1; //上間　画像
 	int imgae2; //画像
 	int se1;
-	int se1count;
+	int se5count;
 	int se2;
 	int se3;
 	int se4;
+	int se5;
 
 public:
 	Player1();		//コンストラクタ

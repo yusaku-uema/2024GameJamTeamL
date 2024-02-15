@@ -29,13 +29,14 @@ Player1::Player1()
 	se2= LoadSoundMem("../BGM/JumpSE.mp3");
 	se3= LoadSoundMem("../BGM/landing.mp3");
 	se4= LoadSoundMem("../BGM/damage.mp3");
+	se5= LoadSoundMem("../BGM/fire2.mp3");
 	
 	fuel = FUEL;
 	low = LOW;
 	high = HIGH;
 	type = 0;
 	abs = 0;
-	is_jump = false;
+	is_jump = true;
 	is_fly = false;
 	is_fuel = true;
 }
@@ -100,17 +101,13 @@ void Player1::Flg()
 	//着地した時の処理と画面外に行かないようにする処理
 	if (location.y >= ground)
 	{
-		/*if (is_jump==true&&ground-location.y<0)
-		{
-			PlaySoundMem(se3, DX_PLAYTYPE_LOOP, TRUE);
-
-		}*/
 		location.y = ground;
 		g = 0.0f;
 		count = 0;
 		SetJump(false);
 		SetFly(false);
 		SetFuel(false);
+		DeleteSoundMem(se5);
 	}
 	if (location.y <= area.height/2)
 	{
@@ -120,6 +117,10 @@ void Player1::Flg()
 	//Aボタンを押したら＆ジャンプ中でないなら、小ジャンプをする
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_A) == 1 && is_jump == false)
 	{		
+		if (is_jump==false)
+		{
+			PlaySoundMem(se2, DX_PLAYTYPE_BACK, TRUE);
+		}
 		if (fuel<-LOW)
 		{
 			//燃料がなかったらジャンプできない
@@ -144,6 +145,10 @@ void Player1::Flg()
 	//Bボタンを押したら＆ジャンプ中でないなら、大ジャンプ
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_B) == 1 && is_jump == false)
 	{
+		if (is_jump == false)
+		{
+			PlaySoundMem(se1, DX_PLAYTYPE_BACK, TRUE);
+		}
 		if (fuel<-HIGH)
 		{
 			//燃料がなかったらジャンプできない
@@ -167,7 +172,11 @@ void Player1::Flg()
 	//Rトリガーを押した値によって上昇
 	if (PadInput::GetRTrigger(0) != 0 )
 	{
-		
+		if (is_fly == false)
+		{
+			se5 = LoadSoundMem("../BGM/fire2.mp3");
+			PlaySoundMem(se5, DX_PLAYTYPE_BACK, TRUE);
+		}
 		//浮遊中にする
 		SetFly(true);
 		SetFuel(true);
@@ -176,7 +185,6 @@ void Player1::Flg()
 		//燃料があったら上昇する
 		if (location.y > area.height/2&&fuel>0)
 		{
-			PlaySoundMem(se1, DX_PLAYTYPE_LOOP, TRUE);
 
 			location.y -= PadInput::GetRTrigger(0) * 5;
 
@@ -214,8 +222,6 @@ void Player1::Jump(int jump)
 {
 	if (is_jump==true)
 	{
-		//PlaySoundMem(se2, DX_PLAYTYPE_LOOP, TRUE);
-
 		//上昇する
 		if (jump < 0)
 		{
@@ -261,6 +267,7 @@ void Player1::Fuel()
 		if (fuel<=0.0f)
 		{
 			SetFuel(false);
+			count=1;
 		}
 
 		//着地していると燃料を回復する
