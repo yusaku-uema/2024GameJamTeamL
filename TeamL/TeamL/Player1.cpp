@@ -18,7 +18,7 @@ Player1::Player1()
 	speed = 5.0f;
 	count = 0;
 	g = 0.0f;
-	ground = 690.0f;
+	ground = 530.0f;
 
 	hp = 3;
 	imgae= LoadGraph("../imege/Player1.png");
@@ -53,7 +53,7 @@ void Player1::Update(int view_charx)
 //•`‰æˆ—
 void Player1::Draw()
 {
-	DrawRotaGraph(location.x + view_charx, location.y, 1.0, 0, imgae, TRUE);
+	DrawRotaGraph(location.x + view_charx, location.y, 1.0, 0, imgae, TRUE,TRUE);
 }
 
 //ˆÚ“®ˆ—
@@ -263,6 +263,11 @@ void Player1::SetFly(bool flg)
 void Player1::SetFuel(bool flg)
 {
 	is_fuel = flg;
+}
+
+void Player1::SetGround(float y)
+{
+	ground = y;
 }
 
 //-----------------------------------

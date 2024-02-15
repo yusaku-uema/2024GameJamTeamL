@@ -54,3 +54,8 @@ Area Collinder::GetArea() const
 {
     return area;
 }
+
+void Collinder::SetLocation(float y)
+{
+	this->location.y = y;
+}

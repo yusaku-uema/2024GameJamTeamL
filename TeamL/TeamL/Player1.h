@@ -41,6 +41,7 @@ public:
 	void Damage(); //上間　この関数呼ばれるとHPを減らす
 	int GetHP(); //HPの値を参照出来るように
 	void SetFuel(bool flg);		//燃料フラグ設定処理
+	void SetGround(float y);
 
 private:
 
