@@ -119,6 +119,28 @@ AbstractScene* GameMain::Update()
     player2->Update(camerawork->GetViewCharX());
 	ui->Update(player1->GetHP());
 
+
+
+	for (int j = 0; j < 25; j++)
+	{
+
+		for (int i = 0; i < 111; i++)
+		{
+			if (stage[j][i] != nullptr)
+			{
+				if (player1->HitBox(stage[j][i]))
+				{
+					if (stage[j][i]->BlockType() == 1)
+					{
+						player1->SetGround(stage[j][i]->GetLocation().y- 110);
+					}
+
+				}
+			}
+		}
+	}
+
+
 	//ƒvƒŒƒCƒ„[‚Q‚Ì’eŠÛˆ—
 
 	if (PadInput::OnButton(1, XINPUT_BUTTON_B) == 1)
@@ -208,11 +230,11 @@ AbstractScene* GameMain::Update()
 		{
 			if (PadInput::OnButton(1, XINPUT_BUTTON_Y) == 1)
 			{
-				p_vbullet = new VBullet(player2->GetLocation().x + camerawork->GetViewCharX(), player2->GetLocation().y, -20.0f, -20.0f);
+				p_vbullet = new VBullet(player2->GetLocation().x + camerawork->GetViewCharX(), player2->GetLocation().y, -20.0f, -20.0f,45);
 			}
 			else
 			{
-				p_vbullet = new VBullet(player2->GetLocation().x + camerawork->GetViewCharX(), player2->GetLocation().y, -20.0f, 20.0f);
+				p_vbullet = new VBullet(player2->GetLocation().x + camerawork->GetViewCharX(), player2->GetLocation().y, -20.0f, 20.0f,-45);
 			}
 		}
 	}

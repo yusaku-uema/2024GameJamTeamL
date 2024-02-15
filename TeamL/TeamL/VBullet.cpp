@@ -15,7 +15,7 @@ VBullet::VBullet()   //初期化
 	color = GetColor(255, 0, 0); //色
 }
 
-VBullet::VBullet(float mx, float my,float vx, float vy)
+VBullet::VBullet(float mx, float my,float vx, float vy,int a)
 {
 	location.x = mx;  //受け取った座標を反映させる
 	location.y = my;  //受け取った座標を反映させる
@@ -31,7 +31,8 @@ VBullet::VBullet(float mx, float my,float vx, float vy)
 	LoadDivGraph("../imege/tktk_Laser_1.png", 15, 5, 3, 192, 192, image);
 	animation_time = 0;
 	animation = 0;
-	angle = 0;
+	angle = a;
+	StageHit = false;
 }
 
 VBullet::~VBullet()
@@ -60,8 +61,18 @@ void VBullet::Update()//更新処理
 		{
 			move_y *= -1;
 			angle = -45;
+			//StageHit = false;
 		}
-		if (location.y >= 720)
+
+		/*if (StageHit==TRUE)
+		{
+			move_y *= -1;
+			angle = 45;
+			StageHit = false;
+		}*/
+		
+
+		if (location.y >= 550)
 		{
 			move_y *= -1;
 			angle = 45;
@@ -81,4 +92,15 @@ void VBullet::Draw()//描画処理
 void VBullet::Move()//移動処理
 {
 
+}
+
+bool VBullet::Get()
+{
+	return StageHit;
+}
+
+void VBullet::Set()
+{
+	StageHit = TRUE;
+	
 }

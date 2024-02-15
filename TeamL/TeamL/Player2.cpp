@@ -16,6 +16,7 @@ Player2::Player2()
 	view_charx = 0;
 
 	Player2image = LoadGraph("../imege/Player2.png");
+	UFOimage = LoadGraph("../imege/UFO.png");
 
 }
 
@@ -49,7 +50,7 @@ void Player2::Update(int view_charx)
 void Player2::Draw()
 {
 	DrawRotaGraph(location.x + view_charx, location.y, 0.5 ,0,Player2image,TRUE);
-
+	DrawRotaGraph(location.x + view_charx, location.y+100, 0.4, 0, UFOimage, TRUE);
 }
 
 void Player2::Move()
