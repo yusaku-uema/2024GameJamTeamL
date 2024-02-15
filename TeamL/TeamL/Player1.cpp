@@ -187,16 +187,13 @@ void Player1::Jump(int jump)
 
 //—Ž‰ºˆ—
 void Player1::Fly()
-{/*
-	if (count==1)
-	{*/
-		//”R—¿‚ª‚È‚©‚Á‚½‚ç—Ž‰º‚·‚é
-		if (is_fuel == false && ground - location.y > 0)
-		{
-			location.y += g / 2;
-			g++;
-		}
-	//}
+{
+	//”R—¿‚ª‚È‚©‚Á‚½‚ç—Ž‰º‚·‚é
+	if (is_fuel == false && ground - location.y > 0)
+	{
+		location.y += g / 2;
+		g++;
+	}
 }
 
 //”R—¿ƒQ[ƒWˆ—
