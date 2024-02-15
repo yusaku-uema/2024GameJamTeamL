@@ -148,6 +148,8 @@
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="Player1.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Playerlose.cpp" />
+    <ClCompile Include="Playerwin.cpp" />
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="GameMain.cpp" />
@@ -168,6 +170,8 @@
     <ClInclude Include="Main_Title.h" />
     <ClInclude Include="PadInput.h" />
     <ClInclude Include="Player1.h" />
+    <ClInclude Include="Playerlose.h" />
+    <ClInclude Include="Playerwin.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="GameMain.h" />

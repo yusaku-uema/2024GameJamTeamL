@@ -42,4 +42,6 @@ public:
 	//‰æ‘œ‚Ì‚Í‚ñ‚¯‚¢‚ÌŽæ“¾
 	Area GetArea()const;
 
+	void SetLocation(float y);
+
 };
