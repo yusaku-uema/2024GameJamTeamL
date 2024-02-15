@@ -32,6 +32,7 @@ VBullet::VBullet(float mx, float my,float vx, float vy,int a)
 	animation_time = 0;
 	animation = 0;
 	angle = a;
+	StageHit = false;
 }
 
 VBullet::~VBullet()
@@ -60,8 +61,18 @@ void VBullet::Update()//XVˆ—
 		{
 			move_y *= -1;
 			angle = -45;
+			//StageHit = false;
 		}
-		if (location.y >= 720)
+
+		/*if (StageHit==TRUE)
+		{
+			move_y *= -1;
+			angle = 45;
+			StageHit = false;
+		}*/
+		
+
+		if (location.y >= 550)
 		{
 			move_y *= -1;
 			angle = 45;
@@ -81,4 +92,15 @@ void VBullet::Draw()//•`‰æˆ—
 void VBullet::Move()//ˆÚ“®ˆ—
 {
 
+}
+
+bool VBullet::Get()
+{
+	return StageHit;
+}
+
+void VBullet::Set()
+{
+	StageHit = TRUE;
+	
 }

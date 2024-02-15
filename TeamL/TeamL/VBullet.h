@@ -9,7 +9,7 @@ public: //アクセス指定子
 	float move_x;		// 進行方向ベクトル情報X
 	float move_y;		// 進行方向ベクトル情報Y
 	int VBulletimage;
-
+	bool StageHit;
 
 	int angle; 
 	int image[15];
@@ -23,5 +23,6 @@ public: //アクセス指定子
 	void Draw();      //描画する処理
 	void Update();    //更新処理
 	void Move();      //移動処理
-
+	bool Get();
+	void Set();
 };
