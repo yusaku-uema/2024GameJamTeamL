@@ -135,6 +135,11 @@ AbstractScene* GameMain::Update()
 						player1->SetGround(stage[j][i]->GetLocation().y- 110);
 					}
 
+					if (stage[j][i]->BlockType() == 3)
+					{
+						return new PlayerWin();
+					}
+
 				}
 			}
 		}
@@ -316,10 +321,6 @@ AbstractScene* GameMain::Update()
 		return new PlayerLose(); //ƒvƒŒƒCƒ„[‚P‚ª”s–k‚Ì‰æ–Ê
 	}
 
-	//if (player1->GetLocation().x@)
-	//{
-	//	return new PlayerWin();//ƒvƒŒƒCƒ„[‚Q‚ª”s–k‰æ–Ê
-	//}
 
 	return this;
 }
@@ -348,6 +349,15 @@ void GameMain::Draw()const
 			if (stage[j][i] != nullptr)
 			{
 				stage[j][i]->Draw();
+
+				if (player1->HitBox(stage[j][i]))
+				{
+
+					DrawFormatString(0, 400, GetColor(255, 255, 255), "’lF%d", stage[j][i]->BlockType());
+					
+
+				}
+
 			}
 		}
 	}
@@ -359,6 +369,8 @@ void GameMain::Draw()const
 	DrawFormatString(0, 160, GetColor(255, 255, 255), "fuelF%f", player1->fuel);
 	DrawFormatString(0, 200, GetColor(255, 255, 255), "gF%f", player1->g);
 	DrawFormatString(0, 240, GetColor(255, 255, 255), "HPF%d", player1->hp);
+
+
 
 	player2->Draw();
 
