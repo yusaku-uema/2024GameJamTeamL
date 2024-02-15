@@ -135,6 +135,11 @@ AbstractScene* GameMain::Update()
 						player1->SetGround(stage[j][i]->GetLocation().y- 110);
 					}
 
+					if (stage[j][i]->BlockType() == 3)
+					{
+						return new PlayerWin();
+					}
+
 				}
 			}
 		}
@@ -316,10 +321,6 @@ AbstractScene* GameMain::Update()
 		return new PlayerLose(); //プレイヤー１が敗北の画面
 	}
 
-	//if (player1->GetLocation().x　＝)
-	//{
-	//	return new PlayerWin();//プレイヤー２が敗北画面
-	//}
 
 	return this;
 }
@@ -348,6 +349,15 @@ void GameMain::Draw()const
 			if (stage[j][i] != nullptr)
 			{
 				stage[j][i]->Draw();
+
+				if (player1->HitBox(stage[j][i]))
+				{
+
+					DrawFormatString(0, 400, GetColor(255, 255, 255), "値：%d", stage[j][i]->BlockType());
+					
+
+				}
+
 			}
 		}
 	}
@@ -360,6 +370,8 @@ void GameMain::Draw()const
 	DrawFormatString(0, 200, GetColor(255, 255, 255), "g：%f", player1->g);
 	DrawFormatString(0, 240, GetColor(255, 255, 255), "HP：%d", player1->hp);
 	DrawFormatString(0, 280, GetColor(255, 255, 255), "フラグ：%d", player1->count);
+
+
 
 	player2->Draw();
 
