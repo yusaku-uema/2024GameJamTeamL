@@ -195,7 +195,7 @@ AbstractScene* GameMain::Update()
 
 		if (p_bom->GetLocation().x <= -100.0f)
 		{
-			PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK, TRUE);
+			//PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK, TRUE);
 			explosion = new Explosion(p_bom->GetLocation().x, p_bom->GetLocation().y);
 			delete p_bom;
 			p_bom = nullptr;
