@@ -13,9 +13,7 @@ Bullet::Bullet()   //èâä˙âª
 	move_y = 0.0f;   //Çôé≤ÇìÆÇ©Ç∑
 	radius = 10.0f;  //îºåa
 	color = GetColor(255, 0, 0); //êF
-	Bulletimage = LoadGraph("../imege/beam.png");
-	ChargeSE = LoadSoundMem("../BGM/ChargeSE.mp3");
-	FiringSE = LoadSoundMem("../BGM/FiringSE.mp3");
+	
 }
 
 Bullet::Bullet(float mx, float my)
@@ -33,6 +31,10 @@ Bullet::Bullet(float mx, float my)
 	LoadDivGraph("../imege/tktk_Laser_3.png", 40, 5, 8, 192, 192, image);
 	animation_time = 0;
 	animation = 0;
+
+	Bulletimage = LoadGraph("../imege/beam.png");
+	ChargeSE = LoadSoundMem("../BGM/ChargeSE.mp3");
+	FiringSE = LoadSoundMem("../BGM/FiringSE.mp3");
 }
 
 Bullet::~Bullet()

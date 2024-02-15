@@ -63,7 +63,8 @@ GameMain::GameMain()
 
 	gMileage = 0;
 
-	
+	FallingSE = LoadSoundMem("../BGM/FallingSE.mp3");
+	ExplosionSE = LoadSoundMem("../BGM/ExplosionSE.mp3");
 
 }
 GameMain::~GameMain()
@@ -96,6 +97,8 @@ GameMain::~GameMain()
 
 	DeleteGraph(stageimg);
 	DeleteSoundMem(BGM);
+	DeleteSoundMem(FallingSE);
+	DeleteSoundMem(ExplosionSE);
 
 }
 
@@ -183,6 +186,7 @@ AbstractScene* GameMain::Update()
 	{
 		if (p_bom == nullptr)
 		{
+			PlaySoundMem(FallingSE,DX_PLAYTYPE_BACK,TRUE);
 			p_bom = new Bom(player2->GetLocation().x + camerawork->GetViewCharX(), player2->GetLocation().y);
 		}
 	}
@@ -191,6 +195,7 @@ AbstractScene* GameMain::Update()
 
 		if (p_bom->GetLocation().x <= -100.0f)
 		{
+			PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK, TRUE);
 			explosion = new Explosion(p_bom->GetLocation().x, p_bom->GetLocation().y);
 			delete p_bom;
 			p_bom = nullptr;
@@ -220,8 +225,9 @@ AbstractScene* GameMain::Update()
 			//“–‚½‚è”»’è
 			if (player1->HitBox(p_bom))
 			{
-
-				explosion = new Explosion(p_bom->GetLocation().x, p_bom->GetLocation().y);
+				PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK, TRUE);
+			   explosion = new Explosion(p_bom->GetLocation().x, p_bom->GetLocation().y);
+	
 				delete p_bom;
 				p_bom = nullptr;
 			}
