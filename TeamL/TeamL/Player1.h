@@ -38,7 +38,6 @@ public:
 	void Fuel();				//燃料ゲージ処理
 	void SetJump(bool flg);		//ジャンプフラグ設定処理
 	void SetFly(bool flg);		//浮遊フラグ設定処理
-	void Fuel();				//燃料ゲージ処理
 	void Damage(); //上間　この関数呼ばれるとHPを減らす
 	int GetHP(); //HPの値を参照出来るように
 	void SetFuel(bool flg);		//燃料フラグ設定処理
