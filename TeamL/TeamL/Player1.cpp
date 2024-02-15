@@ -155,7 +155,7 @@ void Player1::Flg()
 		}
 	}
 
-	//浮遊解除
+	//下ボタンを押して浮遊解除
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_DPAD_DOWN) == 1)
 	{
 		SetFuel(false);
@@ -187,13 +187,16 @@ void Player1::Jump(int jump)
 
 //落下処理
 void Player1::Fly()
-{
-	//燃料がなかったら落下する
-	if (is_fly == false&& ground - location.y > 0)
-	{
+{/*
+	if (count==1)
+	{*/
+		//燃料がなかったら落下する
+		if (is_fuel == false && ground - location.y > 0)
+		{
 			location.y += g / 2;
 			g++;
-	}
+		}
+	//}
 }
 
 //燃料ゲージ処理
