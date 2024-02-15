@@ -49,6 +49,7 @@ private:
 public:
 	int gMileage ;//プレイヤーの走行距離
 	int stageimg;
+	int MainSE;
 
 	GameMain();
 	~GameMain();

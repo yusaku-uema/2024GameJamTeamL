@@ -18,10 +18,14 @@ Player2::Player2()
 	Player2image = LoadGraph("../imege/Player2.png");
 	UFOimage = LoadGraph("../imege/UFO.png");
 
+	MoveSE = LoadSoundMem("../BGM/MoveSE.mp3");
 }
 
 Player2::~Player2()
 {
+	DeleteSoundMem(MoveSE);
+	DeleteGraph(Player2image);
+	DeleteGraph(UFOimage);
 }
 
 
@@ -56,32 +60,42 @@ void Player2::Draw()
 void Player2::Move()
 {
 	int stick_y = PadInput::GetLStick(1).y;
+		//キーを使って動かす
+		if ( location.y>=0.0f+80.0f && stick_y > 2000) // 上キーを押すと上に行く
+		{
+			location.y -= 5.0f;
+			if (CheckSoundMem(MoveSE) != 1)
+			{
+				PlaySoundMem(MoveSE, DX_PLAYTYPE_LOOP, TRUE);
+			}
+		}
+		//else if (CheckHitKeyAll() == 0)//キーを離すと止まる
+		//{
+		//	location.y += 0.0f;
+		//}
 
+		if (location.y <= 550.0f - 130.0f && stick_y < -2000) //下キーを押すと下に行く
+		{
+			location.y += 5.0f;
+			if (CheckSoundMem(MoveSE) != 1)
+			{
+				PlaySoundMem(MoveSE, DX_PLAYTYPE_LOOP, TRUE);
+			}
+		}
 
-	//キーを使って動かす
-	if (stick_y > 2000) // 上キーを押すと上に行く
-	{
-		location.y -= 5.0f;
-	}
-	//else if (CheckHitKeyAll() == 0)//キーを離すと止まる
-	//{
-	//	location.y += 0.0f;
-	//}
-
-	if (stick_y < -2000) //下キーを押すと下に行く
-	{
-		location.y += 5.0f;
-	}
-	//else if (CheckHitKeyAll() == 0)//キーを離すと止まる
-	//{
-	//	location.y += 0.0f;
-	//}
-	//
-	////同時に上下ボタン押すと止まる
-	//if (CheckHitKey(KEY_INPUT_UP) != FALSE && CheckHitKey(KEY_INPUT_DOWN) != FALSE)
-	//{
-	//	location.y += 0.0f;
-	//}
-
+		if (stick_y<2000 && stick_y>-2000)
+		{
+			StopSoundMem(MoveSE);
+		}
+		//else if (CheckHitKeyAll() == 0)//キーを離すと止まる
+		//{
+		//	location.y += 0.0f;
+		//}
+		//
+		////同時に上下ボタン押すと止まる
+		//if (CheckHitKey(KEY_INPUT_UP) != FALSE && CheckHitKey(KEY_INPUT_DOWN) != FALSE)
+		//{
+		//	location.y += 0.0f;
+		//}
 	
 }

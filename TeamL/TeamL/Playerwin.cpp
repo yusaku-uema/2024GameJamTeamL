@@ -17,7 +17,7 @@
 PlayerWin::PlayerWin()
 {
     //‰æ‘œ
-    PlayerWin_image = LoadGraph("../imege/win.mp3");
+    PlayerWin_image = LoadGraph("../imege/1win.png");
     PlayerWIN_BGM = LoadGraph("../BGM/lose.mp3");
 }
 

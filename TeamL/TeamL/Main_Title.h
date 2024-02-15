@@ -52,6 +52,8 @@ private:
     //タイトルBGM
     int title_bgm;
 
+    //カーソル画像
+    int cursolimg;
 
 public:
     //コンストラクタ 

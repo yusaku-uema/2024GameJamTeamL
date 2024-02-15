@@ -33,10 +33,12 @@ VBullet::VBullet(float mx, float my,float vx, float vy,int a)
 	animation = 0;
 	angle = a;
 	StageHit = false;
+	ReflectionSE = LoadSoundMem("../BGM/ReflectionSE.mp3");
 }
 
 VBullet::~VBullet()
 {
+	DeleteSoundMem(ReflectionSE);
 }
 
 void VBullet::Update()//更新処理
@@ -62,6 +64,7 @@ void VBullet::Update()//更新処理
 			move_y *= -1;
 			angle = -45;
 			//StageHit = false;
+			PlaySoundMem(ReflectionSE, DX_PLAYTYPE_BACK, TRUE);
 		}
 
 		/*if (StageHit==TRUE)
@@ -76,6 +79,7 @@ void VBullet::Update()//更新処理
 		{
 			move_y *= -1;
 			angle = 45;
+			PlaySoundMem(ReflectionSE, DX_PLAYTYPE_BACK, TRUE);
 		}
 	}
 
