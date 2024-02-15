@@ -1,6 +1,7 @@
 #include"Player1.h"
 #include"PadInput.h"
 #include"DxLib.h"
+#include"Playerlose.h"
 
 #define FUEL (100.0f)
 
@@ -40,6 +41,9 @@ void Player1::Update(int view_charx)
 	Flg();
 	Jump(type);
 	Fly();
+
+
+
 }
 
 //ï`âÊèàóù
@@ -205,6 +209,11 @@ void Player1::Fuel()
 void Player1::Damage()
 {
 	hp--;
+
+	
+
+
+
 }
 
 //-----------------------------------
