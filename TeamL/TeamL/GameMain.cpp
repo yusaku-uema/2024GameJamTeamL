@@ -62,8 +62,8 @@ GameMain::GameMain()
 
 	gMileage = 0;
 
-
 	
+
 }
 GameMain::~GameMain()
 {

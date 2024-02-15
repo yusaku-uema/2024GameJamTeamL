@@ -14,6 +14,8 @@ Bullet::Bullet()   //‰Šú‰»
 	radius = 10.0f;  //”¼Œa
 	color = GetColor(255, 0, 0); //F
 	Bulletimage = LoadGraph("../imege/beam.png");
+	ChargeSE = LoadSoundMem("../BGM/ChargeSE.mp3");
+	FiringSE = LoadSoundMem("../BGM/FiringSE.mp3");
 }
 
 Bullet::Bullet(float mx, float my)
@@ -53,6 +55,10 @@ void Bullet::Update()//XVˆ—
 	if (animation >= 13)
 	{
 		location.x += move_x;
+		if (CheckSoundMem(FiringSE) != 1)
+		{   //BGM‚ª—¬‚ê‚Ä‚¢‚È‚©‚Á‚½‚çÄ¶
+			PlaySoundMem(FiringSE, DX_PLAYTYPE_BACK, TRUE); //BGMÄ¶
+		}
 	}
 }
 
