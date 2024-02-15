@@ -46,7 +46,7 @@ void Player1::Update(int view_charx)
 	Move();
 	Flg();
 	Jump(type);
-	Fly();
+	Fall();
 	Fuel();
 }
 
@@ -99,28 +99,45 @@ void Player1::Flg()
 	//Aボタンを押したら＆ジャンプ中でないなら、小ジャンプをする
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_A) == 1 && is_jump == false)
 	{		
-		//空中でジャンプすると燃料を消費する
-		if (is_fly == true)
+		if (fuel<-LOW)
 		{
-			fuel += LOW;
+			//燃料がなかったらジャンプできない
+			low = 0;
 		}
-
+		else
+		{
+			//空中でジャンプすると燃料を消費する
+			if (is_fly == true)
+			{
+				fuel += LOW;
+			}
+			low = LOW;
+		}
+	
 		//ジャンプ中にする
 		SetJump(true);
-		low = LOW;
 		type = low;
 		abs = -type;
 	}
 
-	//Bボタンを押しら＆ジャンプ中でないなら、大ジャンプ
+	//Bボタンを押したら＆ジャンプ中でないなら、大ジャンプ
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_B) == 1 && is_jump == false)
 	{
-		//燃料を消費する
-		fuel += HIGH;
+		if (fuel<-HIGH)
+		{
+			//燃料がなかったらジャンプできない
+			high = 0;
+		}
+		else
+		{
+			//燃料があったら燃料を消費してジャンプ
+			fuel += HIGH;
+			high = HIGH;
+		}
+		
 
 		//ジャンプ中にする
 		SetJump(true);
-		high = HIGH;
 		type = high;
 		abs = -type;
 	}
@@ -128,13 +145,17 @@ void Player1::Flg()
 	//Rトリガーを押した値によって上昇
 	if (PadInput::GetRTrigger(0) != 0 )
 	{
+		
 		//浮遊中にする
 		SetFly(true);
 
 		//燃料があったら上昇する
-		if (location.y > area.height&&is_fuel==true)
+		if (location.y > area.height&&fuel>0)
 		{
 			location.y -= PadInput::GetRTrigger(0) * 5;
+
+			//落下変数を初期化
+			g = 0.0f;
 		}
 
 		//ジャンプ中だったらジャンプ中断
@@ -186,10 +207,10 @@ void Player1::Jump(int jump)
 }
 
 //落下処理
-void Player1::Fly()
+void Player1::Fall()
 {
-	//燃料がなかったら落下する
-	if (is_fuel == false && ground - location.y > 0)
+	//落下する
+	if (ground - location.y > 0&&is_fuel==false)
 	{
 		location.y += g / 2;
 		g++;
@@ -201,8 +222,8 @@ void Player1::Fuel()
 {
 	if (is_jump == false)
 	{
-		//ジャンプ中でなく空中にいれば燃料を消費する
-		if (location.y < ground && fuel>0.0f)
+		//ジャンプ中でなければ燃料を消費する
+		if (fuel>0.0f)
 		{
 			fuel--;
 		}
@@ -214,7 +235,7 @@ void Player1::Fuel()
 		}
 
 		//着地していると燃料を回復する
-		if (location.y >= ground && fuel < FUEL)
+		if (location.y == ground && fuel < FUEL)
 		{
 			fuel++;
 		}
