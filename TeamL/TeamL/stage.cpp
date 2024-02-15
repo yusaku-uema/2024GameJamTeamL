@@ -63,7 +63,7 @@ void Stage::Draw()const
 		DrawRotaGraph(location.x - camerax, location.y, 1,0,tukiimage1, FALSE);
 		break;
 	case 2:
-		//DrawRotaGraph(location.x - camerax, location.y,1,0, tukiimage2, FALSE);
+		DrawRotaGraph(location.x - camerax, location.y,1,0, tukiimage2, FALSE);
 		break;
 	case 3:
 		DrawRotaGraph(location.x - camerax, location.y,1,0, tukiimage3, FALSE);

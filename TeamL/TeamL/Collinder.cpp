@@ -42,6 +42,10 @@ bool Collinder::HitBox(const Collinder* collinder) const
 		ret = true;
 	}
 
+
+
+
+
 	return ret;
 }
 
@@ -53,4 +57,9 @@ Location Collinder::GetLocation() const
 Area Collinder::GetArea() const
 {
     return area;
+}
+
+void Collinder::SetLocation(float y)
+{
+	this->location.y = y;
 }

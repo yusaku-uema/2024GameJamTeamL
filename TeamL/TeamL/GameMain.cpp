@@ -12,7 +12,8 @@
 #include"PadInput.h"
 #define _CRT_SECURE_MD_WARNING
 #include<stdio.h>
-#include"PadInput.h"
+#include"Playerlose.h"
+#include"Playerwin.h"
 
 GameMain::GameMain()
 {
@@ -101,6 +102,10 @@ GameMain::~GameMain()
 
 AbstractScene* GameMain::Update()
 {
+	if (CheckSoundMem(BGM) != 1)
+	{   //BGMが流れていなかったら再生
+		PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE); //BGM再生
+	}
 
 
 	//カメラ
@@ -113,6 +118,28 @@ AbstractScene* GameMain::Update()
 	player1->Update(camerawork->GetViewCharX());
     player2->Update(camerawork->GetViewCharX());
 	ui->Update(player1->GetHP());
+
+
+
+	for (int j = 0; j < 25; j++)
+	{
+
+		for (int i = 0; i < 111; i++)
+		{
+			if (stage[j][i] != nullptr)
+			{
+				if (player1->HitBox(stage[j][i]))
+				{
+					if (stage[j][i]->BlockType() == 1)
+					{
+						player1->SetGround(stage[j][i]->GetLocation().y- 110);
+					}
+
+				}
+			}
+		}
+	}
+
 
 	//プレイヤー２の弾丸処理
 
@@ -261,10 +288,7 @@ AbstractScene* GameMain::Update()
 
 
 
-	if (CheckSoundMem(BGM) != 1)
-	{   //BGMが流れていなかったら再生
-		PlaySoundMem(BGM, DX_PLAYTYPE_LOOP, TRUE); //BGM再生
-	}
+	
 
 	for (int j = 0; j < 25; j++)
 	{
@@ -285,6 +309,17 @@ AbstractScene* GameMain::Update()
 	StopSoundMem(BGM);
 
 
+
+
+	if (player1->GetHP() == 0)
+	{
+		return new PlayerLose(); //プレイヤー１が敗北の画面
+	}
+
+	//if (player1->GetLocation().x　＝)
+	//{
+	//	return new PlayerWin();//プレイヤー２が敗北画面
+	//}
 
 	return this;
 }
@@ -317,7 +352,7 @@ void GameMain::Draw()const
 		}
 	}
 	player1->Draw();
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "X座標：%f", player1->GetLocation().x);
+	DrawFormatString(0, 260, GetColor(255, 255, 255), "X座標：%f", player1->GetLocation().x);
 	DrawFormatString(0, 40, GetColor(255, 255, 255), "Y座標：%f", player1->GetLocation().y);
 	DrawFormatString(0, 80, GetColor(255, 255, 255), "jump：%d", player1->is_jump);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "fly：%d", player1->is_fly);
