@@ -24,14 +24,19 @@ Player1::Player1()
 	hp = 3;
 	imgae1= LoadGraph("../imege/Player1.png");
 	imgae2= LoadGraph("../imege/fire.png");
-	
 
+	se1= LoadSoundMem("../BGM/fire.mp3");
+	se2= LoadSoundMem("../BGM/JumpSE.mp3");
+	se3= LoadSoundMem("../BGM/landing.mp3");
+	se4= LoadSoundMem("../BGM/damage.mp3");
+	se5= LoadSoundMem("../BGM/fire2.mp3");
+	
 	fuel = FUEL;
 	low = LOW;
 	high = HIGH;
 	type = 0;
 	abs = 0;
-	is_jump = false;
+	is_jump = true;
 	is_fly = false;
 	is_fuel = true;
 }
@@ -45,6 +50,11 @@ Player1::~Player1()
 //更新処理
 void Player1::Update(int view_charx)
 {
+	if (is_jump==true&&ground-location.y<=0)
+	{
+		PlaySoundMem(se3, DX_PLAYTYPE_BACK, TRUE);
+
+	}
 	this->view_charx = view_charx;
 	Move();
 	Flg();
@@ -97,6 +107,7 @@ void Player1::Flg()
 		SetJump(false);
 		SetFly(false);
 		SetFuel(false);
+		DeleteSoundMem(se5);
 	}
 	if (location.y <= area.height/2)
 	{
@@ -106,6 +117,10 @@ void Player1::Flg()
 	//Aボタンを押したら＆ジャンプ中でないなら、小ジャンプをする
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_A) == 1 && is_jump == false)
 	{		
+		if (is_jump==false)
+		{
+			PlaySoundMem(se2, DX_PLAYTYPE_BACK, TRUE);
+		}
 		if (fuel<-LOW)
 		{
 			//燃料がなかったらジャンプできない
@@ -130,6 +145,10 @@ void Player1::Flg()
 	//Bボタンを押したら＆ジャンプ中でないなら、大ジャンプ
 	if (PadInput::OnPressed(0,XINPUT_BUTTON_B) == 1 && is_jump == false)
 	{
+		if (is_jump == false)
+		{
+			PlaySoundMem(se1, DX_PLAYTYPE_BACK, TRUE);
+		}
 		if (fuel<-HIGH)
 		{
 			//燃料がなかったらジャンプできない
@@ -153,7 +172,11 @@ void Player1::Flg()
 	//Rトリガーを押した値によって上昇
 	if (PadInput::GetRTrigger(0) != 0 )
 	{
-		
+		if (is_fly == false)
+		{
+			se5 = LoadSoundMem("../BGM/fire2.mp3");
+			PlaySoundMem(se5, DX_PLAYTYPE_BACK, TRUE);
+		}
 		//浮遊中にする
 		SetFly(true);
 		SetFuel(true);
@@ -162,6 +185,7 @@ void Player1::Flg()
 		//燃料があったら上昇する
 		if (location.y > area.height/2&&fuel>0)
 		{
+
 			location.y -= PadInput::GetRTrigger(0) * 5;
 
 			//落下変数を初期化
@@ -243,6 +267,7 @@ void Player1::Fuel()
 		if (fuel<=0.0f)
 		{
 			SetFuel(false);
+			count=1;
 		}
 
 		//着地していると燃料を回復する
@@ -286,6 +311,7 @@ void Player1::SetGround(float y)
 //-----------------------------------
 void Player1::Damage()
 {
+	PlaySoundMem(se4, DX_PLAYTYPE_LOOP, TRUE);
 	hp--;
 }
 

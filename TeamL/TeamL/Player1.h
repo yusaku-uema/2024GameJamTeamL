@@ -25,6 +25,12 @@ public:
 	int hp; //上間　HP管理
 	int imgae1; //上間　画像
 	int imgae2; //画像
+	int se1;
+	int se5count;
+	int se2;
+	int se3;
+	int se4;
+	int se5;
 
 public:
 	Player1();		//コンストラクタ

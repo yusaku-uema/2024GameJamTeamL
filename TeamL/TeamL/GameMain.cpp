@@ -195,7 +195,7 @@ AbstractScene* GameMain::Update()
 
 		if (p_bom->GetLocation().x <= -100.0f)
 		{
-			PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK, TRUE);
+			//PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK, TRUE);
 			explosion = new Explosion(p_bom->GetLocation().x, p_bom->GetLocation().y);
 			delete p_bom;
 			p_bom = nullptr;
@@ -361,14 +361,7 @@ void GameMain::Draw()const
 		}
 	}
 	player1->Draw();
-	DrawFormatString(0, 260, GetColor(255, 255, 255), "X座標：%f", player1->GetLocation().x);
-	DrawFormatString(0, 40, GetColor(255, 255, 255), "Y座標：%f", player1->GetLocation().y);
-	DrawFormatString(0, 80, GetColor(255, 255, 255), "jump：%d", player1->is_jump);
-	DrawFormatString(0, 120, GetColor(255, 255, 255), "fly：%d", player1->is_fly);
-	DrawFormatString(0, 160, GetColor(255, 255, 255), "fuel：%f", player1->fuel);
-	DrawFormatString(0, 200, GetColor(255, 255, 255), "g：%f", player1->g);
-	DrawFormatString(0, 240, GetColor(255, 255, 255), "HP：%d", player1->hp);
-	DrawFormatString(0, 280, GetColor(255, 255, 255), "フラグ：%d", player1->count);
+
 
 
 
