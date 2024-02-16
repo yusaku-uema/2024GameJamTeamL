@@ -66,7 +66,7 @@ void Player2::Move()
 			location.y -= 5.0f;
 			if (CheckSoundMem(MoveSE) != 1)
 			{
-				PlaySoundMem(MoveSE, DX_PLAYTYPE_LOOP, TRUE);
+				PlaySoundMem(MoveSE, DX_PLAYTYPE_BACK, TRUE);
 			}
 		}
 		//else if (CheckHitKeyAll() == 0)//ÉLÅ[Çó£Ç∑Ç∆é~Ç‹ÇÈ
@@ -79,7 +79,7 @@ void Player2::Move()
 			location.y += 5.0f;
 			if (CheckSoundMem(MoveSE) != 1)
 			{
-				PlaySoundMem(MoveSE, DX_PLAYTYPE_LOOP, TRUE);
+				PlaySoundMem(MoveSE, DX_PLAYTYPE_BACK, TRUE);
 			}
 		}
 

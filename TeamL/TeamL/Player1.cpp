@@ -315,7 +315,7 @@ void Player1::SetGround(float y)
 //-----------------------------------
 void Player1::Damage()
 {
-	PlaySoundMem(se4, DX_PLAYTYPE_LOOP, TRUE);
+	PlaySoundMem(se4, DX_PLAYTYPE_BACK, TRUE);
 	hp--;
 }
 

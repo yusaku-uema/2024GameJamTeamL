@@ -195,7 +195,7 @@ AbstractScene* GameMain::Update()
 
 		if (p_bom->GetLocation().x <= -100.0f)
 		{
-			//PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK, TRUE);
+			PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK, TRUE);
 			explosion = new Explosion(p_bom->GetLocation().x, p_bom->GetLocation().y);
 			delete p_bom;
 			p_bom = nullptr;
@@ -225,7 +225,12 @@ AbstractScene* GameMain::Update()
 			//“–‚½‚è”»’è
 			if (player1->HitBox(p_bom))
 			{
-				PlaySoundMem(ExplosionSE, DX_PLAYTYPE_BACK, TRUE);
+
+				if (CheckSoundMem(BGM) != 1)
+				{   //BGM‚ª—¬‚ê‚Ä‚¢‚È‚©‚Á‚½‚çÄ¶
+					PlaySoundMem(ExplosionSE, DX_PLAYTYPE_NORMAL, TRUE);
+				}
+
 			   explosion = new Explosion(p_bom->GetLocation().x, p_bom->GetLocation().y);
 	
 				delete p_bom;
@@ -285,6 +290,7 @@ AbstractScene* GameMain::Update()
 			if (explosion->GetEnd() == true)
 			{
 				delete explosion;
+				DeleteSoundMem(ExplosionSE);
 				explosion = nullptr;
 			}
 		}

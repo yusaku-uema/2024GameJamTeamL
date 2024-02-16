@@ -29,7 +29,7 @@ Bom::Bom(float mx, float my)
 	Bomimage = LoadGraph("../imege/bom.png");
 	descent = false;
 	FallingSE = LoadSoundMem("../BGM/FallingSE.mp3");
-	ExplosionSE = LoadSoundMem("../BGM/Explosion.mp3");
+	//ExplosionSE = LoadSoundMem("../BGM/Explosion.mp3");
 }
 
 Bom::~Bom()
