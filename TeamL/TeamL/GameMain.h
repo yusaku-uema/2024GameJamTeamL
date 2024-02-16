@@ -51,7 +51,7 @@ public:
 	int stageimg;
 	int MainSE;
 	int FallingSE;
-	int ExplosionSE;
+	int u;
 
 	GameMain();
 	~GameMain();
