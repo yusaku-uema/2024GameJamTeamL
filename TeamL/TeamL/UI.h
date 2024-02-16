@@ -1,4 +1,5 @@
 #pragma once
+
 class UI
 {
 private: //メンバ変数はプライベートで宣言

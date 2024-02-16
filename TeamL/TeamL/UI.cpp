@@ -17,23 +17,25 @@ void UI::Update(int hp)
 
 void UI::Draw()
 {
+
 	//”]‹à–°‚¢
 	switch (num)
 	{
 	case 1:
-		DrawRotaGraph(150, 30, 1, 0, image, TRUE);
+		DrawRotaGraph(100, 35, 1, 0, image, TRUE);
 		break;
 	case 2:
-		DrawRotaGraph(150, 30, 1, 0, image, TRUE);
-		DrawRotaGraph(250, 30, 1, 0, image, TRUE);
+		DrawRotaGraph(100, 35, 1, 0, image, TRUE);
+		DrawRotaGraph(200, 35, 1, 0, image, TRUE);
 		break;
 	case 3:
-		DrawRotaGraph(150, 30, 1, 0, image, TRUE);
-		DrawRotaGraph(250, 30, 1, 0, image, TRUE);
-		DrawRotaGraph(350, 30, 1, 0, image, TRUE);
+		DrawRotaGraph(100, 35, 1, 0, image, TRUE);
+		DrawRotaGraph(200, 35, 1, 0, image, TRUE);
+		DrawRotaGraph(300, 35, 1, 0, image, TRUE);
 		break;
 	default:
 		break;
 	}
-	DrawFormatString(10, 0, 0xFFFFFF, "HP");
+	DrawFormatString(10, 10, 0xFFFFFF, "HP");
+	
 }
