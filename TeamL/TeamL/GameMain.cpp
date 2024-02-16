@@ -285,6 +285,7 @@ AbstractScene* GameMain::Update()
 			if (explosion->GetEnd() == true)
 			{
 				delete explosion;
+				StopSoundMem(ExplosionSE);
 				explosion = nullptr;
 			}
 		}
